@@ -5,6 +5,7 @@ mod binary_tree;
 mod codechef;
 mod fraction;
 mod leetcode;
+mod services;
 
 // use binary_tree::{
 //     binary_child::BinaryChild::{LEFT, RIGHT},
@@ -34,7 +35,9 @@ mod leetcode;
 //     println!("{:?}", binary_tree.iter(POSTFIX).collect::<Vec<_>>());
 // }
 
-fn main() {
+use services::Returns;
+
+fn main() -> Returns {
     use fraction::AsFraction;
     use fraction::Fraction;
 
@@ -42,4 +45,6 @@ fn main() {
     let f2 = 5.fr();
 
     println!("{}, {}, {}, {}, {}, {}", f1, f2, !f1, f1 + f2, f1 * f2, -f2);
+
+    Ok(())
 }
