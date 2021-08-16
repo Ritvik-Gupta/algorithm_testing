@@ -1,4 +1,4 @@
-use super::super::{AsFraction, Fraction};
+use crate::fraction::{AsFraction, Fraction};
 
 impl std::ops::Add for Fraction {
     type Output = Fraction;

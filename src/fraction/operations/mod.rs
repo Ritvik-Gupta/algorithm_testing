@@ -1,7 +1,7 @@
 mod add;
 mod mul;
 
-use super::Fraction;
+use crate::fraction::Fraction;
 
 impl std::ops::Not for Fraction {
     type Output = Fraction;

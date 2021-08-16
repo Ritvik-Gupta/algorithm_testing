@@ -1,4 +1,4 @@
-use super::Fraction;
+use crate::fraction::Fraction;
 
 impl std::clone::Clone for Fraction {
     fn clone(&self) -> Fraction {

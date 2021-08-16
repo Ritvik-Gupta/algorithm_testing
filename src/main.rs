@@ -7,13 +7,15 @@ mod fraction;
 mod leetcode;
 mod services;
 
+use services::Returns;
+
 // use binary_tree::{
 //     binary_child::BinaryChild::{LEFT, RIGHT},
 //     iter::IterOrder::{INFIX, POSTFIX, PREFIX},
 //     BinaryTree,
 // };
 
-// fn main() {
+// fn main() -> Returns {
 //     let mut binary_tree = BinaryTree::new(1);
 //     binary_tree <<= 2;
 //     binary_tree <<= 6;
@@ -33,9 +35,9 @@ mod services;
 //     println!("{:?}", binary_tree.iter(INFIX).collect::<Vec<_>>());
 //     println!("{:?}", binary_tree.iter(PREFIX).collect::<Vec<_>>());
 //     println!("{:?}", binary_tree.iter(POSTFIX).collect::<Vec<_>>());
-// }
 
-use services::Returns;
+//     Ok(())
+// }
 
 fn main() -> Returns {
     use fraction::AsFraction;

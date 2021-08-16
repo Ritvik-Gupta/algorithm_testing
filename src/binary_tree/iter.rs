@@ -1,4 +1,4 @@
-use super::{
+use crate::binary_tree::{
    binary_child::BinaryChild::{LEFT, RIGHT},
    BinaryTree,
 };
