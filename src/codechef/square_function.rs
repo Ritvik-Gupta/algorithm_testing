@@ -27,7 +27,7 @@ fn pair_combinations_for(num: u32) -> u32 {
     (num * (num - 1)) / 2
 }
 
-pub fn calc_non_perfect_squares(nums: Vec<u32>) -> u32 {
+fn calc_non_perfect_squares(nums: Vec<u32>) -> u32 {
     use std::{collections::hash_map::HashMap, convert::TryInto};
 
     let mut left_factors = HashMap::<u32, u32>::new();
@@ -47,7 +47,7 @@ pub fn calc_non_perfect_squares(nums: Vec<u32>) -> u32 {
 
 use crate::services::Returns;
 
-pub fn test() -> Returns {
+pub fn main() -> Returns {
     let num_testcases: u32 = read!();
     for _ in 0..num_testcases {
         let list_size: u32 = read!();

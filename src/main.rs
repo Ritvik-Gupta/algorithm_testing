@@ -1,8 +1,11 @@
+#![allow(dead_code)]
+
 #[macro_use]
 extern crate text_io;
 
 mod binary_tree;
 mod codechef;
+mod double_linked_list;
 mod fraction;
 mod leetcode;
 mod services;
