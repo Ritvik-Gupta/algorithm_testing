@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+#![allow(unused_variables)]
 
 #[macro_use]
 extern crate text_io;
@@ -42,14 +43,18 @@ use services::Returns;
 //     Ok(())
 // }
 
+// fn main() -> Returns {
+//     use fraction::AsFraction;
+//     use fraction::Fraction;
+
+//     let f1 = Fraction::new(1, 2);
+//     let f2 = 5.fr();
+
+//     println!("{}, {}, {}, {}, {}, {}", f1, f2, !f1, f1 + f2, f1 * f2, -f2);
+
+//     Ok(())
+// }
+
 fn main() -> Returns {
-    use fraction::AsFraction;
-    use fraction::Fraction;
-
-    let f1 = Fraction::new(1, 2);
-    let f2 = 5.fr();
-
-    println!("{}, {}, {}, {}, {}, {}", f1, f2, !f1, f1 + f2, f1 * f2, -f2);
-
     Ok(())
 }
