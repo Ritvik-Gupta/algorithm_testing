@@ -89,12 +89,11 @@ fn into_iter() {
 }
 
 #[test]
-fn try_push_middle() {
+fn middle_operations() {
     let mut list = DoubleLinkedList::new();
 
     assert_eq!(list.pop_front(), None);
 
-    // Populate list
     list.push_front(1);
     list.push_front(2);
     list.push_front(3);
@@ -107,8 +106,12 @@ fn try_push_middle() {
     list.traverse_head();
     list.traverse_tail();
 
+    assert_eq!(list.pop_middle(1), Some(2));
+
+    list.traverse_head();
+    list.traverse_tail();
+
     assert_eq!(list.pop_back(), Some(1));
     assert_eq!(list.pop_back(), Some(10));
-    assert_eq!(list.pop_back(), Some(2));
     assert_eq!(list.pop_back(), Some(3));
 }

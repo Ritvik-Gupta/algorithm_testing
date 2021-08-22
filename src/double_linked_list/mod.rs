@@ -6,10 +6,9 @@ mod iter;
 mod peek;
 mod pop;
 mod push;
+mod result;
 
 use std::cell::RefCell;
-use std::cmp::max;
-use std::convert::TryInto;
 use std::rc::Rc;
 
 struct Node<T> {
@@ -30,29 +29,12 @@ impl<T> Node<T> {
     }
 }
 
-struct SizeWrapper(u16);
-
-impl SizeWrapper {
-    fn increment(&mut self) {
-        self.0 += 1;
-    }
-    fn decrement(&mut self) {
-        self.0 = max(i32::from(self.0) - 1, 0).try_into().unwrap();
-    }
-}
-
-impl std::ops::Deref for SizeWrapper {
-    type Target = u16;
-
-    fn deref(&self) -> &u16 {
-        &self.0
-    }
-}
+use crate::services::UnsignedCounter;
 
 pub struct DoubleLinkedList<T> {
     head: Link<T>,
     tail: Link<T>,
-    length: SizeWrapper,
+    length: UnsignedCounter,
 }
 
 impl<T> DoubleLinkedList<T> {
@@ -60,7 +42,7 @@ impl<T> DoubleLinkedList<T> {
         DoubleLinkedList {
             head: None,
             tail: None,
-            length: SizeWrapper(0),
+            length: UnsignedCounter::at_zero(),
         }
     }
 
