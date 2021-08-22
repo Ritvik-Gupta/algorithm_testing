@@ -57,8 +57,6 @@ impl<T> DoubleLinkedList<T> {
 
 pub struct IntoIter<T>(DoubleLinkedList<T>);
 
-pub use format::*;
-pub use iter::*;
 pub use peek::*;
 pub use pop::*;
 pub use push::*;

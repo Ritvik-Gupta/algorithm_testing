@@ -1,5 +1,6 @@
 pub type DeLLResult<T> = Result<T, DeLLError>;
 
+#[derive(PartialEq)]
 pub enum DeLLError {
     Index {
         max_possible_value: u16,
@@ -47,6 +48,6 @@ impl fmt::Display for DeLLError {
 impl fmt::Debug for DeLLError {
     fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
         let message = self.message();
-        write!(formatter, "{} : {}", message.0, message.1)
+        write!(formatter, "{} => {}", message.0, message.1)
     }
 }
