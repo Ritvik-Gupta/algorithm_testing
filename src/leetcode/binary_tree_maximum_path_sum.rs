@@ -61,7 +61,7 @@ fn max_link_and_path(root: Link<TreeNode>) -> LinkPath {
             .unwrap_or(MIN_NODE_LINK_PATH),
     );
 
-    let max_link = root_val + max![0, left.max_link, right.max_link,];
+    let max_link = root_val + max![0, left.max_link, right.max_link];
     LinkPath {
         max_link,
         max_path: max![
