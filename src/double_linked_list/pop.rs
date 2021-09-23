@@ -57,10 +57,12 @@ impl<T> DoubleLinkedList<T> {
             return self.pop_back();
         }
 
+        use crate::services::unsigned_counter::UnsignedCounter;
+
         let mut this_node = self.head.as_ref().map(Rc::clone);
-        let mut pos = 0;
+        let mut pos = UnsignedCounter::at(0);
         while let Some(node) = this_node {
-            if pos == delete_pos {
+            if *pos == delete_pos {
                 {
                     let temp = node.borrow();
                     let prev_node = temp.prev.as_ref().unwrap();
@@ -74,7 +76,7 @@ impl<T> DoubleLinkedList<T> {
                 self.length.decrement();
                 return Ok(Rc::try_unwrap(node).ok().unwrap().into_inner().stored);
             }
-            pos += 1;
+            *pos += 1;
             this_node = node.borrow().next.as_ref().map(Rc::clone);
         }
         Err(DeLLError::Unexpected(None))

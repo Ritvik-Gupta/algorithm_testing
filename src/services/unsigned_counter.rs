@@ -1,17 +1,11 @@
-pub type Returns<T = ()> = Result<T, Box<dyn std::error::Error>>;
-
 use std::cmp::max;
 use std::convert::TryInto;
 
 pub struct UnsignedCounter(u16);
 
 impl UnsignedCounter {
-    pub fn at_zero() -> Self {
-        UnsignedCounter(0)
-    }
-
-    pub fn increment(&mut self) {
-        self.0 += 1;
+    pub fn at(store: u16) -> Self {
+        UnsignedCounter(store)
     }
 
     pub fn decrement(&mut self) {
@@ -22,7 +16,13 @@ impl UnsignedCounter {
 impl std::ops::Deref for UnsignedCounter {
     type Target = u16;
 
-    fn deref(&self) -> &u16 {
+    fn deref(&self) -> &Self::Target {
         &self.0
+    }
+}
+
+impl std::ops::DerefMut for UnsignedCounter {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
     }
 }

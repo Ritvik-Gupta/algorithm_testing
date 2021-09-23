@@ -16,7 +16,7 @@ impl<T> DoubleLinkedList<T> {
             }
         }
         self.head = Some(new_head);
-        self.length.increment();
+        *self.length += 1;
         Ok(())
     }
 
@@ -32,7 +32,7 @@ impl<T> DoubleLinkedList<T> {
             }
         }
         self.tail = Some(new_tail);
-        self.length.increment();
+        *self.length += 1;
         Ok(())
     }
 
@@ -50,10 +50,12 @@ impl<T> DoubleLinkedList<T> {
             return self.push_back(store);
         }
 
+        use crate::services::unsigned_counter::UnsignedCounter;
+
         let mut this_node = self.head.as_ref().map(Rc::clone);
-        let mut pos = 1;
+        let mut pos = UnsignedCounter::at(1);
         while let Some(prev_node) = this_node {
-            if pos == insert_pos {
+            if *pos == insert_pos {
                 let new_node = Node::new(store);
                 {
                     let temp = prev_node.borrow();
@@ -64,10 +66,10 @@ impl<T> DoubleLinkedList<T> {
                 }
                 new_node.borrow_mut().prev = Some(prev_node.clone());
                 prev_node.borrow_mut().next = Some(new_node.clone());
-                self.length.increment();
+                *self.length += 1;
                 return Ok(());
             }
-            pos += 1;
+            *pos += 1;
             this_node = prev_node.borrow().next.as_ref().map(Rc::clone);
         }
         Err(DeLLError::Unexpected(None))

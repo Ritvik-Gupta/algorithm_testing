@@ -1,6 +1,8 @@
-mod as_primitive;
+mod convert_from;
+mod display;
 mod operations;
 
+#[derive(Clone, Copy)]
 pub struct Fraction {
     numerator: i32,
     denominator: i32,
@@ -59,5 +61,4 @@ impl Fraction {
     }
 }
 
-pub use as_primitive::*;
-pub use operations::*;
+pub use {convert_from::*, display::*};

@@ -1,20 +1,6 @@
 mod add;
 mod mul;
+mod neg;
+mod not;
 
-use crate::fraction::Fraction;
-
-impl std::ops::Not for Fraction {
-    type Output = Fraction;
-
-    fn not(self) -> Fraction {
-        Fraction::new(self.denominator, self.numerator)
-    }
-}
-
-impl std::ops::Neg for Fraction {
-    type Output = Fraction;
-
-    fn neg(self) -> Fraction {
-        Fraction::new(-self.numerator, self.denominator)
-    }
-}
+pub use {add::*, mul::*, neg::*, not::*};

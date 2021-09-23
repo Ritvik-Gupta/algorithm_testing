@@ -29,7 +29,7 @@ impl<T> Node<T> {
     }
 }
 
-use crate::services::UnsignedCounter;
+use crate::services::unsigned_counter::UnsignedCounter;
 
 pub struct DoubleLinkedList<T> {
     head: Link<T>,
@@ -42,7 +42,7 @@ impl<T> DoubleLinkedList<T> {
         DoubleLinkedList {
             head: None,
             tail: None,
-            length: UnsignedCounter::at_zero(),
+            length: UnsignedCounter::at(0),
         }
     }
 
@@ -52,6 +52,12 @@ impl<T> DoubleLinkedList<T> {
 
     pub fn into_iter(self) -> IntoIter<T> {
         IntoIter(self)
+    }
+}
+
+impl<T> Drop for DoubleLinkedList<T> {
+    fn drop(&mut self) {
+        while self.pop_front().is_ok() {}
     }
 }
 

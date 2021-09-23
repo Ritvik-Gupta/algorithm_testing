@@ -1,10 +1,4 @@
-use super::{DoubleLinkedList, IntoIter};
-
-impl<T> Drop for DoubleLinkedList<T> {
-    fn drop(&mut self) {
-        while self.pop_front().is_ok() {}
-    }
-}
+use super::IntoIter;
 
 impl<T> Iterator for IntoIter<T> {
     type Item = T;

@@ -1,6 +1,5 @@
-use super::DoubleLinkedList;
-
 use super::result::{DeLLError, DeLLResult};
+use super::DoubleLinkedList;
 
 #[test]
 fn basics() -> DeLLResult<()> {
