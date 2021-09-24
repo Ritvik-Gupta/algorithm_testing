@@ -15,7 +15,7 @@ pub fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut input_lines = stdin.lock().lines().map(Result::unwrap);
 
     let num_test_cases: u32 = input_lines.next().unwrap().parse()?;
-    for i in 0..num_test_cases {
+    for _ in 0..num_test_cases {
         let str_len: usize = input_lines.next().unwrap().parse()?;
         let mut diff_string = "".to_string();
 

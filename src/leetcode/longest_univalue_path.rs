@@ -35,12 +35,6 @@ struct UnivalueLinkPath {
     max_path: i32,
 }
 
-const MIN_NODE_UNIVALUE: UnivalueLinkPath = UnivalueLinkPath {
-    link_for: -1001,
-    max_link: -1001,
-    max_path: -1001,
-};
-
 fn univalue_link_and_path(root: Link<TreeNode>) -> UnivalueLinkPath {
     let root_borrow = root.borrow();
     let root_val = root_borrow.val;

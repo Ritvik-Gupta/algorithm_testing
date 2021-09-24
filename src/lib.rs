@@ -1,6 +1,6 @@
-#![allow(dead_code)]
-#![allow(unused_macros)]
-#![allow(unused_variables)]
+// #![allow(dead_code)]
+// #![allow(unused_macros)]
+// #![allow(unused_variables)]
 
 pub mod array_2d;
 pub mod binary_tree;
