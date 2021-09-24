@@ -16,7 +16,8 @@ impl TreeNode {
     }
 }
 
-struct Solution;
+pub struct Solution;
+
 use std::cell::RefCell;
 use std::cmp::max;
 use std::rc::Rc;
