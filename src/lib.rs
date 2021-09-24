@@ -5,43 +5,14 @@
 #[macro_use(read)]
 extern crate text_io;
 
-mod array_2d;
-mod binary_tree;
-mod codechef;
-mod double_linked_list;
-mod fraction;
-mod leetcode;
-mod matrix;
-mod services;
-
-fn main() {
-    println!(
-        "{}",
-        leetcode::time_needed_to_inform_all_employees::Solution::num_of_minutes(
-            8,
-            0,
-            vec![-1, 5, 0, 6, 7, 0, 0, 0],
-            vec![89, 0, 0, 0, 0, 523, 241, 519],
-        )
-    );
-}
-
-// use array_2d::Array2D;
-// use services::Returns;
-
-// fn main() -> Returns {
-//     let ref mut matrix = Array2D::with_generator((3, 5), |vec_pos| format!("{:?}", vec_pos));
-//     println!("{} x {}", matrix.num_rows(), matrix.num_cols());
-//     matrix[(1, 1)] = "abc".to_string();
-//     println!("{:?}", matrix.iter_mut().collect::<Vec<_>>());
-//     println!("{:?}", matrix.iter().collect::<Vec<_>>());
-
-//     println!("{:?}", matrix.row_iter(0).collect::<Vec<_>>());
-//     println!("{:?}", matrix.row_iter(1).collect::<Vec<_>>());
-//     println!("{:?}", matrix.row_iter(2).collect::<Vec<_>>());
-
-//     Ok(())
-// }
+pub mod array_2d;
+pub mod binary_tree;
+pub mod codechef;
+pub mod double_linked_list;
+pub mod fraction;
+pub mod leetcode;
+pub mod matrix;
+pub mod services;
 
 /*
 macro_rules! chain {
