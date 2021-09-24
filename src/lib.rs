@@ -2,9 +2,6 @@
 #![allow(unused_macros)]
 #![allow(unused_variables)]
 
-#[macro_use(read)]
-extern crate text_io;
-
 pub mod array_2d;
 pub mod binary_tree;
 pub mod codechef;

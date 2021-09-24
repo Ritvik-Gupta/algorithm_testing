@@ -46,6 +46,7 @@ fn calc_non_perfect_squares(nums: Vec<u32>) -> u32 {
 }
 
 use crate::services::Returns;
+use text_io::read;
 
 pub fn main() -> Returns {
     let num_testcases: u32 = read!();

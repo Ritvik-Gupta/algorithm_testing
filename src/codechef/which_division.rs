@@ -1,3 +1,5 @@
+use text_io::read;
+
 fn algorithm() {
     let rating: u32 = read!();
     println!(
