@@ -1,9 +1,9 @@
 use crate::matrix::Matrix;
 
-impl<'a, 'b> std::ops::Add<&'b Matrix> for &'a Matrix {
-    type Output = Result<Matrix, String>;
+impl std::ops::Add<&dyn Matrix> for &dyn Matrix {
+    type Output = Result<Box<dyn Matrix>, String>;
 
-    fn add(self, _other: &'b Matrix) -> Result<Matrix, String> {
+    fn add(self, _other: &dyn Matrix) -> Self::Output {
         Err("".to_string())
     }
 }
