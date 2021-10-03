@@ -23,8 +23,6 @@ const WITH_1_AT_TENS: &[&str] = &[
 
 const PARTITION_LEVELS: &[&str] = &["", "Thousand ", "Million ", "Billion "];
 
-const NUMERIC_PARTITION: i32 = 1000;
-
 impl Solution {
     fn subnum_to_english(mut num: i32) -> String {
         let num: Vec<_> = std::iter::repeat_with(|| {
@@ -60,8 +58,8 @@ impl Solution {
                 break;
             }
 
-            let three_digits = num % NUMERIC_PARTITION;
-            num /= NUMERIC_PARTITION;
+            let three_digits = num % 1000;
+            num /= 1000;
             let subnum = Solution::subnum_to_english(three_digits);
             if subnum != "" {
                 result = subnum + partition_level + &result;

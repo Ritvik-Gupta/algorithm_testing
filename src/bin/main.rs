@@ -1,9 +1,20 @@
-use std::process::Command;
+extern crate algorithms;
 
 fn main() {
-    let _foo = Command::new(".\\target\\debug\\array_2d.exe")
-        .status()
-        .unwrap();
+    // let _foo = std::process::Command::new(".\\target\\debug\\array_2d.exe")
+    //     .status()
+    //     .unwrap();
+
+    println!(
+        "{:?}",
+        algorithms::leetcode::pacific_atlantic_water_flow::Solution::pacific_atlantic(vec![
+            vec![1, 2, 2, 3, 5],
+            vec![3, 2, 3, 4, 4],
+            vec![2, 4, 5, 3, 1],
+            vec![6, 7, 1, 4, 5],
+            vec![5, 1, 1, 2, 4],
+        ])
+    );
 }
 
 /*
@@ -40,12 +51,14 @@ macro_rules! recurrence {
             const MEM_SIZE: usize = count_exprs!($($inits),+);
 
             struct Recurrence {
-                mem: [$sty; MEM_SIZE],
+                vec!mem: [$sty; MEM_SIZE],
+
                 pos: usize,
             }
 
             struct IndexOffset<'a> {
-                slice: &'a [$sty; MEM_SIZE],
+                vec!slice: &'a [$sty; MEM_SIZE],
+
                 offset: usize,
             }
 
@@ -93,7 +106,8 @@ macro_rules! recurrence {
                 }
             }
 
-            Recurrence { mem: [$($inits),+], pos: 0 }
+            Recuvec!rrence { mem: [$($inits),+],
+                 pos: 0 }
         }
     };
 }
