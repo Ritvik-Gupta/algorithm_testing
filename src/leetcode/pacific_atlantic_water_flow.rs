@@ -20,7 +20,7 @@ impl std::ops::Add for Vector {
     }
 }
 
-const NEIGHBOUR_OFFSETS: &[Vector] = &[Vector(-1, 0), Vector(1, 0), Vector(0, -1), Vector(0, 1)];
+const NEIGHBOUR_OFFSETS: [Vector; 4] = [Vector(-1, 0), Vector(1, 0), Vector(0, -1), Vector(0, 1)];
 
 struct Island {
     heights: Vec<Vec<i32>>,
