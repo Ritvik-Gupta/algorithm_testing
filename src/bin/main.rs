@@ -5,16 +5,14 @@ fn main() {
     //     .status()
     //     .unwrap();
 
-    println!(
-        "{:?}",
-        algorithms::leetcode::pacific_atlantic_water_flow::Solution::pacific_atlantic(vec![
-            vec![1, 2, 2, 3, 5],
-            vec![3, 2, 3, 4, 4],
-            vec![2, 4, 5, 3, 1],
-            vec![6, 7, 1, 4, 5],
-            vec![5, 1, 1, 2, 4],
-        ])
-    );
+    println!("[");
+    for i in 1..731 {
+        println!(
+            "\t{},",
+            algorithms::leetcode::happy_number::Solution::is_happy(i)
+        );
+    }
+    println!("]");
 }
 
 /*

@@ -12,17 +12,64 @@ impl Solution {
     }
 
     pub fn is_happy(n: i32) -> bool {
-        use std::collections::HashSet;
-
-        let mut num = n as u32;
-        let mut cache = HashSet::new();
-        while num != 1 {
-            cache.insert(num);
-            num = Solution::sum_of_squares(num);
-            if cache.contains(&num) {
-                return false;
-            }
-        }
-        true
+        let sum_of_sq = Solution::sum_of_squares(n as u32);
+        CACHED_RESULTS_FOR_HAPPY_TILL_730[(sum_of_sq - 1) as usize]
     }
 }
+
+const CACHED_RESULTS_FOR_HAPPY_TILL_730: [bool; 730] = [
+    true, false, false, false, false, false, true, false, false, true, false, false, true, false,
+    false, false, false, false, true, false, false, false, true, false, false, false, false, true,
+    false, false, true, true, false, false, false, false, false, false, false, false, false, false,
+    false, true, false, false, false, false, true, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, false, false, false, true, false, true,
+    false, false, false, false, false, false, false, false, true, false, false, true, false, false,
+    false, true, false, false, false, false, true, false, false, true, false, false, true, false,
+    false, true, false, false, true, false, false, false, false, false, true, false, false, false,
+    false, false, false, false, false, false, false, false, false, false, false, false, false,
+    false, false, false, true, true, false, false, true, false, false, false, false, false, true,
+    false, false, false, false, false, false, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, false, false, false, false, false,
+    false, true, false, false, false, false, false, false, false, false, true, false, false, false,
+    false, false, false, false, false, false, false, false, true, false, true, false, true, true,
+    false, false, false, false, false, false, false, false, false, true, false, false, false,
+    false, true, false, false, false, false, false, false, false, false, false, false, true, false,
+    false, false, false, false, false, true, false, false, false, true, false, false, false, false,
+    false, true, false, false, true, false, false, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, false, false, false, false, false,
+    true, true, false, false, false, false, false, false, false, false, false, false, false, false,
+    false, false, false, false, true, false, false, false, false, false, false, false, false,
+    false, false, true, false, true, false, false, false, false, false, false, false, true, true,
+    false, false, false, false, false, false, false, true, false, false, true, false, false, false,
+    false, false, true, true, false, false, false, false, false, true, false, false, true, false,
+    true, false, false, false, false, false, false, true, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, false, false, false, true, false,
+    false, false, false, false, true, false, false, true, false, true, true, false, false, false,
+    false, false, false, false, true, false, false, true, false, false, false, true, false, false,
+    true, false, false, false, false, true, true, false, false, false, false, true, false, false,
+    false, false, false, false, true, false, false, false, false, true, false, false, false, false,
+    false, false, false, false, false, false, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, false, false, false, false, false,
+    true, false, false, false, false, false, true, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, false, false, true, false, false,
+    false, false, true, false, false, false, false, false, false, false, false, true, false, false,
+    false, false, false, false, false, false, true, false, false, true, false, false, false, false,
+    false, true, false, false, false, false, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, false, false, false, false, false,
+    false, false, true, false, false, false, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, false, true, false, false, false,
+    false, false, false, true, false, true, true, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, true, false, false, false, false,
+    false, false, false, false, true, false, false, false, false, true, true, false, false, false,
+    false, false, false, false, false, true, false, false, true, false, true, true, false, false,
+    false, false, false, true, false, false, false, false, true, false, false, false, true, false,
+    true, true, false, false, false, false, false, false, false, false, true, false, false, false,
+    false, false, true, false, true, false, false, false, false, false, false, true, false, false,
+    true, false, false, false, false, false, false, false, false, false, false, true, false, false,
+    false, false, false, true, false, false, false, false, false, false, false, false, true, false,
+    false, false, false, false, false, true, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false,
+];
