@@ -5,7 +5,12 @@ fn main() {
     //     .status()
     //     .unwrap();
 
-    algorithms::leetcode::simplify_path::Solution::simplify_path("".to_string());
+    println!(
+        "{}",
+        algorithms::leetcode::simplify_path::Solution::simplify_path(
+            "/a//b///c/d//././/..".to_string()
+        )
+    );
 }
 
 /*
