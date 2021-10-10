@@ -1,14 +1,14 @@
 pub struct Solution;
 
-const AT_ONES: &[&str] = &[
+static AT_ONES: &[&str] = &[
     "", "One ", "Two ", "Three ", "Four ", "Five ", "Six ", "Seven ", "Eight ", "Nine ",
 ];
 
-const AT_TENS: &[&str] = &[
+static AT_TENS: &[&str] = &[
     "", "", "Twenty ", "Thirty ", "Forty ", "Fifty ", "Sixty ", "Seventy ", "Eighty ", "Ninety ",
 ];
 
-const WITH_1_AT_TENS: &[&str] = &[
+static WITH_1_AT_TENS: &[&str] = &[
     "Ten ",
     "Eleven ",
     "Twelve ",
@@ -21,7 +21,7 @@ const WITH_1_AT_TENS: &[&str] = &[
     "Nineteen ",
 ];
 
-const PARTITION_LEVELS: &[&str] = &["", "Thousand ", "Million ", "Billion "];
+static PARTITION_LEVELS: &[&str] = &["", "Thousand ", "Million ", "Billion "];
 
 impl Solution {
     fn subnum_to_english(mut num: i32) -> String {

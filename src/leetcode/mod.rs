@@ -1,4 +1,5 @@
 pub mod binary_tree_maximum_path_sum;
+pub mod contains_duplicate_2;
 pub mod convert_binary_number_in_a_linked_list_to_integer;
 pub mod dungeon_game;
 pub mod game_of_life;
@@ -13,6 +14,7 @@ pub mod pacific_atlantic_water_flow;
 pub mod path_sum_3;
 pub mod serialize_and_deserialize_binary_tree;
 pub mod set_matrix_zeroes;
+pub mod simplify_path;
 pub mod stream_of_characters;
 pub mod sum_of_square_numbers;
 pub mod time_needed_to_inform_all_employees;

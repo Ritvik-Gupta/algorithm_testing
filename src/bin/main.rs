@@ -5,14 +5,7 @@ fn main() {
     //     .status()
     //     .unwrap();
 
-    println!("[");
-    for i in 1..731 {
-        println!(
-            "\t{},",
-            algorithms::leetcode::happy_number::Solution::is_happy(i)
-        );
-    }
-    println!("]");
+    algorithms::leetcode::simplify_path::Solution::simplify_path("".to_string());
 }
 
 /*
