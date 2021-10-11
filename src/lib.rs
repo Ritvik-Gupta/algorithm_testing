@@ -1,6 +1,6 @@
-// #![allow(dead_code)]
+#![allow(dead_code)]
+#![allow(unused_variables)]
 // #![allow(unused_macros)]
-// #![allow(unused_variables)]
 
 pub mod array_2d;
 pub mod binary_tree;
@@ -10,3 +10,4 @@ pub mod fraction;
 pub mod leetcode;
 pub mod matrix;
 pub mod services;
+pub mod trie;
