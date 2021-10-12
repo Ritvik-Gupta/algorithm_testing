@@ -5,12 +5,22 @@ fn main() {
     //     .status()
     //     .unwrap();
 
-    println!(
-        "{}",
-        algorithms::leetcode::simplify_path::Solution::simplify_path(
-            "/a//b///c/d//././/..".to_string()
-        )
-    );
+    let mut trie = algorithms::trie::link::TrieLink::new();
+    trie.insert("a");
+    trie.insert("ab");
+    trie.insert("bc");
+    trie.insert("bca");
+    trie.insert("bab");
+    trie.insert("c");
+    trie.insert("caa");
+
+    {
+        let mut trie_2 = trie.clone();
+        let ac_trie = trie_2.lock();
+        println!("\n\n\n");
+        trie.print();
+        ac_trie.match_against("abccabxfwa");
+    }
 }
 
 /*

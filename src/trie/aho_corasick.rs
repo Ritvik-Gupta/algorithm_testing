@@ -1,21 +1,18 @@
-use crate::trie::{
-    TrieLink, TrieNode, TrieNodeIndex,
-    TrieNodeType::{Token, ROOT},
-    TrieSuffix,
-};
-use std::collections::{BTreeMap, VecDeque};
+use crate::trie::{TrieLink, TrieNode, TrieNodeType::ROOT, TrieSuffix};
+use std::collections::{BTreeMap, HashMap};
 
 pub struct AhoCorasickTrie<'a> {
     trie: &'a mut TrieLink,
-    suffix_transitions: BTreeMap<TrieNodeIndex, BTreeMap<char, TrieLink>>,
+    suffix_transitions: HashMap<TrieLink, BTreeMap<char, TrieLink>>,
 }
 
 impl<'a> AhoCorasickTrie<'a> {
     pub fn new(trie: &'a mut TrieLink) -> Self {
-        trie.print();
+        use std::collections::VecDeque;
+
         let mut ac_trie = Self {
             trie,
-            suffix_transitions: BTreeMap::new(),
+            suffix_transitions: HashMap::new(),
         };
         let mut node_queue = VecDeque::new();
         node_queue.push_back(ac_trie.trie.clone());
@@ -30,27 +27,69 @@ impl<'a> AhoCorasickTrie<'a> {
         }
         ac_trie.suffix_transitions.clear();
 
-        println!("\n\n\n");
-        ac_trie.trie.print();
         ac_trie
+    }
+
+    pub fn match_against(&self, sentence: &str) {
+        let mut current_node = self.trie.clone();
+
+        let sentence = sentence.as_bytes();
+        'to_next_token: for (index, &token) in sentence.iter().enumerate() {
+            let token = token as char;
+            loop {
+                current_node = {
+                    let node_borrow = current_node.borrow();
+
+                    if node_borrow.children.contains_key(&token) {
+                        break;
+                    } else if let ROOT = node_borrow.of_type {
+                        continue 'to_next_token;
+                    }
+                    node_borrow.suffix.as_ref().unwrap().failure.clone()
+                };
+            }
+
+            let mut child_node = current_node.borrow().children[&token].clone();
+            if child_node.borrow().is_end {
+                let start_idx = index + 1 - child_node.borrow().depth;
+                println!(
+                    "Match {} at {}",
+                    std::str::from_utf8(&sentence[start_idx..index + 1]).unwrap(),
+                    index + 1
+                );
+            }
+            current_node = child_node.clone();
+
+            loop {
+                child_node = {
+                    let node_borrow = child_node.borrow();
+                    match &node_borrow.suffix.as_ref().unwrap().dictionary {
+                        Some(dictionary_node) => dictionary_node.clone(),
+                        None => break,
+                    }
+                };
+
+                let start_idx = index + 1 - child_node.borrow().depth;
+                println!(
+                    "Match {} at {}",
+                    std::str::from_utf8(&sentence[start_idx..index + 1]).unwrap(),
+                    index + 1
+                );
+            }
+        }
     }
 
     fn get_suffix(&mut self, node: &TrieLink) -> TrieSuffix {
         match &node.borrow().suffix {
             Some(suffix) => suffix.clone(),
             None => {
-                let failure_suffix = match &node.borrow().of_type {
-                    ROOT => node.clone(),
-                    Token {
-                        parent: parent_node,
-                        token,
-                    } => match parent_node.borrow().of_type {
-                        ROOT => parent_node.clone(),
-                        _ => {
-                            let parent_failure_suffix = self.get_suffix(parent_node).failure;
-                            self.get_transition(&parent_failure_suffix, *token)
-                        }
-                    },
+                let (relative_token, relative_parent) = node.relative_parent_with_token();
+                let failure_suffix = match &relative_parent.borrow().of_type {
+                    ROOT => relative_parent.clone(),
+                    _ => {
+                        let parent_failure_suffix = self.get_suffix(&relative_parent).failure;
+                        self.get_transition(&parent_failure_suffix, relative_token)
+                    }
                 };
 
                 let dictionary_suffix = match *failure_suffix.borrow() {
@@ -70,24 +109,23 @@ impl<'a> AhoCorasickTrie<'a> {
     fn get_transition(&mut self, node: &TrieLink, token: char) -> TrieLink {
         match self
             .suffix_transitions
-            .entry(node.borrow().index)
+            .entry(node.clone())
             .or_insert(BTreeMap::new())
             .get(&token)
         {
             Some(transition) => transition.clone(),
             None => {
-                let transition = match node.borrow().children.get(&token) {
-                    Some(child_node) => child_node.clone(),
-                    None => match node.borrow().of_type {
-                        ROOT => node.clone(),
-                        _ => {
-                            let node_failure_suffix = self.get_suffix(&node).failure;
-                            self.get_transition(&node_failure_suffix, token)
-                        }
-                    },
+                let node_borrow = node.borrow();
+                let transition = match (node_borrow.children.get(&token), &node_borrow.of_type) {
+                    (Some(child_node), _) => child_node.clone(),
+                    (None, ROOT) => node.clone(),
+                    _ => {
+                        let node_failure_suffix = self.get_suffix(node).failure;
+                        self.get_transition(&node_failure_suffix, token)
+                    }
                 };
                 self.suffix_transitions
-                    .get_mut(&node.borrow().index)
+                    .get_mut(node)
                     .unwrap()
                     .insert(token, transition.clone());
 
@@ -99,16 +137,18 @@ impl<'a> AhoCorasickTrie<'a> {
 
 impl<'a> Drop for AhoCorasickTrie<'a> {
     fn drop(&mut self) {
-        let mut node_queue = VecDeque::<TrieLink>::new();
+        use std::collections::VecDeque;
+
+        let mut node_queue = VecDeque::new();
         node_queue.push_back(self.trie.clone());
 
         while let Some(current_node) = node_queue.pop_front() {
-            let mut current_node_borrow = current_node.borrow_mut();
-            current_node_borrow
+            current_node
+                .borrow()
                 .children
-                .iter_mut()
+                .iter()
                 .for_each(|(_, child_node)| node_queue.push_back(child_node.clone()));
-            current_node_borrow.suffix = None;
+            current_node.borrow_mut().suffix = None;
         }
     }
 }
