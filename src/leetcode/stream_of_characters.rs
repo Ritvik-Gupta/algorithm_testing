@@ -1,236 +1,83 @@
-use std::{
-    cell::RefCell,
-    collections::{BTreeMap, HashMap},
-    rc::Rc,
-};
-use TrieNodeType::{Token, ROOT};
+const TOTAL_ALPHABETS: usize = 26;
+const ALPHABET_OFFSET: u8 = b'a';
 
-const DEFAULT_TRIE_TOKEN: char = '_';
-
-pub struct TrieNode {
-    depth: usize,
+struct TrieNode {
+    children: [Option<Box<TrieNode>>; TOTAL_ALPHABETS],
     is_end: bool,
-    of_type: TrieNodeType,
-    children: BTreeMap<char, TrieLink>,
-    suffix: Option<TrieSuffix>,
 }
 
-#[derive(Hash, PartialEq, Eq)]
-enum TrieNodeType {
-    ROOT,
-    Token { token: char, parent: TrieLink },
-}
-
-#[derive(Clone)]
-struct TrieSuffix {
-    failure: TrieLink,
-    dictionary: Option<TrieLink>,
-}
-
-impl Default for TrieNode {
-    fn default() -> Self {
-        Self {
-            depth: 0,
+impl TrieNode {
+    fn new() -> Box<Self> {
+        Box::new(Self {
+            children: [
+                None, None, None, None, None, None, None, None, None, None, None, None, None, None,
+                None, None, None, None, None, None, None, None, None, None, None, None,
+            ],
             is_end: false,
-            of_type: TrieNodeType::ROOT,
-            children: BTreeMap::new(),
-            suffix: None,
-        }
+        })
     }
 }
 
-impl std::hash::Hash for TrieNode {
-    fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
-        self.is_end.hash(state);
-        self.of_type.hash(state);
-    }
-}
-
-impl std::cmp::PartialEq for TrieNode {
-    fn eq(&self, other: &Self) -> bool {
-        self.is_end == other.is_end && self.of_type == other.of_type
-    }
-}
-
-impl std::cmp::Eq for TrieNode {}
-
-pub struct TrieLink(Rc<RefCell<TrieNode>>);
-
-impl TrieLink {
-    pub fn new() -> Self {
-        Self(Rc::new(RefCell::new(TrieNode::default())))
-    }
-    pub fn relative_parent_with_token(&self) -> (char, Self) {
-        match &self.0.borrow().of_type {
-            ROOT => (DEFAULT_TRIE_TOKEN, self.clone()),
-            Token { parent, token } => (*token, parent.clone()),
-        }
-    }
-
-    pub fn insert(&mut self, word: &str) {
-        let mut current_node = self.clone();
-        for token in word.chars() {
-            current_node = {
-                let mut current_node_borrow = current_node.0.borrow_mut();
-                let current_node_depth = current_node_borrow.depth;
-                current_node_borrow
-                    .children
-                    .entry(token)
-                    .or_insert_with(|| {
-                        Self(Rc::new(RefCell::new(TrieNode {
-                            depth: current_node_depth + 1,
-                            of_type: Token {
-                                token,
-                                parent: current_node.clone(),
-                            },
-                            ..Default::default()
-                        })))
-                    })
-                    .clone()
-            };
-        }
-        current_node.0.borrow_mut().is_end = true;
-    }
-
-    pub fn lock(&self) {
-        AhoCorasickTrie::transform(self);
-    }
-}
-
-impl std::hash::Hash for TrieLink {
-    fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
-        self.0.borrow().hash(state);
-    }
-}
-
-impl std::cmp::PartialEq for TrieLink {
-    fn eq(&self, other: &Self) -> bool {
-        *self.0.borrow() == *other.0.borrow()
-    }
-}
-
-impl std::cmp::Eq for TrieLink {}
-
-impl Clone for TrieLink {
-    fn clone(&self) -> Self {
-        Self(Rc::clone(&self.0))
-    }
-}
-
-pub struct AhoCorasickTrie(HashMap<TrieLink, BTreeMap<char, TrieLink>>);
-
-impl AhoCorasickTrie {
-    pub fn transform(root: &TrieLink) -> Self {
-        use std::collections::VecDeque;
-
-        let mut ac_trie = Self(HashMap::new());
-        let mut node_queue = VecDeque::new();
-        node_queue.push_back(root.clone());
-
-        while let Some(current_node) = node_queue.pop_front() {
-            current_node
-                .0
-                .borrow()
-                .children
-                .iter()
-                .for_each(|(_, child_node)| node_queue.push_back(child_node.clone()));
-            current_node.0.borrow_mut().suffix = Some(ac_trie.get_suffix(&current_node));
-        }
-        ac_trie.0.clear();
-
-        ac_trie
-    }
-
-    fn get_suffix(&mut self, node: &TrieLink) -> TrieSuffix {
-        match &node.0.borrow().suffix {
-            Some(suffix) => suffix.clone(),
-            None => {
-                let (relative_token, relative_parent) = node.relative_parent_with_token();
-                let failure_suffix = match &relative_parent.0.borrow().of_type {
-                    ROOT => relative_parent.clone(),
-                    _ => {
-                        let parent_failure_suffix = self.get_suffix(&relative_parent).failure;
-                        self.get_transition(&parent_failure_suffix, relative_token)
-                    }
-                };
-
-                let dictionary_suffix = match *failure_suffix.0.borrow() {
-                    TrieNode { is_end: true, .. } => Some(failure_suffix.clone()),
-                    TrieNode { of_type: ROOT, .. } => None,
-                    _ => self.get_suffix(&failure_suffix).dictionary,
-                };
-
-                TrieSuffix {
-                    failure: failure_suffix,
-                    dictionary: dictionary_suffix,
-                }
-            }
-        }
-    }
-
-    fn get_transition(&mut self, node: &TrieLink, token: char) -> TrieLink {
-        match self
-            .0
-            .entry(node.clone())
-            .or_insert(BTreeMap::new())
-            .get(&token)
-        {
-            Some(transition) => transition.clone(),
-            None => {
-                let node_borrow = node.0.borrow();
-                let transition = match (node_borrow.children.get(&token), &node_borrow.of_type) {
-                    (Some(child_node), _) => child_node.clone(),
-                    (None, ROOT) => node.clone(),
-                    _ => {
-                        let node_failure_suffix = self.get_suffix(node).failure;
-                        self.get_transition(&node_failure_suffix, token)
-                    }
-                };
-                self.0
-                    .get_mut(node)
-                    .unwrap()
-                    .insert(token, transition.clone());
-
-                transition
-            }
-        }
-    }
-}
+use std::collections::LinkedList;
 
 struct StreamChecker {
-    current_node: TrieLink,
+    root: Box<TrieNode>,
+    read_chars: LinkedList<u8>,
+    max_depth: usize,
 }
 
 impl StreamChecker {
-    #[allow(dead_code)]
     fn new(words: Vec<String>) -> Self {
-        let mut trie = TrieLink::new();
-        words.iter().for_each(|word| trie.insert(word));
-        trie.lock();
-        Self { current_node: trie }
+        let mut trie_root = TrieNode::new();
+        let mut max_depth = 0;
+
+        for word in words {
+            if word.len() > max_depth {
+                max_depth = word.len();
+            }
+
+            let mut current_node = &mut trie_root;
+            for token in word
+                .bytes()
+                .rev()
+                .map(|token| (token - ALPHABET_OFFSET) as usize)
+            {
+                if let None = current_node.children[token] {
+                    current_node.children[token] = Some(TrieNode::new());
+                }
+                current_node = current_node.children[token].as_mut().unwrap();
+            }
+            current_node.is_end = true;
+        }
+
+        Self {
+            root: trie_root,
+            read_chars: LinkedList::new(),
+            max_depth,
+        }
     }
 
-    fn query(&mut self, token: char) -> bool {
-        loop {
-            self.current_node = {
-                let node_borrow = self.current_node.0.borrow();
+    fn query(&mut self, letter: char) -> bool {
+        self.read_chars.push_back(letter as u8);
+        if self.read_chars.len() > self.max_depth {
+            self.read_chars.pop_front();
+        }
 
-                if node_borrow.children.contains_key(&token) {
-                    break;
-                } else if let ROOT = node_borrow.of_type {
-                    return false;
-                }
-                node_borrow.suffix.as_ref().unwrap().failure.clone()
+        let mut current_node = &self.root;
+        for token in self
+            .read_chars
+            .iter()
+            .rev()
+            .map(|&token| (token - ALPHABET_OFFSET) as usize)
+        {
+            current_node = match current_node.children[token].as_ref() {
+                Some(child_node) => child_node,
+                _ => break,
             };
+            if current_node.is_end {
+                return true;
+            }
         }
-
-        let child_node = self.current_node.0.borrow().children[&token].clone();
-        self.current_node = child_node;
-
-        let node_borrow = self.current_node.0.borrow();
-        match node_borrow.suffix.as_ref().unwrap().dictionary.as_ref() {
-            Some(_) => true,
-            _ => node_borrow.is_end,
-        }
+        false
     }
 }
