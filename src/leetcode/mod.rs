@@ -10,6 +10,7 @@ pub mod longest_common_subsequence;
 pub mod longest_univalue_path;
 pub mod max_points_on_a_line;
 pub mod nth_tribonacci_number;
+pub mod number_of_pairs_of_interchangeable_rectangles;
 pub mod pacific_atlantic_water_flow;
 pub mod path_sum_3;
 pub mod rotate_array;
