@@ -16,6 +16,7 @@ pub mod rotate_array;
 pub mod serialize_and_deserialize_binary_tree;
 pub mod set_matrix_zeroes;
 pub mod simplify_path;
+pub mod sort_colors;
 pub mod sqrt_x;
 pub mod stream_of_characters;
 pub mod sum_of_square_numbers;
