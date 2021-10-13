@@ -29,7 +29,12 @@ impl Room {
 impl Solution {
     pub fn calculate_minimum_hp(dungeon: Vec<Vec<i32>>) -> i32 {
         let (n, m) = (dungeon.len(), dungeon[0].len());
-        let mut rooms: Vec<Vec<Room>> = dungeon
+        let mut rooms: Vec<Vec<Room>> = dungeonpublic int[] toInt(Set<Integer> set) {
+  int[] a = new int[set.size()];
+  int i = 0;
+  for (Integer val : set) a[i++] = val;
+  return a;
+}
             .iter()
             .map(|row| row.iter().map(|&cost| Room::new(cost)).collect())
             .collect();

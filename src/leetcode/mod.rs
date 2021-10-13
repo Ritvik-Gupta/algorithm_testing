@@ -6,6 +6,7 @@ pub mod game_of_life;
 pub mod happy_number;
 pub mod integer_to_english_words;
 pub mod integer_to_roman;
+pub mod intersection_of_two_arrays_2;
 pub mod longest_common_subsequence;
 pub mod longest_univalue_path;
 pub mod max_points_on_a_line;
