@@ -5,9 +5,10 @@ fn main() {
     //     .status()
     //     .unwrap();
 
-    algorithms::leetcode::preimage_size_of_factorial_zeroes_function::Solution::preimage_size_fzf(
-        1000000000,
-    );
+    for i in 8..15u32 {
+        println!("{} -> {} -> {}", i, !i, ((!i) & 15 | 8) >> 1);
+    }
+    algorithms::leetcode::path_in_zigzag_labelled_binary_tree::Solution::path_in_zig_zag_tree(10);
 }
 /*
 macro_rules! chain {
