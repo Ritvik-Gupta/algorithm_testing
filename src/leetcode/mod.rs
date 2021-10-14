@@ -16,6 +16,7 @@ pub mod number_of_digit_one;
 pub mod number_of_pairs_of_interchangeable_rectangles;
 pub mod pacific_atlantic_water_flow;
 pub mod path_sum_3;
+pub mod preimage_size_of_factorial_zeroes_function;
 pub mod rotate_array;
 pub mod serialize_and_deserialize_binary_tree;
 pub mod set_matrix_zeroes;

@@ -5,24 +5,10 @@ fn main() {
     //     .status()
     //     .unwrap();
 
-    let mut trie = algorithms::trie::link::TrieLink::new();
-    trie.insert("a");
-    trie.insert("ab");
-    trie.insert("bc");
-    trie.insert("bca");
-    trie.insert("bab");
-    trie.insert("c");
-    trie.insert("caa");
-
-    {
-        let mut trie_2 = trie.clone();
-        let ac_trie = trie_2.lock();
-        println!("\n\n\n");
-        trie.print();
-        ac_trie.match_against("abccabxfwa");
-    }
+    algorithms::leetcode::preimage_size_of_factorial_zeroes_function::Solution::preimage_size_fzf(
+        1000000000,
+    );
 }
-
 /*
 macro_rules! chain {
     [
