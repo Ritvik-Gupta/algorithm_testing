@@ -27,6 +27,7 @@ struct StreamChecker {
 }
 
 impl StreamChecker {
+    #[allow(dead_code)]
     fn new(words: Vec<String>) -> Self {
         let mut trie_root = TrieNode::new();
         let mut max_depth = 0;
@@ -57,6 +58,7 @@ impl StreamChecker {
         }
     }
 
+    #[allow(dead_code)]
     fn query(&mut self, letter: char) -> bool {
         self.read_chars.push_back(letter as u8);
         if self.read_chars.len() > self.max_depth {
