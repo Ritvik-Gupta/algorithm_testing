@@ -1,5 +1,6 @@
 pub mod add_one_row_to_tree;
 pub mod binary_tree_maximum_path_sum;
+pub mod binary_tree_zigzag_level_order_traversal;
 pub mod contains_duplicate_2;
 pub mod convert_binary_number_in_a_linked_list_to_integer;
 pub mod dungeon_game;
