@@ -5,10 +5,25 @@ fn main() {
     //     .status()
     //     .unwrap();
 
-    for i in 8..15u32 {
-        println!("{} -> {} -> {}", i, !i, ((!i) & 15 | 8) >> 1);
-    }
-    algorithms::leetcode::path_in_zigzag_labelled_binary_tree::Solution::path_in_zig_zag_tree(10);
+    let now = std::time::Instant::now();
+    let a = vec![1; 100];
+    println!("{:?}", now.elapsed());
+    let now = std::time::Instant::now();
+    let a1 = a.into_iter().rev();
+    println!("{:?}", now.elapsed());
+    let now = std::time::Instant::now();
+    let _a2: Vec<_> = a1.collect();
+    println!("{:?}", now.elapsed());
+
+    let now = std::time::Instant::now();
+    let b = vec![1; 10000000];
+    println!("{:?}", now.elapsed());
+    let now = std::time::Instant::now();
+    let b1 = b.into_iter().rev();
+    println!("{:?}", now.elapsed());
+    let now = std::time::Instant::now();
+    let _b2: Vec<_> = b1.collect();
+    println!("{:?}", now.elapsed());
 }
 /*
 macro_rules! chain {
