@@ -1,23 +1,23 @@
 pub struct Solution;
 
 #[derive(Clone, Copy, Hash, PartialEq, Eq)]
-struct Location(usize, usize);
+struct Vector(usize, usize);
 
-impl Location {
+impl Vector {
     fn contains(&self, other: &Self) -> bool {
         other.0 < self.0 && other.1 < self.1
     }
 }
 
-impl std::ops::Add<&Direction> for Location {
-    type Output = Location;
+impl std::ops::Add<&Direction> for Vector {
+    type Output = Vector;
 
     fn add(self, direction: &Direction) -> Self::Output {
         match direction {
-            UP => Location(self.0 + 1, self.1),
-            DOWN => Location(self.0 - 1, self.1),
-            LEFT => Location(self.0, self.1 + 1),
-            RIGHT => Location(self.0, self.1 - 1),
+            UP => Vector(self.0 + 1, self.1),
+            DOWN => Vector(self.0 - 1, self.1),
+            LEFT => Vector(self.0, self.1 + 1),
+            RIGHT => Vector(self.0, self.1 - 1),
         }
     }
 }
@@ -35,29 +35,29 @@ static NEIGHBOUR_DIRECTIONS: [Direction; 4] = [UP, DOWN, LEFT, RIGHT];
 
 struct DfsBoard<'a> {
     board: Vec<Vec<char>>,
-    board_size: Location,
+    board_size: Vector,
     word: &'a [u8],
 }
 
-impl<'a> std::ops::Index<Location> for DfsBoard<'a> {
+impl<'a> std::ops::Index<Vector> for DfsBoard<'a> {
     type Output = char;
 
-    fn index(&self, location: Location) -> &Self::Output {
+    fn index(&self, location: Vector) -> &Self::Output {
         &self.board[location.0][location.1]
     }
 }
 
-impl<'a> std::ops::IndexMut<Location> for DfsBoard<'a> {
-    fn index_mut(&mut self, location: Location) -> &mut Self::Output {
+impl<'a> std::ops::IndexMut<Vector> for DfsBoard<'a> {
+    fn index_mut(&mut self, location: Vector) -> &mut Self::Output {
         &mut self.board[location.0][location.1]
     }
 }
 
-const TILE_MARK_OFFSET: u8 = 60;
+const SEEN_TILE: char = '#';
 
 impl<'a> DfsBoard<'a> {
     fn new(board: Vec<Vec<char>>, word: &'a [u8]) -> Self {
-        let board_size = Location(board.len(), board[0].len());
+        let board_size = Vector(board.len(), board[0].len());
         DfsBoard {
             board,
             board_size,
@@ -69,29 +69,21 @@ impl<'a> DfsBoard<'a> {
         self.word[index] as char
     }
 
-    fn mark_tile(&mut self, location: Location) {
-        self[location] = (self[location] as u8 + TILE_MARK_OFFSET) as char;
-    }
-
-    fn unmark_tile(&mut self, location: Location) {
-        self[location] = (self[location] as u8 - TILE_MARK_OFFSET) as char;
-    }
-
-    fn dfs(&mut self, location: Location, word_ptr: usize) -> bool {
+    fn dfs(&mut self, location: Vector, word_ptr: usize) -> bool {
         if word_ptr == self.word.len() {
             return true;
         }
+        if !self.board_size.contains(&location) || self[location] != self.from_word(word_ptr) {
+            return false;
+        }
 
-        self.mark_tile(location);
+        self[location] = SEEN_TILE;
         for neighbour in NEIGHBOUR_DIRECTIONS.iter().map(|dir| location + dir) {
-            if self.board_size.contains(&neighbour)
-                && self[neighbour] == self.from_word(word_ptr)
-                && self.dfs(neighbour, word_ptr + 1)
-            {
+            if self.dfs(neighbour, word_ptr + 1) {
                 return true;
             }
         }
-        self.unmark_tile(location);
+        self[location] = self.from_word(word_ptr);
         false
     }
 }
@@ -100,11 +92,13 @@ impl Solution {
     pub fn exist(board: Vec<Vec<char>>, word: String) -> bool {
         let mut dfs_board = DfsBoard::new(board, word.as_bytes());
 
+        if word.len() > dfs_board.board_size.0 * dfs_board.board_size.1 {
+            return false;
+        }
+
         for i in 0..dfs_board.board_size.0 {
             for j in 0..dfs_board.board_size.1 {
-                if dfs_board[Location(i, j)] == dfs_board.from_word(0)
-                    && dfs_board.dfs(Location(i, j), 1)
-                {
+                if dfs_board.dfs(Vector(i, j), 0) {
                     return true;
                 }
             }
