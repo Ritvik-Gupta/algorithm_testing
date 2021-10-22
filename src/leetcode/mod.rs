@@ -1,4 +1,6 @@
+pub mod add_binary;
 pub mod add_one_row_to_tree;
+pub mod add_to_array_form_of_integer;
 pub mod binary_tree_maximum_path_sum;
 pub mod binary_tree_zigzag_level_order_traversal;
 pub mod contains_duplicate_2;
@@ -34,3 +36,4 @@ pub mod sum_of_square_numbers;
 pub mod symmetric_tree;
 pub mod time_needed_to_inform_all_employees;
 pub mod triangle;
+pub mod word_search;
