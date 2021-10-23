@@ -39,3 +39,4 @@ pub mod symmetric_tree;
 pub mod time_needed_to_inform_all_employees;
 pub mod triangle;
 pub mod word_search;
+pub mod x_of_a_kind_in_a_deck_of_cards;
