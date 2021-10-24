@@ -37,6 +37,7 @@ pub mod sort_colors;
 pub mod sqrt_x;
 pub mod stream_of_characters;
 pub mod sum_of_square_numbers;
+pub mod summary_ranges;
 pub mod symmetric_tree;
 pub mod time_needed_to_inform_all_employees;
 pub mod triangle;
