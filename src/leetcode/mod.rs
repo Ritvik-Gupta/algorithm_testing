@@ -10,6 +10,7 @@ pub mod factorial_trailing_zeroes;
 pub mod falling_squares;
 pub mod game_of_life;
 pub mod happy_number;
+pub mod implement_stack_using_queues;
 pub mod integer_to_english_words;
 pub mod integer_to_roman;
 pub mod intersection_of_two_arrays_2;
