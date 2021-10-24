@@ -24,6 +24,7 @@ pub mod number_of_pairs_of_interchangeable_rectangles;
 pub mod pacific_atlantic_water_flow;
 pub mod path_in_zigzag_labelled_binary_tree;
 pub mod path_sum_3;
+pub mod power_of_two;
 pub mod preimage_size_of_factorial_zeroes_function;
 pub mod prime_number_of_set_bits_in_binary_representation;
 pub mod robot_return_to_origin;
