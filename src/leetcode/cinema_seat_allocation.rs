@@ -40,16 +40,16 @@ impl PossibleRowGroups {
 
 impl Solution {
     pub fn max_number_of_families(n: i32, reserved_seats: Vec<Vec<i32>>) -> i32 {
-        let mut theatre_rows = std::collections::BTreeMap::new();
+        let mut cinema_rows = std::collections::BTreeMap::new();
         for (row_num, seat_num) in reserved_seats.into_iter().map(|seat| (seat[0], seat[1])) {
-            theatre_rows
+            cinema_rows
                 .entry(row_num)
                 .or_insert(PossibleRowGroups::new())
                 .reserve(seat_num);
         }
 
         2 * n
-            - theatre_rows
+            - cinema_rows
                 .into_iter()
                 .map(|(_, possible_row_groups)| possible_row_groups.result())
                 .sum::<i32>()
