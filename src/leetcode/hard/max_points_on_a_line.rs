@@ -1,85 +1,70 @@
 pub struct Solution;
 
-#[derive(PartialEq, Eq, Debug, Hash, Clone, Copy)]
-struct Point {
-    x: i32,
-    y: i32,
-}
-
-impl Point {
-    fn from(vector: &Vec<i32>) -> Self {
-        Point {
-            x: vector[0],
-            y: vector[1],
+fn gcd(mut a: u32, mut b: u32) -> u32 {
+    loop {
+        if a == 0 {
+            return b;
         }
-    }
-
-    fn lies_on_line(&self, line: &Line) -> bool {
-        (self.y - line.0.y) * (line.1.x - line.0.x) == (self.x - line.0.x) * (line.1.y - line.0.y)
-    }
-}
-
-#[derive(Debug)]
-struct Line(Point, Point);
-
-impl Line {
-    fn slope(&self) -> f64 {
-        f64::from(self.1.x - self.0.x) / f64::from(self.1.y - self.0.y)
-    }
-
-    fn y_intercept(&self) -> f64 {
-        f64::from(self.0.y) - self.slope() * f64::from(self.0.x)
+        let c = b % a;
+        b = a;
+        a = c;
     }
 }
 
-impl std::cmp::PartialEq for Line {
-    fn eq(&self, other: &Self) -> bool {
-        other.0.lies_on_line(self) && self.0.lies_on_line(other)
-    }
+#[derive(PartialEq, Eq, PartialOrd, Ord, Default)]
+struct SlopeFraction {
+    is_negative: bool,
+    numerator: u32,
+    denominator: u32,
 }
 
-impl std::cmp::Eq for Line {}
+impl SlopeFraction {
+    fn from(coord_a: &Vec<i32>, coord_b: &Vec<i32>) -> Self {
+        let delta_y = i32::abs(coord_a[1] - coord_b[1]) as u32;
+        let delta_x = i32::abs(coord_a[0] - coord_b[0]) as u32;
 
-use std::cmp::Ordering;
-
-impl std::cmp::PartialOrd for Line {
-    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        match self.slope().partial_cmp(&other.slope()) {
-            Some(Ordering::Equal) => (self.y_intercept()).partial_cmp(&other.y_intercept()),
-            otherwise => otherwise,
+        if delta_y == 0 {
+            return Self {
+                denominator: 1,
+                ..Default::default()
+            };
         }
-    }
-}
+        if delta_x == 0 {
+            return Self {
+                numerator: 1,
+                ..Default::default()
+            };
+        }
 
-impl std::cmp::Ord for Line {
-    fn cmp(&self, other: &Self) -> Ordering {
-        self.partial_cmp(other).unwrap()
+        let gcd = gcd(delta_x, delta_y);
+        Self {
+            is_negative: (coord_a[1] >= coord_b[1]) ^ (coord_a[0] >= coord_b[0]),
+            numerator: delta_y / gcd,
+            denominator: delta_x / gcd,
+        }
     }
 }
 
 impl Solution {
     pub fn max_points(points: Vec<Vec<i32>>) -> i32 {
-        use std::collections::{BTreeMap, HashSet};
-        let mut recorded_lines: BTreeMap<Line, HashSet<Point>> = BTreeMap::new();
-
-        for i in 0..points.len() {
-            let point_a = Point::from(&points[i]);
-            for j in i + 1..points.len() {
-                let point_b = Point::from(&points[j]);
-
-                recorded_lines
-                    .iter()
-                    .for_each(|(line, num_points)| println!("{:?} -> {:?}", line, num_points));
-                println!();
-
-                let record = recorded_lines
-                    .entry(Line(point_a, point_b))
-                    .or_insert(HashSet::new());
-                record.insert(point_a);
-                record.insert(point_b);
-            }
+        if points.len() == 1 {
+            return 1;
         }
 
-        0
+        let mut max_points_on_a_line = 0;
+        for i in 0..points.len() {
+            let mut seen_lines = std::collections::BTreeMap::new();
+            for j in i + 1..points.len() {
+                let points_on_line = seen_lines
+                    .entry(SlopeFraction::from(&points[i], &points[j]))
+                    .or_insert(1);
+                *points_on_line += 1;
+
+                if *points_on_line > max_points_on_a_line {
+                    max_points_on_a_line = *points_on_line;
+                }
+            }
+        }
+        max_points_on_a_line
     }
 }
