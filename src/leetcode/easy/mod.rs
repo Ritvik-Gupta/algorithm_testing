@@ -11,6 +11,7 @@ pub mod license_key_formatting;
 pub mod nth_tribonacci_number;
 pub mod number_complement;
 pub mod number_of_1_bits;
+pub mod pascals_triangle;
 pub mod power_of_two;
 pub mod prime_number_of_set_bits_in_binary_representation;
 pub mod robot_return_to_origin;
