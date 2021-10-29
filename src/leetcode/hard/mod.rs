@@ -6,5 +6,6 @@ pub mod integer_to_english_words;
 pub mod max_points_on_a_line;
 pub mod number_of_digit_one;
 pub mod preimage_size_of_factorial_zeroes_function;
+pub mod reaching_points;
 pub mod serialize_and_deserialize_binary_tree;
 pub mod stream_of_characters;
