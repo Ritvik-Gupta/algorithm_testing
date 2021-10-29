@@ -4,6 +4,7 @@ pub mod cinema_seat_allocation;
 pub mod corporate_flight_bookings;
 pub mod factorial_trailing_zeroes;
 pub mod game_of_life;
+pub mod image_smoother;
 pub mod integer_to_roman;
 pub mod longest_common_subsequence;
 pub mod longest_univalue_path;
