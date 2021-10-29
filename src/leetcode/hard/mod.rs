@@ -1,4 +1,5 @@
 pub mod binary_tree_maximum_path_sum;
+pub mod count_all_valid_pickup_and_delivery_options;
 pub mod data_stream_as_disjoint_intervals;
 pub mod dungeon_game;
 pub mod falling_squares;
