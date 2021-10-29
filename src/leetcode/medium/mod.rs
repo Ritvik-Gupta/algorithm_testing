@@ -13,6 +13,7 @@ pub mod pacific_atlantic_water_flow;
 pub mod path_in_zigzag_labelled_binary_tree;
 pub mod path_sum_3;
 pub mod rotate_array;
+pub mod rotated_digits;
 pub mod search_a_2d_matrix;
 pub mod set_matrix_zeroes;
 pub mod simplify_path;
