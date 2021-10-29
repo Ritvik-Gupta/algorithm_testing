@@ -15,6 +15,7 @@ pub mod number_of_1_bits;
 pub mod pascals_triangle;
 pub mod power_of_two;
 pub mod prime_number_of_set_bits_in_binary_representation;
+pub mod rectangle_overlap;
 pub mod robot_return_to_origin;
 pub mod single_number;
 pub mod sqrt_x;
