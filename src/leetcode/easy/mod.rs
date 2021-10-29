@@ -2,6 +2,7 @@ pub mod add_binary;
 pub mod add_to_array_form_of_integer;
 pub mod contains_duplicate_2;
 pub mod convert_binary_number_in_a_linked_list_to_integer;
+pub mod determine_color_of_a_chessboard_square;
 pub mod fizz_buzz;
 pub mod happy_number;
 pub mod implement_stack_using_queues;
