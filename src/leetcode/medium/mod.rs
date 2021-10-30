@@ -6,6 +6,7 @@ pub mod factorial_trailing_zeroes;
 pub mod game_of_life;
 pub mod image_smoother;
 pub mod integer_to_roman;
+pub mod longest_arithmetic_subsequence_of_given_difference;
 pub mod longest_common_subsequence;
 pub mod longest_univalue_path;
 pub mod max_area_of_island;
