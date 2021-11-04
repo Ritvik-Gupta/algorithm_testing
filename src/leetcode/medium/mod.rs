@@ -1,4 +1,5 @@
 pub mod add_one_row_to_tree;
+pub mod apply_discount_every_n_orders;
 pub mod binary_tree_zigzag_level_order_traversal;
 pub mod cinema_seat_allocation;
 pub mod corporate_flight_bookings;
