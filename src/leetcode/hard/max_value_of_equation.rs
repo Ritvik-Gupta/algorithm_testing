@@ -2,6 +2,20 @@ pub struct Solution;
 
 struct Vector(i32, i32);
 
+impl Vector {
+    fn diff(&self) -> i32 {
+        self.1 - self.0
+    }
+
+    fn x_diff(&self, other: &Self) -> i32 {
+        self.0 - other.0
+    }
+
+    fn eqn_value(&self, other: &Self) -> i32 {
+        self.1 + other.1 + self.x_diff(other)
+    }
+}
+
 impl PartialEq for Vector {
     fn eq(&self, other: &Self) -> bool {
         self.diff() == other.diff()
@@ -19,20 +33,6 @@ impl PartialOrd for Vector {
 impl std::cmp::Ord for Vector {
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
         self.partial_cmp(other).unwrap()
-    }
-}
-
-impl Vector {
-    fn diff(&self) -> i32 {
-        self.1 - self.0
-    }
-
-    fn x_diff(&self, other: &Self) -> i32 {
-        self.0 - other.0
-    }
-
-    fn eqn_value(&self, other: &Self) -> i32 {
-        self.1 + other.1 + self.x_diff(other)
     }
 }
 
@@ -57,13 +57,13 @@ impl EqnPoints {
         }
     }
 
-    fn add_relative_to_first(&mut self, point: Vector) -> i32 {
-        let mut result = i32::MIN;
-        while let Some(best_eqn_point) = self.visited_points.peek() {
-            if point.x_diff(best_eqn_point) > self.max_separation {
+    fn add_relative_to_first(&mut self, point: impl Into<Vector>) -> Option<i32> {
+        let (point, mut result) = (point.into(), None);
+        while let Some(highest_rated_point) = self.visited_points.peek() {
+            if point.x_diff(highest_rated_point) > self.max_separation {
                 self.visited_points.pop();
             } else {
-                result = point.eqn_value(best_eqn_point);
+                result = Some(point.eqn_value(highest_rated_point));
                 break;
             }
         }
@@ -76,8 +76,8 @@ impl Solution {
     pub fn find_max_value_of_equation(points: Vec<Vec<i32>>, k: i32) -> i32 {
         let mut eqn_points = EqnPoints::new(k, points.len());
         points
-            .iter()
-            .map(|point| eqn_points.add_relative_to_first(point.into()))
+            .into_iter()
+            .filter_map(|ref point| eqn_points.add_relative_to_first(point))
             .max()
             .unwrap()
     }
