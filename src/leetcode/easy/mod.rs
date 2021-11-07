@@ -3,6 +3,7 @@ pub mod add_to_array_form_of_integer;
 pub mod baseball_game;
 pub mod contains_duplicate_2;
 pub mod convert_binary_number_in_a_linked_list_to_integer;
+pub mod count_vowel_substrings_of_a_string;
 pub mod determine_color_of_a_chessboard_square;
 pub mod find_the_highest_altitude;
 pub mod fizz_buzz;
