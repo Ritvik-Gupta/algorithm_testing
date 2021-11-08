@@ -12,6 +12,7 @@ pub mod longest_arithmetic_subsequence_of_given_difference;
 pub mod longest_common_subsequence;
 pub mod longest_univalue_path;
 pub mod max_area_of_island;
+pub mod minimized_maximum_of_products_distributed_to_any_store;
 pub mod number_of_islands;
 pub mod number_of_pairs_of_interchangeable_rectangles;
 pub mod operations_on_tree;
