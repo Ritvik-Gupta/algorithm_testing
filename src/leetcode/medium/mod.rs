@@ -29,4 +29,5 @@ pub mod sum_of_square_numbers;
 pub mod surrounded_regions;
 pub mod time_needed_to_inform_all_employees;
 pub mod triangle;
+pub mod vowels_of_all_substrings;
 pub mod word_search;
