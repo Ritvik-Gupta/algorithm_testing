@@ -5,6 +5,7 @@ pub mod cinema_seat_allocation;
 pub mod corporate_flight_bookings;
 pub mod factorial_trailing_zeroes;
 pub mod find_largest_value_in_each_tree_row;
+pub mod find_the_duplicate_number;
 pub mod game_of_life;
 pub mod image_smoother;
 pub mod integer_to_roman;
