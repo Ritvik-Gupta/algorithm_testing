@@ -3,6 +3,7 @@ pub mod apply_discount_every_n_orders;
 pub mod binary_tree_zigzag_level_order_traversal;
 pub mod cinema_seat_allocation;
 pub mod corporate_flight_bookings;
+pub mod daily_temperatures;
 pub mod factorial_trailing_zeroes;
 pub mod find_largest_value_in_each_tree_row;
 pub mod find_the_duplicate_number;
