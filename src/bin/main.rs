@@ -4,26 +4,6 @@ fn main() {
     // let _foo = std::process::Command::new(".\\target\\debug\\array_2d.exe")
     //     .status()
     //     .unwrap();
-
-    let now = std::time::Instant::now();
-    let a = vec![1; 100];
-    println!("{:?}", now.elapsed());
-    let now = std::time::Instant::now();
-    let a1 = a.into_iter().rev();
-    println!("{:?}", now.elapsed());
-    let now = std::time::Instant::now();
-    let _a2: Vec<_> = a1.collect();
-    println!("{:?}", now.elapsed());
-
-    let now = std::time::Instant::now();
-    let b = vec![1; 10000000];
-    println!("{:?}", now.elapsed());
-    let now = std::time::Instant::now();
-    let b1 = b.into_iter().rev();
-    println!("{:?}", now.elapsed());
-    let now = std::time::Instant::now();
-    let _b2: Vec<_> = b1.collect();
-    println!("{:?}", now.elapsed());
 }
 /*
 macro_rules! chain {

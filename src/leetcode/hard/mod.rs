@@ -3,6 +3,7 @@ pub mod count_all_valid_pickup_and_delivery_options;
 pub mod data_stream_as_disjoint_intervals;
 pub mod dungeon_game;
 pub mod falling_squares;
+pub mod insert_delete_getRandom_O1_duplicates_allowed;
 pub mod integer_to_english_words;
 pub mod max_points_on_a_line;
 pub mod max_value_of_equation;

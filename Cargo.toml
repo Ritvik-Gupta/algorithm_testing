@@ -16,3 +16,4 @@ path = "src/bin/main.rs"
 
 [dependencies]
 text_io = "0.1.9"
+rand = "0.8.0"
