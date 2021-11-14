@@ -13,6 +13,7 @@ pub mod implement_stack_using_queues;
 pub mod intersection_of_two_arrays_2;
 pub mod isomorphic_strings;
 pub mod license_key_formatting;
+pub mod matrix_diagonal_sum;
 pub mod nth_tribonacci_number;
 pub mod number_complement;
 pub mod number_of_1_bits;
