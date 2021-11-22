@@ -8,6 +8,7 @@ pub mod determine_color_of_a_chessboard_square;
 pub mod find_lucky_integer_in_an_array;
 pub mod find_the_highest_altitude;
 pub mod fizz_buzz;
+pub mod guess_number_higher_or_lower;
 pub mod happy_number;
 pub mod implement_stack_using_queues;
 pub mod intersection_of_two_arrays_2;
