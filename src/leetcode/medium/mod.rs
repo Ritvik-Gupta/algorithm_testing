@@ -13,6 +13,7 @@ pub mod game_of_life;
 pub mod image_smoother;
 pub mod insert_delete_get_random_o1;
 pub mod integer_to_roman;
+pub mod iterator_for_combination;
 pub mod longest_arithmetic_subsequence_of_given_difference;
 pub mod longest_common_subsequence;
 pub mod longest_univalue_path;
