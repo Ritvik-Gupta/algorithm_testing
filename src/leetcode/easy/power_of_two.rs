@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 impl Solution {
     pub fn is_power_of_two(n: i32) -> bool {

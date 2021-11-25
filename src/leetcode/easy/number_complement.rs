@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 impl Solution {
     fn closest_power_of_2(mut num: u32) -> u32 {

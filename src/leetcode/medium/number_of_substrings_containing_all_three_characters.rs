@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 struct SlidingFreqWindow([u32; 3]);
 

@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 const MAXIMUM_QUANTITY: i32 = 100000;
 

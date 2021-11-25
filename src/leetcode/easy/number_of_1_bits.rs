@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 impl Solution {
     #[allow(non_snake_case)]

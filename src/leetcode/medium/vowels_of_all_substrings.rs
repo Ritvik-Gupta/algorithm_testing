@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 static VOWELS: &str = "aeiou";
 

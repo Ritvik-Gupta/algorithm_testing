@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 static LEVEL_COMBINATIONS: [i32; 9] = [0, 1, 20, 300, 4000, 50000, 600000, 7000000, 80000000];
 

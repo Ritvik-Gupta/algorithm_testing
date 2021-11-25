@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 fn gcd(mut a: u32, mut b: u32) -> u32 {
     loop {

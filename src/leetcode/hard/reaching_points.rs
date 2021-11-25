@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 impl Solution {
     pub fn reaching_points(mut sx: i32, mut sy: i32, mut tx: i32, mut ty: i32) -> bool {

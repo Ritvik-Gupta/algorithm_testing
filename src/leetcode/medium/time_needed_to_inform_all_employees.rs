@@ -26,7 +26,7 @@ impl Employee {
     }
 }
 
-pub struct Solution;
+crate::leetcode::solution!();
 
 use std::{cell::RefCell, rc::Rc};
 

@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 impl Solution {
     pub fn trailing_zeroes(num: i32) -> i32 {

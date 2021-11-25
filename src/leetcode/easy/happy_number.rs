@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 impl Solution {
     fn sum_of_squares(mut num: u32) -> u32 {

@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 impl Solution {
     fn most_significant_bit_num(mut num: u32) -> u32 {

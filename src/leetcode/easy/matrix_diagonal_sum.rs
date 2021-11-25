@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 impl Solution {
     pub fn diagonal_sum(matrix: Vec<Vec<i32>>) -> i32 {

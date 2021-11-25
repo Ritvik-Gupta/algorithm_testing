@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 #[derive(Clone, Copy, Hash, PartialEq, Eq)]
 struct Vector(usize, usize);

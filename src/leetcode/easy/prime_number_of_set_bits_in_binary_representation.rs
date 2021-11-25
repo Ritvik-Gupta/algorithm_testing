@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 static CACHED_PRIMES: [u8; 8] = [2, 3, 5, 7, 11, 13, 17, 19];
 

@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 macro_rules! choose {
     ($computation: expr; T => $true_result: expr, F => $false_result: expr) => {

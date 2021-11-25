@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 static AT_ONES: &[&str] = &[
     "", "One ", "Two ", "Three ", "Four ", "Five ", "Six ", "Seven ", "Eight ", "Nine ",

@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 const MIN_HP: i32 = 1;
 

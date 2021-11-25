@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 const ZERO: u8 = b'0';
 

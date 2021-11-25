@@ -1,18 +1,5 @@
-pub struct Solution;
-
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-impl ListNode {
-    #[inline]
-    #[allow(dead_code)]
-    fn new(val: i32) -> Self {
-        ListNode { next: None, val }
-    }
-}
+crate::leetcode::solution!();
+crate::leetcode::linked_list_definition!();
 
 const BINARY_BASE: i32 = 2;
 

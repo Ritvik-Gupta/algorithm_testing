@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 impl Solution {
     pub fn daily_temperatures(mut temperatures: Vec<i32>) -> Vec<i32> {

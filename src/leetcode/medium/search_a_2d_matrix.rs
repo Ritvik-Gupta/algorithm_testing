@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 struct Matrix {
     matrix: Vec<Vec<i32>>,

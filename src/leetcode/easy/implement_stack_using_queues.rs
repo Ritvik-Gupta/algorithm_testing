@@ -1,6 +1,5 @@
 use std::collections::LinkedList;
 
-#[allow(dead_code)]
 struct MyStack(LinkedList<i32>);
 
 impl MyStack {

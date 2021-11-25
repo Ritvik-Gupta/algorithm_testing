@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 use std::collections::BTreeMap;
 

@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 struct Vector(i32, i32);
 

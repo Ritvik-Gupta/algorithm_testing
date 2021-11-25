@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 #[derive(Hash, PartialEq, Eq)]
 struct ShadowArea(i32, i32);

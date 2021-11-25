@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 struct Grid<'a> {
     matrix: &'a mut Vec<Vec<i32>>,

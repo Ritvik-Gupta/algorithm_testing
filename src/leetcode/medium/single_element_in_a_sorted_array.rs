@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 const IMPOSSIBLE_ELEMENT: i32 = -1;
 

@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 const MODULE_FOR_RESULT: u64 = 1000000007;
 const ADDER_INCREMENT: u64 = 4;

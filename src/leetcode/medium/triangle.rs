@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 impl Solution {
     pub fn minimum_total(mut triangle: Vec<Vec<i32>>) -> i32 {

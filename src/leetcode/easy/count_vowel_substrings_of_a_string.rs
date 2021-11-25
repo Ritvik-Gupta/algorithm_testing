@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 fn parse_for_vowels(substring: &[u8]) -> Option<bool> {
     let (mut read_a, mut read_e, mut read_i, mut read_o, mut read_u) =

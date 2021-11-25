@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 static FIVE_TO_THE_POWER: [u32; 14] = [
     1, 5, 25, 125, 625, 3125, 15625, 78125, 390625, 1953125, 9765625, 48828125, 244140625,

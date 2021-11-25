@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 const MAX_DURATION: i32 = 10000001;
 

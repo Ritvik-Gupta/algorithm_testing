@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 impl Solution {
     pub fn generate(n: i32) -> Vec<Vec<i32>> {

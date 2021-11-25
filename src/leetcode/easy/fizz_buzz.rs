@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 static FIZZ: &str = "Fizz";
 static BUZZ: &str = "Buzz";

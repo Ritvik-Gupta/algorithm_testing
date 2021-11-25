@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 struct PossibleRowGroups {
     aisle_1: bool,

@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 unsafe fn guess(_num: i32) -> i32 {
     unimplemented!();

@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 impl Solution {
     pub fn rotate(nums: &mut Vec<i32>, k: i32) {

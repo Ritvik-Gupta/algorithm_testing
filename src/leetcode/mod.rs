@@ -2,10 +2,54 @@ pub mod easy;
 pub mod hard;
 pub mod medium;
 
-macro_rules! algo {
+macro_rules! solution {
     () => {
         pub struct Solution;
     };
 }
+pub(crate) use solution;
 
-pub(crate) use algo;
+macro_rules! linked_list_definition {
+    () => {
+        // Definition for singly-linked list.
+        #[derive(PartialEq, Eq, Clone, Debug)]
+        pub struct ListNode {
+            pub val: i32,
+            pub next: Option<Box<ListNode>>,
+        }
+
+        impl ListNode {
+            #[inline]
+            #[allow(dead_code)]
+            fn new(val: i32) -> Self {
+                ListNode { next: None, val }
+            }
+        }
+    };
+}
+pub(crate) use linked_list_definition;
+
+macro_rules! binary_tree_definition {
+    () => {
+        // Definition for a binary tree node.
+        #[derive(Debug, PartialEq, Eq)]
+        pub struct TreeNode {
+            pub val: i32,
+            pub left: Option<Rc<RefCell<TreeNode>>>,
+            pub right: Option<Rc<RefCell<TreeNode>>>,
+        }
+
+        impl TreeNode {
+            #[inline]
+            #[allow(dead_code)]
+            pub fn new(val: i32) -> Self {
+                TreeNode {
+                    val,
+                    left: None,
+                    right: None,
+                }
+            }
+        }
+    };
+}
+pub(crate) use binary_tree_definition;

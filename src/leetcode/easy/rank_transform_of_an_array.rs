@@ -1,4 +1,4 @@
-crate::leetcode::algo!();
+crate::leetcode::solution!();
 
 struct RankToken(i32, usize);
 

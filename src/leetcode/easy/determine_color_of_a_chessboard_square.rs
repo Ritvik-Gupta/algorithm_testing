@@ -1,4 +1,4 @@
-pub struct Solution;
+crate::leetcode::solution!();
 
 const LETTER_OFFSET: u8 = b'a';
 const NUMBER_OFFSET: u8 = b'0';

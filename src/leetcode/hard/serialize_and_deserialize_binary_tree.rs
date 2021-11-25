@@ -1,20 +1,4 @@
-#[derive(Debug, PartialEq, Eq)]
-pub struct TreeNode {
-    pub val: i32,
-    pub left: Option<Link<TreeNode>>,
-    pub right: Option<Link<TreeNode>>,
-}
-
-impl TreeNode {
-    #[inline]
-    pub fn new(val: i32) -> Self {
-        TreeNode {
-            val,
-            left: None,
-            right: None,
-        }
-    }
-}
+crate::leetcode::binary_tree_definition!();
 
 impl std::string::ToString for TreeNode {
     fn to_string(&self) -> String {
