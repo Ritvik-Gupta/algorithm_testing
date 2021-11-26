@@ -25,6 +25,7 @@ pub mod prime_number_of_set_bits_in_binary_representation;
 pub mod rank_transform_of_an_array;
 pub mod rectangle_overlap;
 pub mod robot_return_to_origin;
+pub mod search_insert_position;
 pub mod single_number;
 pub mod sqrt_x;
 pub mod summary_ranges;
