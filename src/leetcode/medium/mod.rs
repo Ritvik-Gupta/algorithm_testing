@@ -37,6 +37,7 @@ pub mod simplify_path;
 pub mod single_element_in_a_sorted_array;
 pub mod sort_colors;
 pub mod spiral_matrix;
+pub mod spiral_matrix_2;
 pub mod sum_of_square_numbers;
 pub mod surrounded_regions;
 pub mod time_needed_to_inform_all_employees;
