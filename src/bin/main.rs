@@ -1,10 +1,7 @@
 extern crate algorithms;
 
-fn main() {
-    // let _foo = std::process::Command::new(".\\target\\debug\\array_2d.exe")
-    //     .status()
-    //     .unwrap();
-}
+fn main() {}
+
 /*
 macro_rules! chain {
     [

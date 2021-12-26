@@ -21,6 +21,7 @@ pub mod longest_univalue_path;
 pub mod max_area_of_island;
 pub mod minimized_maximum_of_products_distributed_to_any_store;
 pub mod number_of_islands;
+pub mod k_closest_points_to_origin;
 pub mod number_of_pairs_of_interchangeable_rectangles;
 pub mod number_of_substrings_containing_all_three_characters;
 pub mod online_stock_span;
