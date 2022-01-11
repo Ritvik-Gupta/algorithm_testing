@@ -4,6 +4,7 @@ pub mod binary_tree_zigzag_level_order_traversal;
 pub mod cinema_seat_allocation;
 pub mod combination_sum;
 pub mod combination_sum_2;
+pub mod combinations;
 pub mod corporate_flight_bookings;
 pub mod daily_temperatures;
 pub mod detect_squares;
