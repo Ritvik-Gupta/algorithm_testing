@@ -5,6 +5,8 @@ pub mod cinema_seat_allocation;
 pub mod combination_sum;
 pub mod combination_sum_2;
 pub mod combinations;
+pub mod construct_binary_tree_from_inorder_and_postorder_traversal;
+pub mod construct_binary_tree_from_preorder_and_inorder_traversal;
 pub mod corporate_flight_bookings;
 pub mod daily_temperatures;
 pub mod detect_squares;

@@ -39,6 +39,5 @@ impl Solution {
                 return snail.position as i32;
             }
         }
-        unreachable!();
     }
 }
