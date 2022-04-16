@@ -38,6 +38,7 @@ impl Codec {
         }
     }
 
+    #[allow(dead_code)]
     fn match_val(data: &mut impl Iterator<Item = char>) -> i32 {
         let mut val = 0;
 
