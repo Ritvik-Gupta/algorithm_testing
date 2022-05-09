@@ -21,6 +21,7 @@ pub mod integer_to_roman;
 pub mod interval_list_intersections;
 pub mod iterator_for_combination;
 pub mod k_closest_points_to_origin;
+pub mod letter_combinations_of_a_phone_number;
 pub mod longest_arithmetic_subsequence_of_given_difference;
 pub mod longest_common_subsequence;
 pub mod longest_univalue_path;
