@@ -61,6 +61,6 @@ impl Solution {
         if grid.len() & 1 == grid[0].len() & 1 {
             return false;
         }
-        return ParenGrid::new(grid).check_paren_validity();
+        ParenGrid::new(grid).check_paren_validity()
     }
 }
