@@ -13,6 +13,7 @@ pub mod happy_number;
 pub mod implement_stack_using_queues;
 pub mod intersection_of_two_arrays_2;
 pub mod isomorphic_strings;
+pub mod largest_3_same_digit_number_in_string;
 pub mod license_key_formatting;
 pub mod matrix_diagonal_sum;
 pub mod maximum_subarray;
