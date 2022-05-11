@@ -10,6 +10,7 @@ pub mod construct_binary_tree_from_preorder_and_inorder_traversal;
 pub mod corporate_flight_bookings;
 pub mod count_nodes_equal_to_average_of_subtree;
 pub mod count_number_of_texts;
+pub mod count_sorted_vowel_strings;
 pub mod daily_temperatures;
 pub mod detect_squares;
 pub mod factorial_trailing_zeroes;
