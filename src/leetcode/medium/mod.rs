@@ -1,3 +1,4 @@
+pub mod _132_pattern;
 pub mod add_one_row_to_tree;
 pub mod apply_discount_every_n_orders;
 pub mod binary_tree_zigzag_level_order_traversal;
@@ -11,6 +12,7 @@ pub mod corporate_flight_bookings;
 pub mod count_nodes_equal_to_average_of_subtree;
 pub mod count_number_of_texts;
 pub mod count_sorted_vowel_strings;
+pub mod course_schedule_4;
 pub mod daily_temperatures;
 pub mod detect_squares;
 pub mod factorial_trailing_zeroes;
