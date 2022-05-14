@@ -20,8 +20,8 @@ impl Solution {
 
         while let Some((node_id, delay)) = node_queue.pop_front() {
             for &(link_to_id, time_taken) in adjacency_list[node_id].iter() {
-                let new_delay = i32::min(node_min_delay[link_to_id], delay + time_taken);
-                if node_min_delay[link_to_id] == new_delay {
+                let new_delay = delay + time_taken;
+                if node_min_delay[link_to_id] <= new_delay {
                     continue;
                 }
                 node_queue.push_back((link_to_id, delay + time_taken));
