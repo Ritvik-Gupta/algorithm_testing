@@ -36,6 +36,7 @@ pub mod max_area_of_island;
 pub mod maximum_erasure_value;
 pub mod minimized_maximum_of_products_distributed_to_any_store;
 pub mod minimum_consecutive_cards_to_pick_up;
+pub mod network_delay_time;
 pub mod number_of_islands;
 pub mod number_of_pairs_of_interchangeable_rectangles;
 pub mod number_of_substrings_containing_all_three_characters;
