@@ -2,6 +2,7 @@ pub mod easy;
 pub mod hard;
 pub mod medium;
 pub mod weekly_contest_274;
+pub mod weekly_contest_293;
 
 macro_rules! solution {
     () => {

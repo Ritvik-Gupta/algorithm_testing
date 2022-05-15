@@ -1,4 +1,3 @@
-#[derive(Debug)]
 struct RangeSummary(i32, i32);
 
 impl RangeSummary {
