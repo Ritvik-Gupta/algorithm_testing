@@ -32,6 +32,7 @@ pub mod k_closest_points_to_origin;
 pub mod letter_combinations_of_a_phone_number;
 pub mod longest_arithmetic_subsequence_of_given_difference;
 pub mod longest_common_subsequence;
+pub mod longest_palindromic_substring;
 pub mod longest_substring_without_repeating_characters;
 pub mod longest_univalue_path;
 pub mod max_area_of_island;
