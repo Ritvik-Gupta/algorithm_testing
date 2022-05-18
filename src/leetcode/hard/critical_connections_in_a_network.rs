@@ -1,80 +1,72 @@
 crate::leetcode::solution!();
 
-struct Graph {
-    adjacency_list: Vec<Vec<i32>>,
-    time: i32,
+use std::collections::HashSet;
+
+struct Bridges {
+    visited: HashSet<usize>,
+    disc: Vec<usize>,
+    low: Vec<usize>,
+    parent: Vec<Option<usize>>,
+    time: usize,
 }
 
-impl Graph {
-    fn build(num_nodes: usize, connections: Vec<Vec<i32>>) -> Self {
-        let mut graph = Self {
-            adjacency_list: vec![Vec::new(); num_nodes],
+const INVALID_NODE_ID: usize = 100001;
+
+impl Bridges {
+    fn build_graph(num_nodes: usize, connections: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+        let mut adjacency_list = vec![Vec::new(); num_nodes];
+
+        for conn in connections {
+            adjacency_list[conn[0] as usize].push(conn[1]);
+            adjacency_list[conn[1] as usize].push(conn[0]);
+        }
+        adjacency_list
+    }
+
+    fn in_graph(adjacency_list: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+        let num_nodes = adjacency_list.len();
+
+        let mut bridges_builder = Self {
+            visited: HashSet::with_capacity(num_nodes),
+            disc: vec![0; num_nodes],
+            low: vec![0; num_nodes],
+            parent: vec![None; num_nodes],
             time: 0,
         };
 
-        for conn in connections {
-            graph.adjacency_list[conn[0] as usize].push(conn[1]);
-            graph.adjacency_list[conn[1] as usize].push(conn[0]);
-        }
-
-        graph
-    }
-
-    fn bridge(&mut self) -> Vec<Vec<i32>> {
-        let num_nodes = self.adjacency_list.len();
-
-        let mut visited = vec![false; num_nodes];
-        let mut disc = vec![0; num_nodes];
-        let mut low = vec![0; num_nodes];
-        let mut parent = vec![-1; num_nodes];
-
         let mut bridges = Vec::new();
-
         for i in 0..num_nodes {
-            if !visited[i] {
-                self.bridge_util(
-                    i,
-                    &mut visited,
-                    &mut disc,
-                    &mut low,
-                    &mut parent,
-                    &mut bridges,
-                );
+            if !bridges_builder.visited.contains(&i) {
+                bridges_builder.recursive_build_from_node(i, adjacency_list, &mut bridges);
             }
         }
-
         bridges
     }
 
-    fn bridge_util(
+    fn recursive_build_from_node(
         &mut self,
-        u: usize,
-        visited: &mut Vec<bool>,
-        disc: &mut Vec<i32>,
-        low: &mut Vec<i32>,
-        parent: &mut Vec<i32>,
+        node: usize,
+        adjacency_list: &Vec<Vec<i32>>,
         bridges: &mut Vec<Vec<i32>>,
     ) {
-        visited[u] = true;
+        self.visited.insert(node);
 
         self.time += 1;
-        low[u] = self.time;
-        disc[u] = self.time;
+        self.low[node] = self.time;
+        self.disc[node] = self.time;
 
-        for &v in self.adjacency_list[u].clone().iter() {
-            let v = v as usize;
+        for neighbor_node in adjacency_list[node].iter().map(|&x| x as usize) {
+            if !self.visited.contains(&neighbor_node) {
+                self.parent[neighbor_node] = Some(node);
+                self.recursive_build_from_node(neighbor_node, adjacency_list, bridges);
 
-            if !visited[v] {
-                parent[v] = u as i32;
-                self.bridge_util(v, visited, disc, low, parent, bridges);
+                self.low[node] = usize::min(self.low[node], self.low[neighbor_node]);
 
-                low[u] = i32::min(low[u], low[v]);
-
-                if low[v] > disc[u] {
-                    bridges.push(vec![u as i32, v as i32]);
+                if self.low[neighbor_node] > self.disc[node] {
+                    bridges.push(vec![node as i32, neighbor_node as i32]);
                 }
-            } else if v != parent[u] as usize {
-                low[u] = i32::min(low[u], disc[v]);
+            } else if neighbor_node != self.parent[node].unwrap_or(INVALID_NODE_ID) {
+                self.low[node] = usize::min(self.low[node], self.disc[neighbor_node]);
             }
         }
     }
@@ -82,9 +74,6 @@ impl Graph {
 
 impl Solution {
     pub fn critical_connections(n: i32, connections: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
-        let num_nodes = n as usize;
-
-        let mut graph = Graph::build(num_nodes, connections);
-        graph.bridge()
+        Bridges::in_graph(&Bridges::build_graph(n as usize, connections))
     }
 }
