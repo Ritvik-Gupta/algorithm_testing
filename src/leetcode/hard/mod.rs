@@ -7,6 +7,7 @@ pub mod falling_squares;
 pub mod grid_illumination;
 pub mod insert_delete_get_random_o1_duplicates_allowed;
 pub mod integer_to_english_words;
+pub mod longest_increasing_path_in_a_matrix;
 pub mod max_points_on_a_line;
 pub mod max_value_of_equation;
 pub mod number_of_digit_one;
