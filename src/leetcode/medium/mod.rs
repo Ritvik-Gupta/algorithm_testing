@@ -68,6 +68,8 @@ pub mod surrounded_regions;
 pub mod the_time_when_the_network_becomes_idle;
 pub mod time_needed_to_inform_all_employees;
 pub mod triangle;
+pub mod unique_paths_1;
+pub mod unique_paths_2;
 pub mod vowels_of_all_substrings;
 pub mod word_search;
 pub mod xor_queries_of_a_subarray;
