@@ -17,6 +17,7 @@ pub mod largest_3_same_digit_number_in_string;
 pub mod license_key_formatting;
 pub mod matrix_diagonal_sum;
 pub mod maximum_subarray;
+pub mod minimum_number_of_operations_to_convert_time;
 pub mod nth_tribonacci_number;
 pub mod number_complement;
 pub mod number_of_1_bits;
