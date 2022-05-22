@@ -67,6 +67,7 @@ pub mod spiral_matrix_2;
 pub mod subsets;
 pub mod sum_of_square_numbers;
 pub mod surrounded_regions;
+pub mod target_sum;
 pub mod the_time_when_the_network_becomes_idle;
 pub mod time_needed_to_inform_all_employees;
 pub mod triangle;
