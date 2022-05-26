@@ -24,3 +24,5 @@ pub mod stream_of_characters;
 pub mod trapping_rain_water;
 pub mod tree_of_coprimes;
 pub mod wildcard_matching;
+
+pub mod parse_lisp_expression;
