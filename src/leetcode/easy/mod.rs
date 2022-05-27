@@ -21,6 +21,7 @@ pub mod minimum_number_of_operations_to_convert_time;
 pub mod nth_tribonacci_number;
 pub mod number_complement;
 pub mod number_of_1_bits;
+pub mod number_of_steps_to_reduce_a_number_to_zero;
 pub mod pascals_triangle;
 pub mod pascals_triangle_2;
 pub mod power_of_two;
