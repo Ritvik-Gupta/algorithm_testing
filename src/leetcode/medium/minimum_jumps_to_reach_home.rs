@@ -2,6 +2,8 @@ crate::leetcode::solution!();
 
 use std::collections::{HashSet, VecDeque};
 
+const MAX_JUMP_VALUE: i32 = 6000;
+
 impl Solution {
     pub fn minimum_jumps(
         forbidden: Vec<i32>,
@@ -9,10 +11,7 @@ impl Solution {
         backward_jump: i32,
         final_state: i32,
     ) -> i32 {
-        let max_state = 2000 + 2 * backward_jump + 1;
-
-        let mut visited_states = HashSet::with_capacity(forbidden.len());
-        visited_states.extend(forbidden.into_iter());
+        let mut visited_states: HashSet<_> = forbidden.into_iter().collect();
 
         let mut total_jumps = 0;
         let mut state_queue = VecDeque::new();
@@ -38,7 +37,7 @@ impl Solution {
                 }
 
                 let forward_state = state + forward_jump;
-                if forward_state <= max_state && !visited_states.contains(&forward_state) {
+                if forward_state <= MAX_JUMP_VALUE && !visited_states.contains(&forward_state) {
                     state_queue.push_back((forward_state, false));
                     visited_states.insert(forward_state);
                 }
