@@ -21,6 +21,7 @@ pub mod daily_temperatures;
 pub mod decode_string;
 pub mod deepest_leaves_sum;
 pub mod detect_squares;
+pub mod divide_two_integers;
 pub mod factorial_trailing_zeroes;
 pub mod find_k_closest_elements;
 pub mod find_largest_value_in_each_tree_row;
