@@ -13,6 +13,7 @@ pub mod max_points_on_a_line;
 pub mod max_value_of_equation;
 pub mod number_of_atoms;
 pub mod number_of_digit_one;
+pub mod parse_lisp_expression;
 pub mod preimage_size_of_factorial_zeroes_function;
 pub mod reaching_points;
 pub mod regular_expression_matching;
@@ -24,5 +25,3 @@ pub mod stream_of_characters;
 pub mod trapping_rain_water;
 pub mod tree_of_coprimes;
 pub mod wildcard_matching;
-
-pub mod parse_lisp_expression;
