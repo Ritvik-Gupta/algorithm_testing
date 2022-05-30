@@ -6,15 +6,9 @@ impl Solution {
             return i32::MAX;
         }
 
-        let (mut dvd, dvs) = (dividend.abs(), divisor.abs());
-        let mut quotient = 0;
+        let (dvd, dvs) = (dividend.abs() as f64, divisor.abs() as f64);
 
-        for bit in (0..32).rev() {
-            if (dvd >> bit) - dvs >= 0 {
-                quotient += 1 << bit;
-                dvd -= dvs << bit;
-            }
-        }
+        let quotient = f64::exp2(dvd.log2() - dvs.log2()).floor() as i32;
 
         if dividend.is_positive() == divisor.is_positive() {
             quotient
