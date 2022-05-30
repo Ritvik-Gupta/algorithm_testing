@@ -19,6 +19,7 @@ pub mod count_sorted_vowel_strings;
 pub mod course_schedule_4;
 pub mod daily_temperatures;
 pub mod decode_string;
+pub mod decode_ways;
 pub mod deepest_leaves_sum;
 pub mod detect_squares;
 pub mod divide_two_integers;
