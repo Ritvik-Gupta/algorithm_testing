@@ -4,6 +4,7 @@ pub mod apply_discount_every_n_orders;
 pub mod binary_tree_zigzag_level_order_traversal;
 pub mod check_if_array_pairs_are_divisible_by_k;
 pub mod cinema_seat_allocation;
+pub mod closest_dessert_cost;
 pub mod coin_change;
 pub mod combination_sum;
 pub mod combination_sum_2;
