@@ -34,6 +34,7 @@ pub mod rectangle_overlap;
 pub mod remove_outermost_parentheses;
 pub mod reverse_bits;
 pub mod robot_return_to_origin;
+pub mod running_sum_of_1d_array;
 pub mod search_insert_position;
 pub mod single_number;
 pub mod sqrt_x;
