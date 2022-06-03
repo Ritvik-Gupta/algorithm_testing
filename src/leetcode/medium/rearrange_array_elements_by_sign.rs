@@ -1,7 +1,7 @@
 crate::leetcode::solution!();
 
 impl Solution {
-    pub fn rearrange_array(mut nums: Vec<i32>) -> Vec<i32> {
+    pub fn rearrange_array(nums: Vec<i32>) -> Vec<i32> {
         let mut arr = vec![0; nums.len()];
         let (mut i, mut j) = (0, 0);
 
