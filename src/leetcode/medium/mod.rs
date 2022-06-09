@@ -68,6 +68,7 @@ pub mod pacific_atlantic_water_flow;
 pub mod palindromic_substrings;
 pub mod path_in_zigzag_labelled_binary_tree;
 pub mod path_sum_3;
+pub mod perfect_squares;
 pub mod permutation_in_string;
 pub mod permutations_2;
 pub mod pyramid_transition_matrix;
