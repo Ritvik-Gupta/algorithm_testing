@@ -4,6 +4,7 @@ pub mod hard;
 pub mod medium;
 pub mod weekly_contest_274;
 pub mod weekly_contest_293;
+pub mod weekly_contest_297;
 
 macro_rules! solution {
     () => {
