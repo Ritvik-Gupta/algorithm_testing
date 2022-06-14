@@ -23,6 +23,7 @@ pub mod daily_temperatures;
 pub mod decode_string;
 pub mod decode_ways;
 pub mod deepest_leaves_sum;
+pub mod delete_operation_for_two_strings;
 pub mod detect_squares;
 pub mod divide_two_integers;
 pub mod factorial_trailing_zeroes;
