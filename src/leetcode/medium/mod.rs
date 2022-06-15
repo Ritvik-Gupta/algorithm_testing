@@ -49,6 +49,7 @@ pub mod longest_arithmetic_subsequence_of_given_difference;
 pub mod longest_common_subsequence;
 pub mod longest_increasing_subsequence;
 pub mod longest_palindromic_substring;
+pub mod longest_string_chain;
 pub mod longest_substring_without_repeating_characters;
 pub mod longest_univalue_path;
 pub mod max_area_of_island;
