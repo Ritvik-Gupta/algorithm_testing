@@ -8,7 +8,6 @@ version = "0.1.0"
 dependencies = [
  "lazy_static",
  "rand",
- "text_io",
 ]
 
 [[package]]
@@ -85,12 +84,6 @@ checksum = "d51e9f596de227fda2ea6c84607f5558e196eeaf43c986b724ba4fb8fdf497e7"
 dependencies = [
  "rand_core",
 ]
-
-[[package]]
-name = "text_io"
-version = "0.1.9"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ee74b5019b48991b09803402aaf9e65a053b3993fe9d9c475ab67a395358ba76"
 
 [[package]]
 name = "wasi"
