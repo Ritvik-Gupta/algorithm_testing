@@ -1,6 +1,9 @@
+pub mod binary_tree_cameras;
 pub mod binary_tree_maximum_path_sum;
 pub mod check_if_there_is_a_valid_parentheses_string_path;
+pub mod construct_target_array_with_multiple_sums;
 pub mod count_all_valid_pickup_and_delivery_options;
+pub mod course_schedule_3;
 pub mod critical_connections_in_a_network;
 pub mod data_stream_as_disjoint_intervals;
 pub mod dungeon_game;
@@ -21,7 +24,6 @@ pub mod preimage_size_of_factorial_zeroes_function;
 pub mod reaching_points;
 pub mod regular_expression_matching;
 pub mod russian_doll_envelopes;
-pub mod binary_tree_cameras;
 pub mod serialize_and_deserialize_binary_tree;
 pub mod sliding_window_maximum;
 pub mod smallest_range_covering_elements_from_k_lists;

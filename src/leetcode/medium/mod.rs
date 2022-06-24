@@ -67,6 +67,7 @@ pub mod number_of_islands;
 pub mod number_of_pairs_of_interchangeable_rectangles;
 pub mod number_of_provinces;
 pub mod number_of_substrings_containing_all_three_characters;
+pub mod number_of_ways_to_select_buildings;
 pub mod ones_and_zeroes;
 pub mod online_stock_span;
 pub mod operations_on_tree;
