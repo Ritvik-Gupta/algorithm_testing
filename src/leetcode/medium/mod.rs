@@ -63,6 +63,7 @@ pub mod minimum_cost_for_tickets;
 pub mod minimum_jumps_to_reach_home;
 pub mod minimum_operations_to_reduce_x_to_zero;
 pub mod network_delay_time;
+pub mod non_decreasing_array;
 pub mod number_of_islands;
 pub mod number_of_pairs_of_interchangeable_rectangles;
 pub mod number_of_provinces;
