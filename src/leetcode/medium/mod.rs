@@ -75,6 +75,7 @@ pub mod online_stock_span;
 pub mod operations_on_tree;
 pub mod pacific_atlantic_water_flow;
 pub mod palindromic_substrings;
+pub mod partitioning_into_minimum_number_of_deci_binary_numbers;
 pub mod path_in_zigzag_labelled_binary_tree;
 pub mod path_sum_3;
 pub mod perfect_squares;
