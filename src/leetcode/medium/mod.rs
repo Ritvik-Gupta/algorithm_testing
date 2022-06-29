@@ -82,6 +82,7 @@ pub mod perfect_squares;
 pub mod permutation_in_string;
 pub mod permutations_2;
 pub mod pyramid_transition_matrix;
+pub mod queue_reconstruction_by_height;
 pub mod range_sum_query_2d_immutable;
 pub mod rearrange_array_elements_by_sign;
 pub mod reverse_integer;
