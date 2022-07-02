@@ -55,6 +55,7 @@ pub mod longest_string_chain;
 pub mod longest_substring_without_repeating_characters;
 pub mod longest_univalue_path;
 pub mod max_area_of_island;
+pub mod maximum_area_of_a_piece_of_cake_after_horizontal_and_vertical_cuts;
 pub mod maximum_erasure_value;
 pub mod maximum_points_you_can_obtain_from_cards;
 pub mod maximum_product_of_word_lengths;
