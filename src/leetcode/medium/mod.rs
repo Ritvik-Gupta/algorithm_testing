@@ -46,6 +46,7 @@ pub mod jump_game_2;
 pub mod k_closest_points_to_origin;
 pub mod keys_and_rooms;
 pub mod kth_largest_element_in_an_array;
+pub mod kth_smallest_element_in_a_sorted_matrix;
 pub mod letter_combinations_of_a_phone_number;
 pub mod longest_arithmetic_subsequence_of_given_difference;
 pub mod longest_common_subsequence;
