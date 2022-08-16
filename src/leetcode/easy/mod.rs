@@ -10,6 +10,7 @@ pub mod excel_sheet_column_number;
 pub mod fibonacci_number;
 pub mod find_lucky_integer_in_an_array;
 pub mod find_the_highest_altitude;
+pub mod first_unique_character_in_a_string;
 pub mod fizz_buzz;
 pub mod guess_number_higher_or_lower;
 pub mod happy_number;
