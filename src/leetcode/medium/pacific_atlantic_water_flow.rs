@@ -69,10 +69,9 @@ impl Island {
 impl Solution {
     pub fn pacific_atlantic(heights: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
         use std::collections::{BTreeSet, LinkedList};
-        use std::sync::Arc;
         use std::thread;
 
-        let island = Arc::new(Island::new(heights));
+        let island = Island::new(heights);
         let (mut pacific_queue, mut atlantic_queue) = (LinkedList::new(), LinkedList::new());
 
         for i in 0..island.num_rows {
@@ -84,37 +83,39 @@ impl Solution {
             atlantic_queue.push_back(Vector::new(island.num_rows - 1, j));
         }
 
-        let pacific_island = island.clone();
-        let pacific = thread::spawn(move || {
-            let mut flow_into_pacific = BTreeSet::new();
+        let (pacific, atlantic) = thread::scope(|scope| {
+            let pacific = scope.spawn(|| {
+                let mut flow_into_pacific = BTreeSet::new();
 
-            while let Some(location) = pacific_queue.pop_front() {
-                if flow_into_pacific.insert(location) {
-                    pacific_island
-                        .higher_neighbours(location)
-                        .filter(|neighbour| !flow_into_pacific.contains(neighbour))
-                        .for_each(|neighbour| pacific_queue.push_back(neighbour));
+                while let Some(location) = pacific_queue.pop_front() {
+                    if flow_into_pacific.insert(location) {
+                        island
+                            .higher_neighbours(location)
+                            .filter(|neighbour| !flow_into_pacific.contains(neighbour))
+                            .for_each(|neighbour| pacific_queue.push_back(neighbour));
+                    }
                 }
-            }
-            flow_into_pacific
+                flow_into_pacific
+            });
+
+            let atlantic = scope.spawn(|| {
+                let mut flow_into_atlantic = BTreeSet::new();
+
+                while let Some(location) = atlantic_queue.pop_front() {
+                    if flow_into_atlantic.insert(location) {
+                        island
+                            .higher_neighbours(location)
+                            .filter(|neighbour| !flow_into_atlantic.contains(neighbour))
+                            .for_each(|neighbour| atlantic_queue.push_back(neighbour));
+                    }
+                }
+                flow_into_atlantic
+            });
+
+            (pacific.join().unwrap(), atlantic.join().unwrap())
         });
 
-        let atlantic_island = island.clone();
-        let atlantic = thread::spawn(move || {
-            let mut flow_into_atlantic = BTreeSet::new();
-
-            while let Some(location) = atlantic_queue.pop_front() {
-                if flow_into_atlantic.insert(location) {
-                    atlantic_island
-                        .higher_neighbours(location)
-                        .filter(|neighbour| !flow_into_atlantic.contains(neighbour))
-                        .for_each(|neighbour| atlantic_queue.push_back(neighbour));
-                }
-            }
-            flow_into_atlantic
-        });
-
-        BTreeSet::intersection(&pacific.join().unwrap(), &atlantic.join().unwrap())
+        BTreeSet::intersection(&pacific, &atlantic)
             .into_iter()
             .map(Vector::into_vec)
             .collect()
