@@ -1,5 +1,6 @@
 pub mod add_binary;
 pub mod add_to_array_form_of_integer;
+pub mod average_of_levels_in_binary_tree;
 pub mod baseball_game;
 pub mod cells_in_a_range_on_an_excel_sheet;
 pub mod contains_duplicate_2;
