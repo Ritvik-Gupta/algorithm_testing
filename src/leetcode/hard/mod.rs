@@ -31,4 +31,5 @@ pub mod smallest_range_covering_elements_from_k_lists;
 pub mod stream_of_characters;
 pub mod trapping_rain_water;
 pub mod tree_of_coprimes;
+pub mod vertical_order_traversal_of_a_binary_tree;
 pub mod wildcard_matching;
