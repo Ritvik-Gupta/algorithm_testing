@@ -1,6 +1,7 @@
 pub mod _132_pattern;
 pub mod add_one_row_to_tree;
 pub mod apply_discount_every_n_orders;
+pub mod binary_tree_pruning;
 pub mod binary_tree_zigzag_level_order_traversal;
 pub mod check_if_a_string_contains_all_binary_codes_of_size_k;
 pub mod check_if_array_pairs_are_divisible_by_k;
