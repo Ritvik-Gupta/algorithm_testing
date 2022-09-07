@@ -3,6 +3,7 @@ pub mod add_to_array_form_of_integer;
 pub mod average_of_levels_in_binary_tree;
 pub mod baseball_game;
 pub mod cells_in_a_range_on_an_excel_sheet;
+pub mod construct_string_from_binary_tree;
 pub mod contains_duplicate_2;
 pub mod convert_binary_number_in_a_linked_list_to_integer;
 pub mod count_vowel_substrings_of_a_string;
