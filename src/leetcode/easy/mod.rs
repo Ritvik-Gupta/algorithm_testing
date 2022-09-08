@@ -2,6 +2,7 @@ pub mod add_binary;
 pub mod add_to_array_form_of_integer;
 pub mod average_of_levels_in_binary_tree;
 pub mod baseball_game;
+pub mod binary_tree_inorder_traversal;
 pub mod cells_in_a_range_on_an_excel_sheet;
 pub mod construct_string_from_binary_tree;
 pub mod contains_duplicate_2;
