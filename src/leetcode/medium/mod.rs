@@ -125,6 +125,7 @@ pub mod triangle;
 pub mod two_sum_2_input_array_is_sorted;
 pub mod unique_paths_1;
 pub mod unique_paths_2;
+pub mod utf8_validation;
 pub mod vowels_of_all_substrings;
 pub mod word_break;
 pub mod word_search;
