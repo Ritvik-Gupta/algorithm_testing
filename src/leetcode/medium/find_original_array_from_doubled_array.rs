@@ -4,6 +4,10 @@ use std::collections::HashMap;
 
 impl Solution {
     pub fn find_original_array(mut changed: Vec<i32>) -> Vec<i32> {
+        if changed.len() % 2 != 0 {
+            return Vec::new();
+        }
+
         changed.sort();
 
         let mut freq_table = HashMap::new();
@@ -29,10 +33,10 @@ impl Solution {
             }
         }
 
-        if result.len() * 2 == changed.len() {
-            result
-        } else {
-            Vec::new()
+        if result.len() * 2 != changed.len() {
+            return Vec::new();
         }
+
+        result
     }
 }

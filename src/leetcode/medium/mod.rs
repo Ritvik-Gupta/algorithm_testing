@@ -94,6 +94,7 @@ pub mod path_sum_3;
 pub mod perfect_squares;
 pub mod permutation_in_string;
 pub mod permutations_2;
+pub mod pseudo_palindromic_paths_in_a_binary_tree;
 pub mod pyramid_transition_matrix;
 pub mod queue_reconstruction_by_height;
 pub mod range_sum_query_2d_immutable;
