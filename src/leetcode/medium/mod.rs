@@ -36,6 +36,7 @@ pub mod find_all_anagrams_in_a_string;
 pub mod find_eventual_safe_states;
 pub mod find_k_closest_elements;
 pub mod find_largest_value_in_each_tree_row;
+pub mod find_original_array_from_doubled_array;
 pub mod find_the_duplicate_number;
 pub mod find_unique_binary_string;
 pub mod furthest_building_you_can_reach;
