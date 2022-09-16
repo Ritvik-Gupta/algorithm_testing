@@ -66,6 +66,7 @@ pub mod maximum_area_of_a_piece_of_cake_after_horizontal_and_vertical_cuts;
 pub mod maximum_erasure_value;
 pub mod maximum_points_you_can_obtain_from_cards;
 pub mod maximum_product_of_word_lengths;
+pub mod maximum_score_from_performing_multiplication_operations;
 pub mod maximum_total_importance_of_roads;
 pub mod minimized_maximum_of_products_distributed_to_any_store;
 pub mod minimum_consecutive_cards_to_pick_up;
