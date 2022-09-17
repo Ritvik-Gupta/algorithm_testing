@@ -2,6 +2,7 @@
 // #![allow(unused_variables)]
 // #![allow(unused_macros)]
 
+pub mod advent_of_code;
 pub mod array_2d;
 pub mod binary_tree;
 pub mod codechef;
