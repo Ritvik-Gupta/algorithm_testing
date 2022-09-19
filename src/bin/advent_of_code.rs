@@ -109,13 +109,43 @@ use std::{
 
 //? Day 5
 
-fn main() -> Result<(), Box<dyn Error>> {
-    let file = File::open("./files/hydrothermal_venture.txt")?;
+// fn main() -> Result<(), Box<dyn Error>> {
+//     let file = File::open("./files/hydrothermal_venture.txt")?;
 
-    let mut result = hydrothermal_venture::solve(
-        BufReader::new(&file)
-            .lines()
-            .map(|line| line.expect("is a valid line")),
+//     let mut result = hydrothermal_venture::solve(
+//         BufReader::new(&file)
+//             .lines()
+//             .map(|line| line.expect("is a valid line")),
+//     );
+//     println!("{}", result);
+
+//     Ok(())
+// }
+
+//? Day 6
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let file = File::open("./files/lanternfish.txt")?;
+    let mut reader = BufReader::new(&file);
+    let mut buffer = String::new();
+
+    reader
+        .read_line(&mut buffer)
+        .expect("reading lanternfish states won't fail");
+
+    let result = lanternfish::simulate_growth_for_days::<80>(
+        buffer
+            .trim_end()
+            .split(',')
+            .map(|num| num.parse().expect("is a number")),
+    );
+    println!("{}", result);
+
+    let result = lanternfish::simulate_growth_for_days::<256>(
+        buffer
+            .trim_end()
+            .split(',')
+            .map(|num| num.parse().expect("is a number")),
     );
     println!("{}", result);
 
