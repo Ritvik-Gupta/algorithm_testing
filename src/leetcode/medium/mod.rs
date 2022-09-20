@@ -64,6 +64,7 @@ pub mod longest_univalue_path;
 pub mod max_area_of_island;
 pub mod maximum_area_of_a_piece_of_cake_after_horizontal_and_vertical_cuts;
 pub mod maximum_erasure_value;
+pub mod maximum_length_of_repeated_subarray;
 pub mod maximum_points_you_can_obtain_from_cards;
 pub mod maximum_product_of_word_lengths;
 pub mod maximum_score_from_performing_multiplication_operations;
