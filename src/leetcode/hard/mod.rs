@@ -25,7 +25,6 @@ pub mod preimage_size_of_factorial_zeroes_function;
 pub mod reaching_points;
 pub mod regular_expression_matching;
 pub mod russian_doll_envelopes;
-pub mod serialize_and_deserialize_binary_tree;
 pub mod sliding_window_maximum;
 pub mod smallest_range_covering_elements_from_k_lists;
 pub mod stream_of_characters;
