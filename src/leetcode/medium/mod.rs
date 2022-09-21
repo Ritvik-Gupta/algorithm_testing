@@ -119,6 +119,7 @@ pub mod sort_the_matrix_diagonally;
 pub mod spiral_matrix;
 pub mod spiral_matrix_2;
 pub mod subsets;
+pub mod sum_of_even_numbers_after_queries;
 pub mod sum_of_square_numbers;
 pub mod surrounded_regions;
 pub mod target_sum;
