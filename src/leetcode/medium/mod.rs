@@ -30,6 +30,7 @@ pub mod delete_operation_for_two_strings;
 pub mod design_bitset;
 pub mod detect_cycles_in_2d_grid;
 pub mod detect_squares;
+pub mod diagonal_traverse;
 pub mod divide_two_integers;
 pub mod factorial_trailing_zeroes;
 pub mod find_all_anagrams_in_a_string;
