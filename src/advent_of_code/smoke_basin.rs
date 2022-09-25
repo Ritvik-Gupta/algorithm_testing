@@ -1,6 +1,12 @@
+use std::{
+    error::Error,
+    fs::File,
+    io::{BufRead, BufReader},
+};
+
 const MAX_HEIGHT: u8 = 10;
 
-pub fn solve(hieghtmap: Vec<Vec<u8>>) -> u64 {
+fn solve(hieghtmap: Vec<Vec<u8>>) -> u64 {
     let (m, n) = (hieghtmap.len(), hieghtmap[0].len());
 
     let get_height_if_present =
@@ -27,4 +33,22 @@ pub fn solve(hieghtmap: Vec<Vec<u8>>) -> u64 {
     }
 
     risk_level_sum
+}
+
+pub fn main() -> Result<(), Box<dyn Error>> {
+    let file = File::open("./files/smoke_basin.txt")?;
+    let result = solve(
+        BufReader::new(&file)
+            .lines()
+            .map(|line| {
+                line.expect("is a valid line")
+                    .chars()
+                    .map(|height| height as u8 - b'0')
+                    .collect()
+            })
+            .collect(),
+    );
+    println!("{}", result);
+
+    Ok(())
 }

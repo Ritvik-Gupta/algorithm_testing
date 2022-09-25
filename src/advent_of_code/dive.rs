@@ -1,6 +1,10 @@
-use std::error::Error;
+use std::{
+    error::Error,
+    fs::File,
+    io::{BufRead, BufReader},
+};
 
-pub enum SubmarineDirection {
+enum SubmarineDirection {
     FORWARD,
     DOWN,
     UP,
@@ -8,7 +12,7 @@ pub enum SubmarineDirection {
 
 use SubmarineDirection::*;
 
-pub struct SubmarineCommand {
+struct SubmarineCommand {
     direction: SubmarineDirection,
     units: i64,
 }
@@ -33,7 +37,7 @@ impl From<String> for SubmarineCommand {
     }
 }
 
-pub fn perform_commands<T>(commands: impl Iterator<Item = T>) -> Result<i64, Box<dyn Error>>
+fn perform_commands<T>(commands: impl Iterator<Item = T>) -> Result<i64, Box<dyn Error>>
 where
     SubmarineCommand: From<T>,
 {
@@ -50,9 +54,7 @@ where
     Ok(horizontal * vertical)
 }
 
-pub fn perform_commands_with_aim<T>(
-    commands: impl Iterator<Item = T>,
-) -> Result<i64, Box<dyn Error>>
+fn perform_commands_with_aim<T>(commands: impl Iterator<Item = T>) -> Result<i64, Box<dyn Error>>
 where
     SubmarineCommand: From<T>,
 {
@@ -68,4 +70,26 @@ where
             UP => aim -= command.units,
         });
     Ok(horizontal * vertical)
+}
+
+pub fn main() -> Result<(), Box<dyn Error>> {
+    let file = File::open("./files/dive.txt")?;
+
+    let result = perform_commands(
+        BufReader::new(&file)
+            .lines()
+            .map(|line| line.expect("is a valid line")),
+    )?;
+    println!("{}", result);
+
+    let file = File::open("./files/dive.txt")?;
+
+    let result = perform_commands_with_aim(
+        BufReader::new(&file)
+            .lines()
+            .map(|line| line.expect("is a valid line")),
+    )?;
+    println!("{}", result);
+
+    Ok(())
 }

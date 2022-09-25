@@ -1,8 +1,11 @@
-use std::{collections::VecDeque, error::Error};
+use std::{
+    collections::VecDeque,
+    error::Error,
+    fs::File,
+    io::{BufRead, BufReader},
+};
 
-pub fn linear_readings(
-    mut all_readings: impl Iterator<Item = usize>,
-) -> Result<usize, Box<dyn Error>> {
+fn linear_readings(mut all_readings: impl Iterator<Item = usize>) -> Result<usize, Box<dyn Error>> {
     let mut prev_reading = all_readings.next().ok_or("has atleast 1 reading")?;
 
     Ok(all_readings
@@ -14,7 +17,7 @@ pub fn linear_readings(
         .count())
 }
 
-pub fn window_of_3_readings(
+fn window_of_3_readings(
     mut all_readings: impl Iterator<Item = usize>,
 ) -> Result<usize, Box<dyn Error>> {
     let mut window = VecDeque::with_capacity(3);
@@ -37,4 +40,24 @@ pub fn window_of_3_readings(
             window_sum > prev_window_sum
         })
         .count())
+}
+
+pub fn main() -> Result<(), Box<dyn Error>> {
+    let file = File::open("./files/sonar_sweep.txt")?;
+    let result = linear_readings(
+        BufReader::new(&file)
+            .lines()
+            .map(|line| line.expect("is a valid line").parse().expect("is a number")),
+    )?;
+    println!("{}", result);
+
+    let file = File::open("./files/sonar_sweep.txt")?;
+    let result = window_of_3_readings(
+        BufReader::new(&file)
+            .lines()
+            .map(|line| line.expect("is a valid line").parse().expect("is a number")),
+    )?;
+    println!("{}", result);
+
+    Ok(())
 }

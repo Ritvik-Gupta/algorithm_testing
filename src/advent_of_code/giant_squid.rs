@@ -1,4 +1,9 @@
-use std::collections::HashMap;
+use std::{
+    collections::HashMap,
+    error::Error,
+    fs::File,
+    io::{BufRead, BufReader},
+};
 
 const BOARD_SIZE: usize = 5;
 
@@ -22,13 +27,13 @@ impl BingoBoard {
 }
 
 #[derive(Debug)]
-pub struct Bingo {
+struct Bingo {
     numbers_drawn: Vec<usize>,
     boards: Vec<BingoBoard>,
 }
 
 impl Bingo {
-    pub fn parse(mut lines: impl Iterator<Item = String>) -> Self {
+    fn parse(mut lines: impl Iterator<Item = String>) -> Self {
         let numbers_drawn = lines.next().expect("has all numbers drawn list");
         let mut boards = Vec::new();
         let mut lines = lines.peekable();
@@ -64,7 +69,7 @@ impl Bingo {
         }
     }
 
-    pub fn first_winning_board(&mut self) -> u64 {
+    fn first_winning_board(&mut self) -> u64 {
         let (mut unmarked_sum, mut board_winning_number) = (0, 0);
 
         'drawing_numbers: for &number_drawn in self.numbers_drawn.iter() {
@@ -85,7 +90,7 @@ impl Bingo {
         unmarked_sum * board_winning_number
     }
 
-    pub fn last_winning_board(&mut self) -> u64 {
+    fn last_winning_board(&mut self) -> u64 {
         let (mut unmarked_sum, mut board_winning_number) = (0, 0);
         let mut left_boards = self.boards.len();
 
@@ -110,4 +115,26 @@ impl Bingo {
 
         unmarked_sum * board_winning_number
     }
+}
+
+pub fn main() -> Result<(), Box<dyn Error>> {
+    let file = File::open("./files/giant_squid.txt")?;
+
+    let mut bingo = Bingo::parse(
+        BufReader::new(&file)
+            .lines()
+            .map(|line| line.expect("is a valid line")),
+    );
+    println!("{}", bingo.first_winning_board());
+
+    let file = File::open("./files/giant_squid.txt")?;
+
+    let mut bingo = Bingo::parse(
+        BufReader::new(&file)
+            .lines()
+            .map(|line| line.expect("is a valid line")),
+    );
+    println!("{}", bingo.last_winning_board());
+
+    Ok(())
 }

@@ -1,6 +1,10 @@
-use std::error::Error;
+use std::{
+    error::Error,
+    fs::File,
+    io::{BufRead, BufReader},
+};
 
-pub fn power_consumption(binaries: impl Iterator<Item = String>) -> Result<u64, Box<dyn Error>> {
+fn power_consumption(binaries: impl Iterator<Item = String>) -> Result<u64, Box<dyn Error>> {
     let mut binaries = binaries.peekable();
 
     let first_binary = binaries
@@ -34,7 +38,7 @@ pub fn power_consumption(binaries: impl Iterator<Item = String>) -> Result<u64, 
     Ok(gamma_rate * epsilon_rate)
 }
 
-pub fn life_support_rating(binaries: Vec<usize>, total_bits: usize) -> Result<u64, Box<dyn Error>> {
+fn life_support_rating(binaries: Vec<usize>, total_bits: usize) -> Result<u64, Box<dyn Error>> {
     fn has_one_bit_at(binary: usize, bit_offset: usize) -> bool {
         binary & bit_offset != 0
     }
@@ -78,4 +82,32 @@ pub fn life_support_rating(binaries: Vec<usize>, total_bits: usize) -> Result<u6
     let carbon_level = carbon_binaries[0] as u64;
 
     Ok(oxygen_level * carbon_level)
+}
+
+pub fn main() -> Result<(), Box<dyn Error>> {
+    let file = File::open("./files/binary_diagnostic.txt")?;
+
+    let result = power_consumption(
+        BufReader::new(&file)
+            .lines()
+            .map(|line| line.expect("is a valid line")),
+    )?;
+    println!("{}", result);
+
+    let file = File::open("./files/binary_diagnostic.txt")?;
+
+    let mut dataset = BufReader::new(&file)
+        .lines()
+        .map(|line| line.expect("is a valid line"))
+        .peekable();
+    let total_bits = dataset.peek().expect("has atleast one diagnostic").len();
+
+    let dataset = dataset
+        .map(|line| usize::from_str_radix(&line, 2).expect("is in expected binary number format"))
+        .collect();
+
+    let result = life_support_rating(dataset, total_bits)?;
+    println!("{}", result);
+
+    Ok(())
 }
