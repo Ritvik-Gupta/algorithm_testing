@@ -3,19 +3,33 @@
 version = 3
 
 [[package]]
-name = "algorithm_testing"
+name = "advent-of-code"
 version = "0.1.0"
 dependencies = [
- "bitset",
- "lazy_static",
- "rand",
+ "bit-set",
 ]
 
 [[package]]
-name = "bitset"
-version = "0.1.2"
+name = "algorithms"
+version = "0.1.0"
+dependencies = [
+ "services",
+]
+
+[[package]]
+name = "bit-set"
+version = "0.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cd450435a044ff3a192c9b0063e9f612ee3e2b2e23388332bc3aada13e3f7f6b"
+checksum = "0700ddab506f33b20a03b13996eccd309a48e5ff77d0d95926aa0210fb4e95f1"
+dependencies = [
+ "bit-vec",
+]
+
+[[package]]
+name = "bit-vec"
+version = "0.6.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "349f9b6a179ed607305526ca489b34ad0a41aed5f7980fa90eb03160b69598fb"
 
 [[package]]
 name = "cfg-if"
@@ -39,6 +53,14 @@ name = "lazy_static"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
+
+[[package]]
+name = "leetcode"
+version = "0.1.0"
+dependencies = [
+ "lazy_static",
+ "rand",
+]
 
 [[package]]
 name = "libc"
@@ -91,6 +113,10 @@ checksum = "d51e9f596de227fda2ea6c84607f5558e196eeaf43c986b724ba4fb8fdf497e7"
 dependencies = [
  "rand_core",
 ]
+
+[[package]]
+name = "services"
+version = "0.1.0"
 
 [[package]]
 name = "wasi"
