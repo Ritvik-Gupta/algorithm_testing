@@ -1,4 +1,5 @@
 pub mod binary_diagnostic;
+pub mod chiton;
 pub mod dive;
 pub mod dumbo_octopus;
 pub mod extended_polymerization;
