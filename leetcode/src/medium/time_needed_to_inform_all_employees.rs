@@ -34,7 +34,7 @@ type Link<T> = Rc<RefCell<T>>;
 
 impl Solution {
     pub fn num_of_minutes(_: i32, head_id: i32, manager: Vec<i32>, inform_time: Vec<i32>) -> i32 {
-        use std::{collections::HashMap, convert::TryFrom};
+        use std::collections::HashMap;
 
         let mut employee_record = HashMap::<usize, Link<Employee>>::new();
         inform_time

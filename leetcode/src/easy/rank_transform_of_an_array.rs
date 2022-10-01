@@ -27,7 +27,6 @@ const OUT_OF_BOUNDS_VALUE: i32 = -1000000001;
 impl Solution {
     pub fn array_rank_transform(mut arr: Vec<i32>) -> Vec<i32> {
         use std::collections::BinaryHeap;
-        use std::iter::FromIterator;
 
         let (mut rank_heap, mut prev_val, mut current_rank) = (
             BinaryHeap::from_iter(arr.iter().enumerate().map(|(pos, &x)| RankToken(x, pos))),

@@ -39,7 +39,6 @@ impl Island {
     }
 
     fn get_height(&self, Vector(x, y): Vector) -> Option<i32> {
-        use std::convert::TryFrom;
         Some(
             *self
                 .heights
