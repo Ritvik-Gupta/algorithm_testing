@@ -79,6 +79,7 @@ pub mod minimum_cost_for_tickets;
 pub mod minimum_jumps_to_reach_home;
 pub mod minimum_moves_to_equal_array_elements_2;
 pub mod minimum_operations_to_reduce_x_to_zero;
+pub mod minimum_time_to_make_rope_colorful;
 pub mod my_calendar_1;
 pub mod network_delay_time;
 pub mod non_decreasing_array;

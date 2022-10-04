@@ -5,6 +5,7 @@ pub mod dumbo_octopus;
 pub mod extended_polymerization;
 pub mod giant_squid;
 pub mod lanternfish;
+pub mod packet_decoder;
 pub mod passage_pathing;
 pub mod smoke_basin;
 pub mod sonar_sweep;
