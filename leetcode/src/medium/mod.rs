@@ -1,4 +1,6 @@
 pub mod _132_pattern;
+pub mod _3_sum;
+pub mod _3_sum_closest;
 pub mod add_one_row_to_tree;
 pub mod apply_discount_every_n_orders;
 pub mod binary_tree_pruning;
