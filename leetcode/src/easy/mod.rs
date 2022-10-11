@@ -43,6 +43,7 @@ pub mod power_of_two;
 pub mod prime_number_of_set_bits_in_binary_representation;
 pub mod rank_transform_of_an_array;
 pub mod rectangle_overlap;
+pub mod remove_all_adjacent_duplicates_in_string;
 pub mod remove_outermost_parentheses;
 pub mod remove_palindromic_subsequences;
 pub mod replace_all_digits_with_characters;
