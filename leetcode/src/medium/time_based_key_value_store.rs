@@ -1,7 +1,11 @@
-use std::collections::{BTreeMap, HashMap};
+use std::collections::HashMap;
 
-#[allow(dead_code)]
-struct TimeMap(HashMap<String, BTreeMap<i32, String>>);
+struct TimedValue {
+    timestamp: i32,
+    value: String,
+}
+
+struct TimeMap(HashMap<String, Vec<TimedValue>>);
 
 impl TimeMap {
     #[allow(dead_code)]
@@ -13,8 +17,8 @@ impl TimeMap {
     fn set(&mut self, key: String, value: String, timestamp: i32) {
         self.0
             .entry(key)
-            .or_insert_with(BTreeMap::new)
-            .insert(timestamp, value);
+            .or_insert_with(Vec::new)
+            .push(TimedValue { timestamp, value });
     }
 
     #[allow(dead_code)]
@@ -23,12 +27,12 @@ impl TimeMap {
     }
 
     fn optional_get(&self, key: String, timestamp: i32) -> Option<String> {
-        Some(
-            self.0
-                .get(&key)?
-                .range(0..=timestamp)
-                .next_back()
-                .map(|entry| entry.1.clone())?,
-        )
+        let cluster = self.0.get(&key)?;
+
+        let index = cluster
+            .binary_search_by_key(&timestamp, |val| val.timestamp)
+            .map_or_else(|i| i.wrapping_sub(1), |i| i);
+
+        Some(cluster.get(index)?.value.clone())
     }
 }
