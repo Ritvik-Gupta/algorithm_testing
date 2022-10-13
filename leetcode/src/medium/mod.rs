@@ -102,6 +102,7 @@ pub mod partitioning_into_minimum_number_of_deci_binary_numbers;
 pub mod path_in_zigzag_labelled_binary_tree;
 pub mod path_sum_2;
 pub mod path_sum_3;
+pub mod merge_in_between_linked_lists;
 pub mod perfect_squares;
 pub mod permutation_in_string;
 pub mod permutations_2;
