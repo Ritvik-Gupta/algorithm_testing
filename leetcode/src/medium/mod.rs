@@ -1,3 +1,4 @@
+pub mod Find_the_minimum_and_maximum_number_of_nodes_between_critical_points;
 pub mod _132_pattern;
 pub mod _3_sum;
 pub mod _3_sum_closest;
