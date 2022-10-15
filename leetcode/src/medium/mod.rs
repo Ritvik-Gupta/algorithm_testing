@@ -1,4 +1,3 @@
-pub mod Find_the_minimum_and_maximum_number_of_nodes_between_critical_points;
 pub mod _132_pattern;
 pub mod _3_sum;
 pub mod _3_sum_closest;
@@ -46,6 +45,7 @@ pub mod find_k_closest_elements;
 pub mod find_largest_value_in_each_tree_row;
 pub mod find_original_array_from_doubled_array;
 pub mod find_the_duplicate_number;
+pub mod find_the_minimum_and_maximum_number_of_nodes_between_critical_points;
 pub mod find_unique_binary_string;
 pub mod furthest_building_you_can_reach;
 pub mod game_of_life;
