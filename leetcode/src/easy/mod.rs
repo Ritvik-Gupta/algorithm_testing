@@ -1,4 +1,3 @@
-pub mod Minimum_index_sum_of_two_lists;
 pub mod add_binary;
 pub mod add_to_array_form_of_integer;
 pub mod average_of_levels_in_binary_tree;
@@ -33,6 +32,7 @@ pub mod matrix_diagonal_sum;
 pub mod maximum_subarray;
 pub mod maximum_units_on_a_truck;
 pub mod merge_sorted_array;
+pub mod minimum_index_sum_of_two_lists;
 pub mod minimum_number_of_operations_to_convert_time;
 pub mod missing_number;
 pub mod nth_tribonacci_number;
