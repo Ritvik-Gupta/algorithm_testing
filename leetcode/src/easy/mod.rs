@@ -1,3 +1,4 @@
+pub mod Decompress_run_length_encoded_list;
 pub mod add_binary;
 pub mod add_to_array_form_of_integer;
 pub mod average_of_levels_in_binary_tree;
