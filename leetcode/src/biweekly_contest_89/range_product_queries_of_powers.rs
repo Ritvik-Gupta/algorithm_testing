@@ -1,5 +1,7 @@
 crate::solution!();
 
+const MOD: i128 = 1000000007;
+
 impl Solution {
     pub fn product_queries(n: i32, queries: Vec<Vec<i32>>) -> Vec<i32> {
         let mut powers = Vec::new();
@@ -18,7 +20,7 @@ impl Solution {
             .map(|(a, b)| {
                 powers[a..=b]
                     .iter()
-                    .fold(1i128, |acc, &x| (acc * x as i128) % 1000000007) as i32
+                    .fold(1i128, |acc, &x| (acc * x as i128) % MOD) as i32
             })
             .collect()
     }
