@@ -1,5 +1,6 @@
 pub mod biweekly_contest_80;
 pub mod biweekly_contest_81;
+pub mod biweekly_contest_89;
 pub mod easy;
 pub mod hard;
 pub mod medium;
