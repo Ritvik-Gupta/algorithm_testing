@@ -146,6 +146,7 @@ pub mod the_number_of_weak_characters_in_the_game;
 pub mod the_time_when_the_network_becomes_idle;
 pub mod time_based_key_value_store;
 pub mod time_needed_to_inform_all_employees;
+pub mod top_k_frequent_words;
 pub mod triangle;
 pub mod two_sum_2_input_array_is_sorted;
 pub mod unique_paths_1;

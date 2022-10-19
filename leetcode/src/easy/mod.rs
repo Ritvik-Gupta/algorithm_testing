@@ -33,6 +33,7 @@ pub mod largest_3_same_digit_number_in_string;
 pub mod largest_perimeter_triangle;
 pub mod license_key_formatting;
 pub mod matrix_diagonal_sum;
+pub mod maximum_number_of_pairs_in_array;
 pub mod maximum_subarray;
 pub mod maximum_units_on_a_truck;
 pub mod merge_sorted_array;
