@@ -2,17 +2,16 @@ crate::solution!();
 
 impl Solution {
     pub fn contains_nearby_duplicate(nums: Vec<i32>, k: i32) -> bool {
-        use std::collections::BTreeMap;
+        use std::collections::HashMap;
 
         let max_separation = k as usize;
-        let mut prev_found_nums = BTreeMap::new();
+        let mut prev_found_nums = HashMap::with_capacity(max_separation);
 
-        for pos in 0..nums.len() {
-            match prev_found_nums.insert(nums[pos], pos) {
-                Some(prev_pos) if pos <= prev_pos + max_separation => return true,
-                _ => {}
-            }
-        }
-        false
+        nums.iter()
+            .enumerate()
+            .any(|(idx, &num)| match prev_found_nums.insert(num, idx) {
+                Some(prev_idx) if idx <= prev_idx + max_separation => true,
+                _ => false,
+            })
     }
 }
