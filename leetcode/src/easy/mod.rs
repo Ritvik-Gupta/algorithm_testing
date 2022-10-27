@@ -1,10 +1,10 @@
-pub mod Cells_with_odd_values_in_a_matrix;
 pub mod add_binary;
 pub mod add_to_array_form_of_integer;
 pub mod average_of_levels_in_binary_tree;
 pub mod baseball_game;
 pub mod binary_tree_inorder_traversal;
 pub mod cells_in_a_range_on_an_excel_sheet;
+pub mod cells_with_odd_values_in_a_matrix;
 pub mod check_if_n_and_its_double_exist;
 pub mod check_if_number_has_equal_digit_count_and_digit_value;
 pub mod check_if_one_string_swap_can_make_strings_equal;
