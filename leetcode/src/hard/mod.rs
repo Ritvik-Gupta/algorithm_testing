@@ -1,4 +1,3 @@
-pub mod Strange_printer_2;
 pub mod binary_tree_cameras;
 pub mod binary_tree_maximum_path_sum;
 pub mod check_if_there_is_a_valid_parentheses_string_path;
@@ -29,6 +28,7 @@ pub mod regular_expression_matching;
 pub mod russian_doll_envelopes;
 pub mod sliding_window_maximum;
 pub mod smallest_range_covering_elements_from_k_lists;
+pub mod strange_printer_2;
 pub mod stream_of_characters;
 pub mod trapping_rain_water;
 pub mod tree_of_coprimes;
