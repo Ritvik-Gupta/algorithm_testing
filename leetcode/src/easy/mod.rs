@@ -1,3 +1,4 @@
+pub mod Cells_with_odd_values_in_a_matrix;
 pub mod add_binary;
 pub mod add_to_array_form_of_integer;
 pub mod average_of_levels_in_binary_tree;
@@ -54,6 +55,7 @@ pub mod number_of_steps_to_reduce_a_number_to_zero;
 pub mod pascals_triangle;
 pub mod pascals_triangle_2;
 pub mod path_sum;
+pub mod perfect_number;
 pub mod power_of_two;
 pub mod prime_number_of_set_bits_in_binary_representation;
 pub mod rank_transform_of_an_array;
