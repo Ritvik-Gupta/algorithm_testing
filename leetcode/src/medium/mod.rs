@@ -1,3 +1,4 @@
+pub mod Group_anagrams;
 pub mod _132_pattern;
 pub mod _3_sum;
 pub mod _3_sum_closest;
