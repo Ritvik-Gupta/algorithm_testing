@@ -1,4 +1,3 @@
-pub mod Group_anagrams;
 pub mod _132_pattern;
 pub mod _3_sum;
 pub mod _3_sum_closest;
@@ -52,6 +51,7 @@ pub mod find_the_minimum_and_maximum_number_of_nodes_between_critical_points;
 pub mod find_unique_binary_string;
 pub mod furthest_building_you_can_reach;
 pub mod game_of_life;
+pub mod group_anagrams;
 pub mod image_overlap;
 pub mod image_smoother;
 pub mod increasing_triplet_subsequence;
