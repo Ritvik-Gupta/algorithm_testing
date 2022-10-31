@@ -77,6 +77,7 @@ pub mod sum_of_unique_elements;
 pub mod summary_ranges;
 pub mod symmetric_tree;
 pub mod teemo_attacking;
+pub mod toeplitz_matrix;
 pub mod transpose_matrix;
 pub mod uncommon_words_from_two_sentences;
 pub mod x_of_a_kind_in_a_deck_of_cards;
