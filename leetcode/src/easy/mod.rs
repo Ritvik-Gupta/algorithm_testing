@@ -1,3 +1,4 @@
+pub mod Count_number_of_pairs_with_absolute_difference_k;
 pub mod add_binary;
 pub mod add_to_array_form_of_integer;
 pub mod average_of_levels_in_binary_tree;

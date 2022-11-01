@@ -49,6 +49,7 @@ pub mod find_original_array_from_doubled_array;
 pub mod find_the_duplicate_number;
 pub mod find_the_minimum_and_maximum_number_of_nodes_between_critical_points;
 pub mod find_unique_binary_string;
+pub mod finding_pairs_with_a_certain_sum;
 pub mod furthest_building_you_can_reach;
 pub mod game_of_life;
 pub mod group_anagrams;
