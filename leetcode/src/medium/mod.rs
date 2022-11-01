@@ -158,6 +158,7 @@ pub mod unique_paths_1;
 pub mod unique_paths_2;
 pub mod utf8_validation;
 pub mod vowels_of_all_substrings;
+pub mod where_will_the_ball_fall;
 pub mod word_break;
 pub mod word_search;
 pub mod xor_queries_of_a_subarray;
