@@ -88,6 +88,7 @@ pub mod merge_in_between_linked_lists;
 pub mod minimized_maximum_of_products_distributed_to_any_store;
 pub mod minimum_consecutive_cards_to_pick_up;
 pub mod minimum_cost_for_tickets;
+pub mod minimum_genetic_mutation;
 pub mod minimum_jumps_to_reach_home;
 pub mod minimum_moves_to_equal_array_elements_2;
 pub mod minimum_operations_to_reduce_x_to_zero;
