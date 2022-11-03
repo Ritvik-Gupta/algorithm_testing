@@ -1,3 +1,4 @@
+pub mod Longest_palindrome_by_concatenating_two_letter_words;
 pub mod _132_pattern;
 pub mod _3_sum;
 pub mod _3_sum_closest;
