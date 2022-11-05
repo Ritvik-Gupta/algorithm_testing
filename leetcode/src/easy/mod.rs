@@ -1,4 +1,3 @@
-pub mod Reverse_vowels_of_a_string;
 pub mod add_binary;
 pub mod add_to_array_form_of_integer;
 pub mod average_of_levels_in_binary_tree;
@@ -69,6 +68,7 @@ pub mod remove_outermost_parentheses;
 pub mod remove_palindromic_subsequences;
 pub mod replace_all_digits_with_characters;
 pub mod reverse_bits;
+pub mod reverse_vowels_of_a_string;
 pub mod reverse_words_in_a_string_3;
 pub mod robot_return_to_origin;
 pub mod running_sum_of_1d_array;
