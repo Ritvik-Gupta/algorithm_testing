@@ -1,9 +1,9 @@
-pub mod Binary_tree_paths;
 pub mod add_binary;
 pub mod add_to_array_form_of_integer;
 pub mod average_of_levels_in_binary_tree;
 pub mod baseball_game;
 pub mod binary_tree_inorder_traversal;
+pub mod binary_tree_paths;
 pub mod cells_in_a_range_on_an_excel_sheet;
 pub mod cells_with_odd_values_in_a_matrix;
 pub mod check_if_n_and_its_double_exist;
@@ -42,6 +42,7 @@ pub mod largest_perimeter_triangle;
 pub mod license_key_formatting;
 pub mod make_array_zero_by_subtracting_equal_amounts;
 pub mod matrix_diagonal_sum;
+pub mod maximum_69_number;
 pub mod maximum_number_of_pairs_in_array;
 pub mod maximum_subarray;
 pub mod maximum_units_on_a_truck;
