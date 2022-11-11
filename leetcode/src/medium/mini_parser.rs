@@ -54,8 +54,6 @@ impl Solution {
     pub fn deserialize(sentence: String) -> NestedInteger {
         let mut sentence = sentence.chars().peekable();
 
-        let x = String::new();
-
         match is_integer_component(*sentence.peek().unwrap()) {
             true => parse_int(&mut sentence),
             false => parse_nested_level(&mut sentence),
