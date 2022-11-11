@@ -103,6 +103,7 @@ pub mod my_calendar_1;
 pub mod network_delay_time;
 pub mod non_decreasing_array;
 pub mod number_of_dice_rolls_with_target_sum;
+pub mod number_of_good_ways_to_split_a_string;
 pub mod number_of_islands;
 pub mod number_of_pairs_of_interchangeable_rectangles;
 pub mod number_of_provinces;
