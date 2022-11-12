@@ -10,6 +10,7 @@ pub mod data_stream_as_disjoint_intervals;
 pub mod dungeon_game;
 pub mod earliest_possible_day_of_full_bloom;
 pub mod falling_squares;
+pub mod find_median_from_data_stream;
 pub mod grid_illumination;
 pub mod insert_delete_get_random_o1_duplicates_allowed;
 pub mod integer_to_english_words;
