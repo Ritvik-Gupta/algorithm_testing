@@ -14,6 +14,7 @@ pub mod check_if_one_string_swap_can_make_strings_equal;
 pub mod check_if_the_sentence_is_pangram;
 pub mod check_if_two_string_arrays_are_equivalent;
 pub mod construct_string_from_binary_tree;
+pub mod destination_city;
 pub mod contains_duplicate;
 pub mod contains_duplicate_2;
 pub mod convert_binary_number_in_a_linked_list_to_integer;
