@@ -1,9 +1,38 @@
 crate::solution!();
 crate::binary_tree_definition!();
 
-use std::cell::RefCell;
-use std::collections::VecDeque;
-use std::rc::Rc;
+use std::{
+    cell::RefCell,
+    collections::{HashMap, VecDeque},
+    rc::Rc,
+};
+
+fn cycle_sort_operations(nums: &mut Vec<i32>) -> i32 {
+    let mut visited_table = vec![false; nums.len()];
+    let index_table = nums
+        .iter()
+        .enumerate()
+        .map(|(idx, &num)| (num, idx))
+        .collect::<HashMap<_, _>>();
+
+    nums.sort();
+
+    (0..nums.len())
+        .map(|i| {
+            let (mut j, mut cycle_size) = (i, 0);
+            while !visited_table[j] {
+                visited_table[j] = true;
+                j = index_table[&nums[j]];
+                cycle_size += 1;
+            }
+            if cycle_size == 0 {
+                0
+            } else {
+                cycle_size - 1
+            }
+        })
+        .sum()
+}
 
 type TreeLink = Rc<RefCell<TreeNode>>;
 
@@ -34,15 +63,7 @@ impl Solution {
                 }
             }
 
-            let mut sorted_nodes = lvl_nodes.clone();
-            sorted_nodes.sort();
-
-            let dicontinuities = lvl_nodes
-                .iter()
-                .zip(sorted_nodes.iter())
-                .filter(|(x, y)| x != y)
-                .count();
-            result += (1 + dicontinuities) / 2;
+            result += cycle_sort_operations(&mut lvl_nodes);
 
             lvl_nodes.clear();
             num_lvl_nodes = num_nxt_nodes;
