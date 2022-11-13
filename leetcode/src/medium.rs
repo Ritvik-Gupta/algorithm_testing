@@ -135,6 +135,7 @@ pub mod rearrange_array_elements_by_sign;
 pub mod remove_comments;
 pub mod removing_stars_from_a_string;
 pub mod reverse_integer;
+pub mod reverse_words_in_a_string;
 pub mod rle_iterator;
 pub mod rotate_array;
 pub mod rotate_image;

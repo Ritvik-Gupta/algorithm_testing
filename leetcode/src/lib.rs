@@ -15,6 +15,7 @@ pub mod weekly_contest_312;
 pub mod weekly_contest_313;
 pub mod weekly_contest_315;
 pub mod weekly_contest_317;
+pub mod weekly_contest_319;
 
 macro_rules! solution {
     () => {
