@@ -21,6 +21,7 @@ pub mod construct_binary_tree_from_preorder_and_inorder_traversal;
 pub mod continuous_subarray_sum;
 pub mod corporate_flight_bookings;
 pub mod count_and_say;
+pub mod count_complete_tree_nodes;
 pub mod count_good_nodes_in_binary_tree;
 pub mod count_nodes_equal_to_average_of_subtree;
 pub mod count_number_of_maximum_bitwise_or_subsets;
