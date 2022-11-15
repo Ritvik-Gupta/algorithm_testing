@@ -3,6 +3,7 @@ pub mod _3_sum;
 pub mod _3_sum_closest;
 pub mod add_one_row_to_tree;
 pub mod airplane_seat_assignment_probability;
+pub mod all_ancestors_of_a_node_in_a_directed_acyclic_graph;
 pub mod apply_discount_every_n_orders;
 pub mod binary_tree_pruning;
 pub mod binary_tree_zigzag_level_order_traversal;
