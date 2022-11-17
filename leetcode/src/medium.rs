@@ -36,6 +36,7 @@ pub mod decode_string;
 pub mod decode_the_slanted_ciphertext;
 pub mod decode_ways;
 pub mod deepest_leaves_sum;
+pub mod delete_leaves_with_a_given_value;
 pub mod delete_operation_for_two_strings;
 pub mod design_bitset;
 pub mod design_twitter;
