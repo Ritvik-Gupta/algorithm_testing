@@ -1,3 +1,4 @@
+pub mod basic_calculator;
 pub mod binary_tree_cameras;
 pub mod binary_tree_maximum_path_sum;
 pub mod check_if_there_is_a_valid_parentheses_string_path;
