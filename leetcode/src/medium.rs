@@ -182,6 +182,7 @@ pub mod ugly_number_2;
 pub mod unique_paths_1;
 pub mod unique_paths_2;
 pub mod utf8_validation;
+pub mod valid_sudoku;
 pub mod vowels_of_all_substrings;
 pub mod where_will_the_ball_fall;
 pub mod word_break;
