@@ -87,6 +87,7 @@ pub mod running_sum_of_1d_array;
 pub mod search_insert_position;
 pub mod self_dividing_numbers;
 pub mod single_number;
+pub mod smallest_range_1;
 pub mod sorting_the_sentence;
 pub mod sqrt_x;
 pub mod sum_of_unique_elements;

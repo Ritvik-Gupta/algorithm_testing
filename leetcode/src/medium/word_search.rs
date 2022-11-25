@@ -91,18 +91,11 @@ impl<'a> DfsBoard<'a> {
 impl Solution {
     pub fn exist(board: Vec<Vec<char>>, word: String) -> bool {
         let mut dfs_board = DfsBoard::new(board, word.as_bytes());
+        let size = dfs_board.board_size;
 
-        if word.len() > dfs_board.board_size.0 * dfs_board.board_size.1 {
-            return false;
-        }
-
-        for i in 0..dfs_board.board_size.0 {
-            for j in 0..dfs_board.board_size.1 {
-                if dfs_board.dfs(Vector(i, j), 0) {
-                    return true;
-                }
-            }
-        }
-        false
+        word.len() <= size.0 * size.1
+            && (0..size.0)
+                .flat_map(|x| (0..size.1).map(move |y| (x, y)))
+                .any(|(x, y)| dfs_board.dfs(Vector(x, y), 0))
     }
 }
