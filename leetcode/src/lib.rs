@@ -3,6 +3,7 @@ pub mod biweekly_contest_81;
 pub mod biweekly_contest_89;
 pub mod biweekly_contest_90;
 pub mod biweekly_contest_91;
+pub mod biweekly_contest_92;
 pub mod easy;
 pub mod hard;
 pub mod medium;
@@ -10,13 +11,13 @@ pub mod weekly_contest_274;
 pub mod weekly_contest_293;
 pub mod weekly_contest_297;
 pub mod weekly_contest_298;
-pub mod weekly_contest_320;
 pub mod weekly_contest_310;
 pub mod weekly_contest_312;
 pub mod weekly_contest_313;
 pub mod weekly_contest_315;
 pub mod weekly_contest_317;
 pub mod weekly_contest_319;
+pub mod weekly_contest_320;
 
 macro_rules! solution {
     () => {
