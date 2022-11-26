@@ -20,6 +20,7 @@ pub mod longest_increasing_path_in_a_matrix;
 pub mod longest_valid_parentheses;
 pub mod max_points_on_a_line;
 pub mod max_value_of_equation;
+pub mod maximum_profit_in_job_scheduling;
 pub mod minimum_window_substring;
 pub mod n_queens;
 pub mod n_queens_2;

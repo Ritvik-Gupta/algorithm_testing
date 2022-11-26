@@ -28,6 +28,7 @@ pub mod excel_sheet_column_number;
 pub mod fibonacci_number;
 pub mod find_closest_number_to_zero;
 pub mod find_lucky_integer_in_an_array;
+pub mod find_resultant_array_after_removing_anagrams;
 pub mod find_the_difference;
 pub mod find_the_highest_altitude;
 pub mod find_the_k_beauty_of_a_number;

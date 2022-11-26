@@ -54,6 +54,7 @@ pub mod find_k_closest_elements;
 pub mod find_kth_bit_in_nth_binary_string;
 pub mod find_largest_value_in_each_tree_row;
 pub mod find_original_array_from_doubled_array;
+pub mod find_players_with_zero_or_one_losses;
 pub mod find_the_duplicate_number;
 pub mod find_the_index_of_the_first_occurrence_in_a_string;
 pub mod find_the_minimum_and_maximum_number_of_nodes_between_critical_points;
