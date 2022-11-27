@@ -1,3 +1,4 @@
+pub mod arithmetic_slices_2_subsequence;
 pub mod basic_calculator;
 pub mod binary_tree_cameras;
 pub mod binary_tree_maximum_path_sum;

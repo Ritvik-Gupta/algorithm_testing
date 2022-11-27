@@ -161,6 +161,7 @@ pub mod shortest_path_in_binary_matrix;
 pub mod simplify_path;
 pub mod single_element_in_a_sorted_array;
 pub mod smallest_string_with_swaps;
+pub mod snakes_and_ladders;
 pub mod sort_colors;
 pub mod sort_the_matrix_diagonally;
 pub mod spiral_matrix;
