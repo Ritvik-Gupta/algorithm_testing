@@ -1,13 +1,10 @@
 use rand::{prelude::ThreadRng, Rng};
-use std::collections::{
-    btree_map::Entry::{Occupied, Vacant},
-    BTreeMap,
-};
+use std::collections::{hash_map::Entry::Vacant, HashMap};
 
 struct RandomizedSet {
     keys: Vec<i32>,
-    key_frequency_record: BTreeMap<i32, usize>,
-    random_generator: ThreadRng,
+    key_frequency_record: HashMap<i32, usize>,
+    rng: ThreadRng,
 }
 
 impl RandomizedSet {
@@ -15,21 +12,19 @@ impl RandomizedSet {
     fn new() -> Self {
         Self {
             keys: Vec::new(),
-            key_frequency_record: BTreeMap::new(),
-            random_generator: rand::thread_rng(),
+            key_frequency_record: HashMap::new(),
+            rng: rand::thread_rng(),
         }
     }
 
     #[allow(dead_code)]
     fn insert(&mut self, val: i32) -> bool {
-        match self.key_frequency_record.entry(val) {
-            Occupied(_) => false,
-            Vacant(entry) => {
-                self.keys.push(val);
-                entry.insert(self.keys.len() - 1);
-                true
-            }
+        if let Vacant(entry) = self.key_frequency_record.entry(val) {
+            self.keys.push(val);
+            entry.insert(self.keys.len() - 1);
+            return true;
         }
+        false
     }
 
     #[allow(dead_code)]
@@ -38,8 +33,8 @@ impl RandomizedSet {
     }
 
     fn remove_occurence(&mut self, val: i32) -> Option<()> {
-        let removed_key_idx = self.key_frequency_record.remove(&val)?;
         let keys_size = self.keys.len();
+        let removed_key_idx = self.key_frequency_record.remove(&val)?;
         if removed_key_idx != keys_size - 1 {
             *self.key_frequency_record.get_mut(self.keys.last()?)? = removed_key_idx;
             self.keys.swap(removed_key_idx, keys_size - 1);
@@ -50,6 +45,6 @@ impl RandomizedSet {
 
     #[allow(dead_code)]
     fn get_random(&mut self) -> i32 {
-        self.keys[self.random_generator.gen::<usize>() % self.keys.len()]
+        self.keys[self.rng.gen::<usize>() % self.keys.len()]
     }
 }
