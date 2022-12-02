@@ -43,6 +43,7 @@ pub mod design_bitset;
 pub mod design_twitter;
 pub mod detect_cycles_in_2d_grid;
 pub mod detect_squares;
+pub mod determine_if_two_strings_are_close;
 pub mod diagonal_traverse;
 pub mod divide_two_integers;
 pub mod evaluate_reverse_polish_notation;
