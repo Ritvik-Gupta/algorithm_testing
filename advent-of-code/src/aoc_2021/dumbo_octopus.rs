@@ -81,7 +81,7 @@ impl DumboOctopus {
     }
 }
 
-impl super::AdventDayProblem for DumboOctopus {
+impl crate::AdventDayProblem for DumboOctopus {
     type Arg = Vec<Vec<u8>>;
 
     fn get_problem_name() -> &'static str {

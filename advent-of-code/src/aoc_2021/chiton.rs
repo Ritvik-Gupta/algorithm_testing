@@ -80,7 +80,7 @@ fn expand_cavern(cavern: &mut Vec<Vec<u8>>) {
 
 pub struct Chiton;
 
-impl super::AdventDayProblem for Chiton {
+impl crate::AdventDayProblem for Chiton {
     type Arg = Vec<Vec<u8>>;
 
     fn get_problem_name() -> &'static str {

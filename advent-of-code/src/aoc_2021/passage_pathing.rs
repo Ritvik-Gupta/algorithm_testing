@@ -43,7 +43,7 @@ impl ConnectedCaves {
 
 pub struct PassagePathing;
 
-impl super::AdventDayProblem for PassagePathing {
+impl crate::AdventDayProblem for PassagePathing {
     type Arg = ConnectedCaves;
 
     fn get_problem_name() -> &'static str {

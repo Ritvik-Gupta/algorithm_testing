@@ -38,7 +38,7 @@ impl Paper {
 
 pub struct TransparentOrigami;
 
-impl super::AdventDayProblem for TransparentOrigami {
+impl crate::AdventDayProblem for TransparentOrigami {
     type Arg = (Paper, Vec<Fold>);
 
     fn get_problem_name() -> &'static str {

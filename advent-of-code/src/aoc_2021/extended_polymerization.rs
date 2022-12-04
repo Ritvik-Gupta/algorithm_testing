@@ -67,7 +67,7 @@ fn build_polymer_template_for<const NUM_STEPS: usize>(
 
 pub struct ExtendedPolymerization;
 
-impl super::AdventDayProblem for ExtendedPolymerization {
+impl crate::AdventDayProblem for ExtendedPolymerization {
     type Arg = (PolymerTemplate, PolymerPair, HashMap<PolymerPair, char>);
 
     fn get_problem_name() -> &'static str {

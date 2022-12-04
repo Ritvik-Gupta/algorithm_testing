@@ -139,7 +139,7 @@ impl HexReader {
 
 pub struct PacketDecoder;
 
-impl super::AdventDayProblem for PacketDecoder {
+impl crate::AdventDayProblem for PacketDecoder {
     type Arg = HexReader;
 
     fn get_problem_name() -> &'static str {

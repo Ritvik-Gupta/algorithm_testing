@@ -1,22 +1,24 @@
-pub mod binary_diagnostic;
-pub mod chiton;
-pub mod dive;
-pub mod dumbo_octopus;
-pub mod extended_polymerization;
-pub mod giant_squid;
-pub mod lanternfish;
-pub mod packet_decoder;
-pub mod passage_pathing;
-pub mod smoke_basin;
-pub mod sonar_sweep;
-pub mod syntax_scoring;
-pub mod transparent_origami;
+pub mod aoc_2021;
+pub mod aoc_2022;
 
 use std::{
     error::Error,
     fs::File,
     io::{BufRead, BufReader},
 };
+
+macro_rules! problem_name {
+    () => {
+        file!()
+            .split('\\')
+            .last()
+            .expect("has a file path")
+            .split('.')
+            .next()
+            .expect("has a file name")
+    };
+}
+pub(crate) use problem_name;
 
 pub trait AdventDayProblem {
     type Arg;
