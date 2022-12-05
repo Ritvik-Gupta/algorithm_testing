@@ -33,6 +33,7 @@ pub struct RockPaperScissors;
 
 impl crate::AdventDayProblem for RockPaperScissors {
     type Arg = Vec<(u8, u8)>;
+    type Ret = i128;
 
     fn get_problem_name() -> &'static str {
         crate::problem_name!()
@@ -47,7 +48,7 @@ impl crate::AdventDayProblem for RockPaperScissors {
             .collect()
     }
 
-    fn part_1(games: Self::Arg) -> i128 {
+    fn part_1(games: Self::Arg) -> Self::Ret {
         games
             .iter()
             .map(|moves| (Move::from(moves.0), Move::from(moves.1)))
@@ -62,7 +63,7 @@ impl crate::AdventDayProblem for RockPaperScissors {
             .sum()
     }
 
-    fn part_2(games: Self::Arg) -> i128 {
+    fn part_2(games: Self::Arg) -> Self::Ret {
         games
             .iter()
             .map(|&(opponent_move, result)| {

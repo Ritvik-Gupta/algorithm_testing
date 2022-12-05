@@ -141,6 +141,7 @@ pub struct PacketDecoder;
 
 impl crate::AdventDayProblem for PacketDecoder {
     type Arg = HexReader;
+    type Ret = i128;
 
     fn get_problem_name() -> &'static str {
         file!()
@@ -156,13 +157,13 @@ impl crate::AdventDayProblem for PacketDecoder {
         HexReader::from_raw_hex(dataset.next().expect("contains the hex string").chars())
     }
 
-    fn part_1(mut hex_reader: Self::Arg) -> i128 {
+    fn part_1(mut hex_reader: Self::Arg) -> Self::Ret {
         hex_reader
             .switch_to_version_sum()
             .recur_compute_packet_value()
     }
 
-    fn part_2(mut hex_reader: Self::Arg) -> i128 {
+    fn part_2(mut hex_reader: Self::Arg) -> Self::Ret {
         hex_reader.recur_compute_packet_value()
     }
 }

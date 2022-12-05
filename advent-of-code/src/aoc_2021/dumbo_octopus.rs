@@ -83,6 +83,7 @@ impl DumboOctopus {
 
 impl crate::AdventDayProblem for DumboOctopus {
     type Arg = Vec<Vec<u8>>;
+    type Ret = i128;
 
     fn get_problem_name() -> &'static str {
         file!()
@@ -100,7 +101,7 @@ impl crate::AdventDayProblem for DumboOctopus {
             .collect()
     }
 
-    fn part_1(mut energy_levels: Self::Arg) -> i128 {
+    fn part_1(mut energy_levels: Self::Arg) -> Self::Ret {
         let mut total_flashes = 0;
         let mut flashing_octopuses = FlashingOctopus::new();
 
@@ -113,7 +114,7 @@ impl crate::AdventDayProblem for DumboOctopus {
         total_flashes
     }
 
-    fn part_2(mut energy_levels: Self::Arg) -> i128 {
+    fn part_2(mut energy_levels: Self::Arg) -> Self::Ret {
         let mut total_generation_flashes = 0;
         let mut generation_counter = 0;
         let mut flashing_octopuses = FlashingOctopus::new();

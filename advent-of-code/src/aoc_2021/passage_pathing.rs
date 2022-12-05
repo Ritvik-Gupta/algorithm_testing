@@ -45,6 +45,7 @@ pub struct PassagePathing;
 
 impl crate::AdventDayProblem for PassagePathing {
     type Arg = ConnectedCaves;
+    type Ret = i128;
 
     fn get_problem_name() -> &'static str {
         file!()
@@ -68,7 +69,7 @@ impl crate::AdventDayProblem for PassagePathing {
         connected_caves
     }
 
-    fn part_1(connected_caves: Self::Arg) -> i128 {
+    fn part_1(connected_caves: Self::Arg) -> Self::Ret {
         let mut path_counter = 0;
         let mut visit_records = connected_caves
             .0
@@ -87,7 +88,7 @@ impl crate::AdventDayProblem for PassagePathing {
         path_counter
     }
 
-    fn part_2(connected_caves: Self::Arg) -> i128 {
+    fn part_2(connected_caves: Self::Arg) -> Self::Ret {
         let mut path_counter = 0;
         let mut visit_records = connected_caves
             .0

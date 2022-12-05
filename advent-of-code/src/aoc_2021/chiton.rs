@@ -82,6 +82,7 @@ pub struct Chiton;
 
 impl crate::AdventDayProblem for Chiton {
     type Arg = Vec<Vec<u8>>;
+    type Ret = i128;
 
     fn get_problem_name() -> &'static str {
         file!()
@@ -99,11 +100,11 @@ impl crate::AdventDayProblem for Chiton {
             .collect()
     }
 
-    fn part_1(cavern: Self::Arg) -> i128 {
+    fn part_1(cavern: Self::Arg) -> Self::Ret {
         perform_dijkstras_search(&cavern)
     }
 
-    fn part_2(mut cavern: Self::Arg) -> i128 {
+    fn part_2(mut cavern: Self::Arg) -> Self::Ret {
         expand_cavern(&mut cavern);
         perform_dijkstras_search(&cavern)
     }

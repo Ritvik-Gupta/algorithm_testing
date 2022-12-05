@@ -69,6 +69,7 @@ pub struct ExtendedPolymerization;
 
 impl crate::AdventDayProblem for ExtendedPolymerization {
     type Arg = (PolymerTemplate, PolymerPair, HashMap<PolymerPair, char>);
+    type Ret = i128;
 
     fn get_problem_name() -> &'static str {
         file!()
@@ -106,11 +107,11 @@ impl crate::AdventDayProblem for ExtendedPolymerization {
         )
     }
 
-    fn part_1((template, extreme_ends_pair, manual): Self::Arg) -> i128 {
+    fn part_1((template, extreme_ends_pair, manual): Self::Arg) -> Self::Ret {
         build_polymer_template_for::<10>(template, extreme_ends_pair, manual)
     }
 
-    fn part_2((template, extreme_ends_pair, manual): Self::Arg) -> i128 {
+    fn part_2((template, extreme_ends_pair, manual): Self::Arg) -> Self::Ret {
         build_polymer_template_for::<40>(template, extreme_ends_pair, manual)
     }
 }

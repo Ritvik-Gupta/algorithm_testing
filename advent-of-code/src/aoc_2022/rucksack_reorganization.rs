@@ -16,6 +16,7 @@ pub struct RucksackReorganization;
 
 impl crate::AdventDayProblem for RucksackReorganization {
     type Arg = Vec<String>;
+    type Ret = i128;
 
     fn get_problem_name() -> &'static str {
         crate::problem_name!()
@@ -25,7 +26,7 @@ impl crate::AdventDayProblem for RucksackReorganization {
         dataset.collect()
     }
 
-    fn part_1(rucksacks: Self::Arg) -> i128 {
+    fn part_1(rucksacks: Self::Arg) -> Self::Ret {
         rucksacks
             .iter()
             .map(|line| {
@@ -41,7 +42,7 @@ impl crate::AdventDayProblem for RucksackReorganization {
             .sum()
     }
 
-    fn part_2(rucksacks: Self::Arg) -> i128 {
+    fn part_2(rucksacks: Self::Arg) -> Self::Ret {
         (0..rucksacks.len())
             .step_by(3)
             .map(|i| {

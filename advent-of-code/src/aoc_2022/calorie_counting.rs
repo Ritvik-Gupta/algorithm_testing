@@ -2,6 +2,7 @@ pub struct CalorieCounting;
 
 impl crate::AdventDayProblem for CalorieCounting {
     type Arg = Vec<i128>;
+    type Ret = i128;
 
     fn get_problem_name() -> &'static str {
         crate::problem_name!()
@@ -23,11 +24,11 @@ impl crate::AdventDayProblem for CalorieCounting {
         calories_table
     }
 
-    fn part_1(calories_table: Self::Arg) -> i128 {
+    fn part_1(calories_table: Self::Arg) -> Self::Ret {
         *calories_table.iter().max().unwrap()
     }
 
-    fn part_2(mut calories_table: Self::Arg) -> i128 {
+    fn part_2(mut calories_table: Self::Arg) -> Self::Ret {
         calories_table.sort();
         calories_table[calories_table.len() - 3..].iter().sum()
     }

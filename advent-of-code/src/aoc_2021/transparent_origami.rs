@@ -40,6 +40,7 @@ pub struct TransparentOrigami;
 
 impl crate::AdventDayProblem for TransparentOrigami {
     type Arg = (Paper, Vec<Fold>);
+    type Ret = i128;
 
     fn get_problem_name() -> &'static str {
         file!()
@@ -82,7 +83,7 @@ impl crate::AdventDayProblem for TransparentOrigami {
         )
     }
 
-    fn part_1((mut paper, instructions): Self::Arg) -> i128 {
+    fn part_1((mut paper, instructions): Self::Arg) -> Self::Ret {
         let fold_inst = instructions
             .into_iter()
             .next()
@@ -122,7 +123,7 @@ impl crate::AdventDayProblem for TransparentOrigami {
             .sum()
     }
 
-    fn part_2((mut paper, instructions): Self::Arg) -> i128 {
+    fn part_2((mut paper, instructions): Self::Arg) -> Self::Ret {
         instructions
             .into_iter()
             .for_each(|fold_inst| match fold_inst {

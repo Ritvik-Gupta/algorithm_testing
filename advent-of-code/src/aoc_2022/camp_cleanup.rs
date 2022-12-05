@@ -8,6 +8,7 @@ pub struct SectionRange {
 
 impl crate::AdventDayProblem for CampCleanup {
     type Arg = Vec<(SectionRange, SectionRange)>;
+    type Ret = i128;
 
     fn get_problem_name() -> &'static str {
         crate::problem_name!()
@@ -34,7 +35,7 @@ impl crate::AdventDayProblem for CampCleanup {
             .collect()
     }
 
-    fn part_1(cleanup_tasks: Self::Arg) -> i128 {
+    fn part_1(cleanup_tasks: Self::Arg) -> Self::Ret {
         cleanup_tasks
             .iter()
             .filter(|(elf1, elf2)| {
@@ -47,7 +48,7 @@ impl crate::AdventDayProblem for CampCleanup {
             .count() as i128
     }
 
-    fn part_2(cleanup_tasks: Self::Arg) -> i128 {
+    fn part_2(cleanup_tasks: Self::Arg) -> Self::Ret {
         cleanup_tasks
             .iter()
             .filter(|(elf1, elf2)| {
