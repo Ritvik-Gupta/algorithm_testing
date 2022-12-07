@@ -72,6 +72,7 @@ pub mod path_sum;
 pub mod perfect_number;
 pub mod power_of_two;
 pub mod prime_number_of_set_bits_in_binary_representation;
+pub mod range_sum_of_bst;
 pub mod rank_transform_of_an_array;
 pub mod ransom_note;
 pub mod rectangle_overlap;
