@@ -11,7 +11,16 @@ use std::{
 macro_rules! problem_name {
     () => {
         file!()
-            .split('\\')
+            .split('find_os_specific_symbol: {
+                #[cfg(target_os = "windows")]
+                break 'find_os_specific_symbol '\\';
+
+                #[cfg(any(target_os = "macos", target_os = "linux"))]
+                break 'find_os_specific_symbol '/';
+
+                #[cfg(not(any(target_os = "windows", target_os = "macos", target_os = "linux")))]
+                panic!("Invalid OS identified");
+            })
             .last()
             .expect("has a file path")
             .split('.')
