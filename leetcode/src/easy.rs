@@ -46,6 +46,7 @@ pub mod kids_with_the_greatest_number_of_candies;
 pub mod kth_distinct_string_in_an_array;
 pub mod largest_3_same_digit_number_in_string;
 pub mod largest_perimeter_triangle;
+pub mod leaf_similar_trees;
 pub mod license_key_formatting;
 pub mod make_array_zero_by_subtracting_equal_amounts;
 pub mod make_the_string_great;
