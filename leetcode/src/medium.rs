@@ -97,6 +97,7 @@ pub mod maximum_erasure_value;
 pub mod maximum_length_of_a_concatenated_string_with_unique_characters;
 pub mod maximum_length_of_repeated_subarray;
 pub mod maximum_points_you_can_obtain_from_cards;
+pub mod maximum_product_of_splitted_binary_tree;
 pub mod maximum_product_of_word_lengths;
 pub mod maximum_score_from_performing_multiplication_operations;
 pub mod maximum_total_importance_of_roads;
