@@ -1,6 +1,6 @@
 use nom::{
-    branch::alt, bytes::complete::tag, character::complete::i32 as integer, combinator::map,
-    error::ErrorKind, sequence::preceded,
+    branch::alt, bytes::complete::tag, character::complete::i32 as integer, sequence::preceded,
+    IResult, Parser,
 };
 use Command::*;
 
@@ -25,6 +25,13 @@ impl Command {
             Addx(val) => *val,
         }
     }
+
+    fn construct_from(input: &str) -> IResult<&str, Self> {
+        alt((
+            tag("noop").map(|_| Noop),
+            preceded(tag("addx "), integer).map(|val| Addx(val)),
+        ))(input)
+    }
 }
 
 impl crate::AdventDayProblem for CathodeRayTube {
@@ -38,18 +45,11 @@ impl crate::AdventDayProblem for CathodeRayTube {
     fn construct_arg(dataset: impl Iterator<Item = String>) -> Self::Arg {
         let mut register = 1;
         dataset
-            .map(|line| {
-                let (_, command) = alt((
-                    map(tag::<_, _, (_, ErrorKind)>("noop"), |_| Noop),
-                    map(preceded(tag("addx "), integer), |val| Addx(val)),
-                ))(line.as_str())
-                .unwrap();
-                command
-            })
+            .map(|line| Command::construct_from(&line).unwrap().1)
             .flat_map(|command| {
-                let itr = std::iter::repeat(register).take(command.cycle_length());
+                let cycle_operations = std::iter::repeat(register).take(command.cycle_length());
                 register += command.value();
-                itr
+                cycle_operations
             })
             .collect()
     }
