@@ -3,7 +3,7 @@ pub mod aoc_2022;
 
 use std::{
     error::Error,
-    fmt::Debug,
+    fmt::Display,
     fs::File,
     io::{BufRead, BufReader},
 };
@@ -32,7 +32,7 @@ pub(crate) use problem_name;
 
 pub trait AdventDayProblem {
     type Arg;
-    type Ret: Debug;
+    type Ret: Display;
 
     fn get_problem_name() -> &'static str;
     fn construct_arg(dataset: impl Iterator<Item = String>) -> Self::Arg;
@@ -47,7 +47,7 @@ pub fn run_advent_problem<PR: AdventDayProblem>() -> Result<(), Box<dyn Error>> 
         PR::get_problem_name()
     ))?;
     println!(
-        "{:?}",
+        "{}",
         PR::part_1(PR::construct_arg(
             BufReader::new(&file)
                 .lines()
@@ -60,7 +60,7 @@ pub fn run_advent_problem<PR: AdventDayProblem>() -> Result<(), Box<dyn Error>> 
         PR::get_problem_name()
     ))?;
     println!(
-        "{:?}",
+        "{}",
         PR::part_2(PR::construct_arg(
             BufReader::new(&file)
                 .lines()
