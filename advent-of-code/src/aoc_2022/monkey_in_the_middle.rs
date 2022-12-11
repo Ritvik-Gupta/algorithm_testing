@@ -8,14 +8,14 @@ use nom::{
     sequence::{preceded, separated_pair},
     IResult, Parser,
 };
-use std::cmp::Reverse;
+use std::{cmp::Reverse, collections::VecDeque};
 use Operation::*;
 
 pub struct MonkeyInTheMiddle;
 
 structstruck::strike! {
     pub struct Monkey {
-        holding_items: Vec<i128>,
+        holding_items: VecDeque<i128>,
         operation_seq: struct OperationSequence {
             operation: enum {
                 PLUS,
@@ -87,7 +87,7 @@ impl Monkey {
         Ok((
             "",
             Monkey {
-                holding_items,
+                holding_items: holding_items.into_iter().collect(),
                 operation_seq: OperationSequence {
                     operation: operation_seq.0,
                     value: operation_seq.1,
@@ -112,10 +112,9 @@ impl Monkey {
 
         for _ in 0..ITERATIONS {
             for i in 0..monkeys.len() {
-                let holding_items = std::mem::take(&mut monkeys[i].holding_items);
-                monkeys[i].num_inspections += holding_items.len() as u128;
-
-                for mut item in holding_items {
+                let num_items_holding = monkeys[i].holding_items.len();
+                for _ in 0..num_items_holding {
+                    let mut item = monkeys[i].holding_items.pop_front().unwrap();
                     item = monkeys[i].operation_seq.apply_on(item) % total_worry_modulo;
                     item /= RELIEF;
 
@@ -124,8 +123,9 @@ impl Monkey {
                         _ => monkeys[i].test.fail_to,
                     };
 
-                    monkeys[throw_item_to].holding_items.push(item);
+                    monkeys[throw_item_to].holding_items.push_back(item);
                 }
+                monkeys[i].num_inspections += num_items_holding as u128;
             }
         }
     }
