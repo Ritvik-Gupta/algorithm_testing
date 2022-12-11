@@ -180,6 +180,7 @@ pub mod subsets;
 pub mod sum_of_even_numbers_after_queries;
 pub mod sum_of_square_numbers;
 pub mod sum_of_subarray_minimums;
+pub mod sum_root_to_leaf_numbers;
 pub mod super_ugly_number;
 pub mod surrounded_regions;
 pub mod target_sum;

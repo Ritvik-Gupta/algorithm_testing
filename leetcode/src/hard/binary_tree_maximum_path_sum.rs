@@ -4,7 +4,7 @@ crate::binary_tree_definition!();
 use std::cell::RefCell;
 use std::rc::Rc;
 
-type Link<T> = Rc<RefCell<T>>;
+type TreeLink = Rc<RefCell<TreeNode>>;
 
 macro_rules! max {
     {$first_arg: expr, $($args: expr),+ $(,)?} => {{
@@ -28,37 +28,35 @@ const MIN_NODE_LINK_PATH: LinkPath = LinkPath {
     max_path: -1001,
 };
 
-fn max_link_and_path(root: Link<TreeNode>) -> LinkPath {
-    let root_val = root.borrow().val;
+fn max_link_and_path(root: &Option<TreeLink>) -> LinkPath {
+    let root = match root {
+        Some(root) => root,
+        None => return MIN_NODE_LINK_PATH,
+    };
+    let root = root.borrow();
 
     let (left, right) = (
-        root.borrow()
-            .left
-            .clone()
-            .map(max_link_and_path)
-            .unwrap_or(MIN_NODE_LINK_PATH),
-        root.borrow()
-            .right
-            .clone()
-            .map(max_link_and_path)
-            .unwrap_or(MIN_NODE_LINK_PATH),
+        max_link_and_path(&root.left),
+        max_link_and_path(&root.right),
     );
 
-    let max_link = root_val + max![0, left.max_link, right.max_link];
+    let max_link = root.val + max![0, left.max_link, right.max_link];
     LinkPath {
         max_link,
         max_path: max![
             max_link,
             left.max_path,
             right.max_path,
-            root_val + left.max_link + right.max_link,
+            root.val + left.max_link + right.max_link,
         ],
     }
 }
 
 impl Solution {
-    pub fn max_path_sum(root: Option<Link<TreeNode>>) -> i32 {
-        root.map(|root| max_link_and_path(root).max_path)
-            .unwrap_or(0)
+    pub fn max_path_sum(root: Option<TreeLink>) -> i32 {
+        if root.is_none() {
+            return 0;
+        }
+        max_link_and_path(&root).max_path
     }
 }
