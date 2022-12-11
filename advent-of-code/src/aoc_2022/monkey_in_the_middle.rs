@@ -102,7 +102,9 @@ impl Monkey {
         ))
     }
 
-    fn simulate_inspections<const ITERATIONS: usize>(monkeys: &mut Vec<Monkey>) {
+    fn simulate_inspections<const ITERATIONS: usize, const RELIEF: i128>(
+        monkeys: &mut Vec<Monkey>,
+    ) {
         let total_worry_modulo = monkeys
             .iter()
             .map(|monkey| monkey.test.modulo)
@@ -115,6 +117,7 @@ impl Monkey {
 
                 for mut item in holding_items {
                     item = monkeys[i].operation_seq.apply_on(item) % total_worry_modulo;
+                    item /= RELIEF;
 
                     let throw_item_to = match item % monkeys[i].test.modulo {
                         0 => monkeys[i].test.pass_to,
@@ -145,13 +148,13 @@ impl crate::AdventDayProblem for MonkeyInTheMiddle {
     }
 
     fn part_1(mut monkeys: Self::Arg) -> Self::Ret {
-        Monkey::simulate_inspections::<20>(&mut monkeys);
+        Monkey::simulate_inspections::<20, 3>(&mut monkeys);
         monkeys.sort_by_key(|monkey| Reverse(monkey.num_inspections));
         monkeys[0].num_inspections * monkeys[1].num_inspections
     }
 
     fn part_2(mut monkeys: Self::Arg) -> Self::Ret {
-        Monkey::simulate_inspections::<10000>(&mut monkeys);
+        Monkey::simulate_inspections::<10000, 1>(&mut monkeys);
         monkeys.sort_by_key(|monkey| Reverse(monkey.num_inspections));
         monkeys[0].num_inspections * monkeys[1].num_inspections
     }
