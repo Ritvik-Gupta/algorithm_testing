@@ -8,5 +8,7 @@ edition = "2021"
 [dependencies]
 bit-set = "0.5.3"
 itertools = "0.10.5"
+keyed_priority_queue = "0.4.1"
 nom = "7.1.1"
+rayon = "1.6.1"
 structstruck = "0.3.0"
