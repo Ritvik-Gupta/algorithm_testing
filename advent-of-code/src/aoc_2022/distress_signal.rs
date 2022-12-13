@@ -73,8 +73,8 @@ macro_rules! pack {
 // static DIVIDER_MARKER_A: Packet = Packet::List(vec![Packet::List(vec![Packet::Integer(2)])]);
 // static DIVIDER_MARKER_B: Packet = Packet::List(vec![Packet::List(vec![Packet::Integer(6)])]);
 
-const DIVIDER_MARKER_A: Lazy<Packet> = Lazy::new(|| pack!([[2]]));
-const DIVIDER_MARKER_B: Lazy<Packet> = Lazy::new(|| pack!([[6]]));
+static DIVIDER_MARKER_A: Lazy<Packet> = Lazy::new(|| pack!([[2]]));
+static DIVIDER_MARKER_B: Lazy<Packet> = Lazy::new(|| pack!([[6]]));
 
 pub struct DistressSignal;
 
