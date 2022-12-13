@@ -11,8 +11,6 @@ use nom::{
 use std::{cmp::Reverse, collections::VecDeque};
 use Operation::*;
 
-pub struct MonkeyInTheMiddle;
-
 structstruck::strike! {
     pub struct Monkey {
         holding_items: VecDeque<i128>,
@@ -130,6 +128,8 @@ impl Monkey {
         }
     }
 }
+
+pub struct MonkeyInTheMiddle;
 
 impl crate::AdventDayProblem for MonkeyInTheMiddle {
     type Arg = Vec<Monkey>;
