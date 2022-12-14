@@ -88,6 +88,7 @@ pub mod reverse_bits;
 pub mod reverse_vowels_of_a_string;
 pub mod reverse_words_in_a_string_3;
 pub mod robot_return_to_origin;
+pub mod roman_to_integer;
 pub mod running_sum_of_1d_array;
 pub mod search_insert_position;
 pub mod self_dividing_numbers;
