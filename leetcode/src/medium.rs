@@ -65,6 +65,7 @@ pub mod finding_pairs_with_a_certain_sum;
 pub mod furthest_building_you_can_reach;
 pub mod game_of_life;
 pub mod group_anagrams;
+pub mod house_robber;
 pub mod image_overlap;
 pub mod image_smoother;
 pub mod increasing_triplet_subsequence;
