@@ -3,6 +3,7 @@ use std::{
     ops::RangeInclusive,
 };
 
+use itertools::Itertools;
 use nom::{
     bytes::complete::tag,
     character::complete::{char, i32},
@@ -49,6 +50,8 @@ pub struct CaveMap {
 }
 
 impl CaveMap {
+    const SAND_DROP_FROM: Location = Location(500, 0);
+
     fn new() -> Self {
         Self {
             grid: BTreeMap::new(),
@@ -93,21 +96,33 @@ impl CaveMap {
                 .unwrap(),
         )
     }
-}
 
-fn simulate_sand_drop(cave_map: &CaveMap, sand_loc: impl Into<Location>) -> Option<Location> {
-    let mut sand_loc = sand_loc.into();
-    loop {
-        let Some (obstable_y) = cave_map.obstable_below(sand_loc) else { return None };
-        sand_loc.1 = obstable_y - 1;
+    fn simulate_sand_drop(&self, sand_loc: impl Into<Location>) -> Option<Location> {
+        let mut sand_loc = sand_loc.into();
+        loop {
+            let Some (obstable_y) = self.obstable_below(sand_loc) else { return None };
+            sand_loc.1 = obstable_y - 1;
 
-        if !cave_map.has_obstacle(sand_loc + (-1, 1)) {
-            sand_loc = sand_loc + (-1, 1)
-        } else if !cave_map.has_obstacle(sand_loc + (1, 1)) {
-            sand_loc = sand_loc + (1, 1);
-        } else {
-            return Some(sand_loc);
+            if !self.has_obstacle(sand_loc + (-1, 1)) {
+                sand_loc = sand_loc + (-1, 1)
+            } else if !self.has_obstacle(sand_loc + (1, 1)) {
+                sand_loc = sand_loc + (1, 1);
+            } else {
+                return Some(sand_loc);
+            }
         }
+    }
+
+    fn run_simulation(&mut self) -> i32 {
+        let mut units_dropped = 0;
+        while !self.has_obstacle(Self::SAND_DROP_FROM) {
+            match self.simulate_sand_drop(Self::SAND_DROP_FROM) {
+                Some(sand_loc) => self.add_obstacle(sand_loc),
+                None => break,
+            }
+            units_dropped += 1;
+        }
+        units_dropped
     }
 }
 
@@ -126,45 +141,27 @@ impl crate::AdventDayProblem for RegolithReservoir {
         dataset.for_each(|line| {
             let (_, rock_path) = parse_rock_path(line.as_str()).unwrap();
 
-            rock_path.windows(2).for_each(|path| {
-                let (point_a, point_b) = (path[0], path[1]);
+            rock_path
+                .iter()
+                .tuple_windows()
+                .for_each(|(point_a, point_b)| {
+                    let x_rng = cert_range(point_a.0, point_b.0);
+                    let y_rng = cert_range(point_a.1, point_b.1);
 
-                if point_a.0 == point_b.0 {
-                    let x = point_a.0;
-                    cert_range(point_a.1, point_b.1).for_each(|y| {
-                        cave_map.add_obstacle((x, y));
-                    });
-                } else {
-                    let y = point_a.1;
-                    cert_range(point_a.0, point_b.0).for_each(|x| {
-                        cave_map.add_obstacle((x, y));
-                    });
-                }
-            });
+                    x_rng
+                        .cartesian_product(y_rng)
+                        .for_each(|loc| cave_map.add_obstacle(loc));
+                });
         });
         cave_map
     }
 
     fn part_1(mut cave_map: Self::Arg) -> Self::Ret {
-        let mut units_dropped = 0;
-        loop {
-            match simulate_sand_drop(&cave_map, (500, 0)) {
-                Some(sand_loc) => cave_map.add_obstacle(sand_loc),
-                None => return units_dropped,
-            }
-            units_dropped += 1;
-        }
+        cave_map.run_simulation()
     }
 
     fn part_2(mut cave_map: Self::Arg) -> Self::Ret {
         cave_map.build_with_floor();
-
-        let mut units_dropped = 0;
-        while !cave_map.has_obstacle((500, 0)) {
-            let Some(sand_loc) = simulate_sand_drop(&cave_map, (500, 0)) else { unreachable!() };
-            cave_map.add_obstacle(sand_loc);
-            units_dropped += 1;
-        }
-        units_dropped
+        cave_map.run_simulation()
     }
 }
