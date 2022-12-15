@@ -1,3 +1,4 @@
+pub mod Beacon_exclusion_zone;
 pub mod calorie_counting;
 pub mod camp_cleanup;
 pub mod cathode_ray_tube;
