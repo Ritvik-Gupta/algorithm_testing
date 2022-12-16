@@ -85,7 +85,12 @@ impl crate::AdventDayProblem for BeaconExclusionZone {
     fn part_1((sensors, beacons): Self::Arg) -> Self::Ret {
         let (min_x, max_x) = (
             i128::min(
-                beacons.first().unwrap().0,
+                'safe_tag: {
+                    #[cfg(feature = "...")]
+                    break 'safe_tag beacons.first().unwrap().0;
+                    #[cfg(not(feature = "..."))]
+                    break 'safe_tag beacons.range(..).next().unwrap().0;
+                },
                 sensors
                     .iter()
                     .min_by_key(|sn| sn.location.0)
@@ -93,7 +98,12 @@ impl crate::AdventDayProblem for BeaconExclusionZone {
                     .unwrap(),
             ),
             i128::max(
-                beacons.last().unwrap().0,
+                'safe_tag: {
+                    #[cfg(feature = "...")]
+                    break 'safe_tag beacons.last().unwrap().0;
+                    #[cfg(not(feature = "..."))]
+                    break 'safe_tag beacons.range(..).next_back().unwrap().0;
+                },
                 sensors
                     .iter()
                     .max_by_key(|sn| sn.location.0)
