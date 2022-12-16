@@ -39,6 +39,7 @@ pub mod first_unique_character_in_a_string;
 pub mod fizz_buzz;
 pub mod guess_number_higher_or_lower;
 pub mod happy_number;
+pub mod implement_queue_using_stacks;
 pub mod implement_stack_using_queues;
 pub mod intersection_of_two_arrays_2;
 pub mod isomorphic_strings;
