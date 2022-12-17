@@ -1,4 +1,5 @@
 use bit_set::BitSet;
+use derive_more::Deref;
 use nom::{
     branch::alt,
     bytes::complete::tag,
@@ -9,26 +10,20 @@ use nom::{
     sequence::{pair, preceded, separated_pair},
     IResult, Parser,
 };
-use std::{collections::HashMap, hash::Hash};
+use std::collections::HashMap;
 
-#[derive(PartialEq, Eq, Hash, Clone, Copy)]
-struct ValveId(usize);
+type ValveId = usize;
 
-impl From<(char, char)> for ValveId {
-    fn from(valve: (char, char)) -> Self {
-        Self((valve.0 as u8 - b'A') as usize * 26 + (valve.1 as u8 - b'A') as usize)
-    }
+fn parse_valve_id(input: &str) -> IResult<&str, ValveId> {
+    map(pair(anychar, anychar), |valve| {
+        (valve.0 as u8 - b'A') as usize * 26 + (valve.1 as u8 - b'A') as usize
+    })(input)
 }
 
-impl ValveId {
-    fn parse(input: &str) -> IResult<&str, Self> {
-        map(pair(anychar, anychar), From::from)(input)
-    }
-}
-
-struct ValveNode {
+#[derive(Default, Clone)]
+pub struct ValveNode {
     pressure: u32,
-    tunnel_ids: Vec<ValveId>,
+    tunnel_to_ids: Vec<ValveId>,
 }
 
 impl ValveNode {
@@ -36,44 +31,43 @@ impl ValveNode {
         preceded(
             tag("Valve "),
             separated_pair(
-                ValveId::parse,
+                parse_valve_id,
                 tag(" has flow rate="),
                 alt((
                     separated_pair(
                         integer,
                         tag("; tunnels lead to valves "),
-                        separated_list0(tag(", "), ValveId::parse),
+                        separated_list0(tag(", "), parse_valve_id),
                     ),
                     separated_pair(
                         integer,
                         tag("; tunnel leads to valve "),
-                        ValveId::parse.map(|valve_id| vec![valve_id]),
+                        parse_valve_id.map(|valve_id| vec![valve_id]),
                     ),
                 ))
                 .map(|(pressure, tunnel_ids)| Self {
                     pressure,
-                    tunnel_ids,
+                    tunnel_to_ids: tunnel_ids,
                 }),
             ),
         )(input)
     }
 }
 
-pub struct ValveGraph(HashMap<ValveId, ValveNode>);
+#[derive(Deref)]
+pub struct ValveGraph(Vec<ValveNode>);
 
-static START_VALVE: ValveId = ValveId(0);
+static mut START_VALVE: ValveId = 0;
 static mut VOLCANO_TIMER: u32 = 30;
 
 impl ValveGraph {
     fn find_max_pressure<const NUM_PLAYERS: u8>(&self) -> u32 {
         self.max_pressure_in(
             NUM_PLAYERS - 1,
-            START_VALVE,
+            unsafe { START_VALVE },
             unsafe { VOLCANO_TIMER },
-            &mut BitSet::with_capacity(26 * 26),
-            &mut HashMap::with_capacity(
-                self.0.len() * unsafe { VOLCANO_TIMER } as usize * NUM_PLAYERS as usize,
-            ),
+            &mut BitSet::new(),
+            &mut HashMap::new(),
         )
     }
 
@@ -90,7 +84,7 @@ impl ValveGraph {
                 0 => 0,
                 _ => self.max_pressure_in(
                     player_id - 1,
-                    START_VALVE,
+                    unsafe { START_VALVE },
                     unsafe { VOLCANO_TIMER },
                     open_valves,
                     score_table,
@@ -104,11 +98,11 @@ impl ValveGraph {
         }
 
         let score = u32::max(
-            match !open_valves.contains(valve_id.0) {
-                true if self.0[&valve_id].pressure > 0 => {
+            match !open_valves.contains(valve_id) {
+                true if self[valve_id].pressure > 0 => {
                     let timer = timer - 1;
-                    open_valves.insert(valve_id.0);
-                    let score = self.0[&valve_id].pressure * timer
+                    open_valves.insert(valve_id);
+                    let score = self[valve_id].pressure * timer
                         + self.max_pressure_in(
                             player_id,
                             valve_id,
@@ -116,13 +110,13 @@ impl ValveGraph {
                             open_valves,
                             score_table,
                         );
-                    open_valves.remove(valve_id.0);
+                    open_valves.remove(valve_id);
                     score
                 }
                 _ => 0,
             },
-            self.0[&valve_id]
-                .tunnel_ids
+            self[valve_id]
+                .tunnel_to_ids
                 .iter()
                 .map(|&next_valve_id| {
                     self.max_pressure_in(
@@ -153,12 +147,36 @@ impl crate::AdventDayProblem for ProboscideaVolcanium {
     }
 
     fn construct_arg(dataset: impl Iterator<Item = String>) -> Self::Arg {
-        let mut graph = ValveGraph(HashMap::new());
-        dataset.for_each(|line| {
-            let (_, (valve_id, node)) = ValveNode::parse(&line).unwrap();
-            graph.0.insert(valve_id, node);
-        });
-        graph
+        let mut network = HashMap::new();
+        {
+            let mut alias_id = 0;
+            dataset.for_each(|line| {
+                let (_, (valve_id, node)) = ValveNode::parse(&line).unwrap();
+                network.insert(valve_id, (alias_id, node));
+                alias_id += 1;
+            });
+        }
+
+        let mut graph = vec![ValveNode::default(); network.len()];
+
+        network
+            .iter()
+            .for_each(|(valve_id, (alias_valve_id, node))| {
+                graph[*alias_valve_id] = ValveNode {
+                    pressure: node.pressure,
+                    tunnel_to_ids: node
+                        .tunnel_to_ids
+                        .iter()
+                        .map(|tunnel_to| network[tunnel_to].0)
+                        .collect(),
+                };
+
+                if *valve_id == 0 {
+                    unsafe { START_VALVE = *alias_valve_id };
+                }
+            });
+
+        ValveGraph(graph)
     }
 
     fn part_1(graph: Self::Arg) -> Self::Ret {
