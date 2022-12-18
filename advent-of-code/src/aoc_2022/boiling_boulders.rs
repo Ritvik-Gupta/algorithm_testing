@@ -12,6 +12,22 @@ const SPACE: usize = 3;
 #[derive(Clone, Copy, PartialEq, Eq, Hash, Deref, DerefMut)]
 pub struct Pos3([i32; SPACE]);
 
+impl Pos3 {
+    const MAX: Pos3 = Pos3([i32::MAX; SPACE]);
+    const MIN: Pos3 = Pos3([i32::MIN; SPACE]);
+
+    fn parse(input: &str) -> IResult<&str, Self> {
+        map(
+            separated_pair(int, ch(','), separated_pair(int, ch(','), int)),
+            |(x, (y, z))| Self([x, y, z]),
+        )(input)
+    }
+
+    fn faces<'a>(&'a self) -> impl Iterator<Item = Self> + 'a {
+        FACE_DIRECTIONS.iter().map(|&face_dir| *self + face_dir)
+    }
+}
+
 impl std::ops::Add for Pos3 {
     type Output = Self;
 
@@ -28,22 +44,6 @@ static FACE_DIRECTIONS: [Pos3; 6] = [
     Pos3([0, 0, 1]),
     Pos3([0, 0, -1]),
 ];
-
-fn faces(pos: Pos3) -> impl Iterator<Item = Pos3> {
-    FACE_DIRECTIONS.iter().map(move |&face_dir| pos + face_dir)
-}
-
-impl Pos3 {
-    const MAX: Pos3 = Pos3([i32::MAX; SPACE]);
-    const MIN: Pos3 = Pos3([i32::MIN; SPACE]);
-
-    fn parse(input: &str) -> IResult<&str, Self> {
-        map(
-            separated_pair(int, ch(','), separated_pair(int, ch(','), int)),
-            |(x, (y, z))| Self([x, y, z]),
-        )(input)
-    }
-}
 
 pub struct Obsidian {
     cubes: HashSet<Pos3>,
@@ -68,7 +68,8 @@ fn dfs_to_escape(pos: Pos3, obsidian: &Obsidian, seen_cubes: &mut HashSet<Pos3>)
         }
     }
 
-    faces(pos).any(|pos| dfs_to_escape(pos, obsidian, seen_cubes))
+    pos.faces()
+        .any(|pos| dfs_to_escape(pos, obsidian, seen_cubes))
 }
 
 pub struct BoilingBoulders;
@@ -107,7 +108,8 @@ impl crate::AdventDayProblem for BoilingBoulders {
             .cubes
             .iter()
             .map(|&pos| {
-                6 - faces(pos)
+                6 - pos
+                    .faces()
                     .filter(|pos| obsidian.cubes.contains(&pos))
                     .count()
             })
@@ -117,7 +119,7 @@ impl crate::AdventDayProblem for BoilingBoulders {
     fn part_2(obsidian: Self::Arg) -> Self::Ret {
         tqdm::tqdm(obsidian.cubes.iter())
             .map(|&pos| {
-                faces(pos)
+                pos.faces()
                     .map(|pos| dfs_to_escape(pos, &obsidian, &mut HashSet::new()) as usize)
                     .sum::<usize>()
             })
