@@ -20,6 +20,7 @@ pub mod contains_duplicate_2;
 pub mod convert_binary_number_in_a_linked_list_to_integer;
 pub mod count_common_words_with_one_occurrence;
 pub mod count_number_of_pairs_with_absolute_difference_k;
+pub mod count_pairs_of_similar_strings;
 pub mod count_vowel_substrings_of_a_string;
 pub mod decode_the_message;
 pub mod decompress_run_length_encoded_list;
