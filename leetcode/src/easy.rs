@@ -30,6 +30,7 @@ pub mod determine_if_string_halves_are_alike;
 pub mod excel_sheet_column_number;
 pub mod fibonacci_number;
 pub mod find_closest_number_to_zero;
+pub mod find_if_path_exists_in_graph;
 pub mod find_lucky_integer_in_an_array;
 pub mod find_resultant_array_after_removing_anagrams;
 pub mod find_the_difference;
