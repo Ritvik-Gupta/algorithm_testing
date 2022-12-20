@@ -1,57 +1,5 @@
 extern crate algorithms;
 
-fn main() {
-    let mut root = TreeNode::new(1);
-
-    let parent_pointer = NonNull::from(&*root);
-
-    match unsafe { &mut *root.as_mut().get_unchecked_mut() } {
-        Node { left, right, .. } => {
-            *left = TreeNode::new(2);
-            match unsafe { &mut *left.as_mut().get_unchecked_mut() } {
-                Node { parent, .. } => *parent = parent_pointer,
-                END => panic!(),
-            }
-            *right = TreeNode::new(3);
-            match unsafe { &mut *right.as_mut().get_unchecked_mut() } {
-                Node { parent, .. } => *parent = parent_pointer,
-                END => panic!(),
-            }
-        }
-        END => {}
-    }
-
-    println!("{:#?}", unsafe { parent_pointer.as_ref() });
-}
-
-use std::{marker::PhantomPinned, pin::Pin, ptr::NonNull};
-
-#[derive(Debug)]
-enum TreeNode {
-    Node {
-        store: i32,
-        parent: NonNull<TreeNode>,
-        left: Pin<Box<TreeNode>>,
-        right: Pin<Box<TreeNode>>,
-        _pinned: PhantomPinned,
-    },
-    END,
-}
-
-use TreeNode::{Node, END};
-
-impl TreeNode {
-    fn new(store: i32) -> Pin<Box<Self>> {
-        Box::pin(Node {
-            store,
-            parent: NonNull::dangling(),
-            left: Box::pin(END),
-            right: Box::pin(END),
-            _pinned: PhantomPinned,
-        })
-    }
-}
-
 /*
 macro_rules! chain {
     [
@@ -71,7 +19,6 @@ macro_rules! chain {
 }
 */
 
-/*
 macro_rules! count_exprs {
     () => (0);
     ($head: expr) => (1);
@@ -86,14 +33,12 @@ macro_rules! recurrence {
             const MEM_SIZE: usize = count_exprs!($($inits),+);
 
             struct Recurrence {
-                vec!mem: [$sty; MEM_SIZE],
-
+                mem: [$sty; MEM_SIZE],
                 pos: usize,
             }
 
             struct IndexOffset<'a> {
-                vec!slice: &'a [$sty; MEM_SIZE],
-
+                slice: &'a [$sty; MEM_SIZE],
                 offset: usize,
             }
 
@@ -141,10 +86,17 @@ macro_rules! recurrence {
                 }
             }
 
-            Recuvec!rrence { mem: [$($inits),+],
-                 pos: 0 }
+            Recurrence { mem: [$($inits),+], pos: 0 }
         }
     };
 }
 
-*/
+fn main() {
+    println!(
+        "{:?}",
+        recurrence!(f[n]: i32 = 1, 2 => f[n-1] * f[n-2])
+            .into_iter()
+            .take(5)
+            .collect::<Vec<_>>()
+    );
+}
