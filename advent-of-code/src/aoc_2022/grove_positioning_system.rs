@@ -12,20 +12,17 @@ fn mixing_rotatory_decryption<const DECRYPTION_KEY: i64, const SALT_ROUNDS: usiz
     let n = list.len();
     let original_list = list.clone();
 
-    type SaltRoundsIterator<'a> = Box<dyn Iterator<Item = &'a MixingElm> + 'a>;
+    tqdm::tqdm(original_list.iter().cycle().take(n * SALT_ROUNDS)).for_each(
+        |&MixingElm { idx, steps }| {
+            let mut rotr_idx = list.iter().position(|elm| elm.idx == idx).unwrap();
+            let delta_update = if steps < 0 { n - 1 } else { 1 };
 
-    for &MixingElm { idx, steps } in tqdm::tqdm((0..SALT_ROUNDS).fold(
-        Box::new(std::iter::empty()) as SaltRoundsIterator,
-        |itr, _| Box::new(itr.chain(original_list.iter())) as SaltRoundsIterator,
-    )) {
-        let mut rotr_idx = list.iter().position(|elm| elm.idx == idx).unwrap();
-        let delta_update = if steps < 0 { n - 1 } else { 1 };
-
-        for _ in 0..(steps.abs() as usize % (n - 1)) {
-            list.swap(rotr_idx, (rotr_idx + delta_update) % n);
-            rotr_idx = (rotr_idx + delta_update) % n;
-        }
-    }
+            for _ in 0..(steps.abs() as usize % (n - 1)) {
+                list.swap(rotr_idx, (rotr_idx + delta_update) % n);
+                rotr_idx = (rotr_idx + delta_update) % n;
+            }
+        },
+    );
 
     let idx_of_zero = list.iter().position(|elm| elm.steps == 0).unwrap();
     [1000, 2000, 3000]
