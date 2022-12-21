@@ -139,6 +139,7 @@ pub mod path_sum_3;
 pub mod perfect_squares;
 pub mod permutation_in_string;
 pub mod permutations_2;
+pub mod possible_bipartition;
 pub mod predict_the_winner;
 pub mod print_words_vertically;
 pub mod pseudo_palindromic_paths_in_a_binary_tree;
