@@ -37,6 +37,7 @@ pub mod sliding_window_maximum;
 pub mod smallest_range_covering_elements_from_k_lists;
 pub mod strange_printer_2;
 pub mod stream_of_characters;
+pub mod sum_of_distances_in_tree;
 pub mod total_appeal_of_a_string;
 pub mod trapping_rain_water;
 pub mod tree_of_coprimes;
