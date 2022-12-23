@@ -6,6 +6,7 @@ pub mod airplane_seat_assignment_probability;
 pub mod all_ancestors_of_a_node_in_a_directed_acyclic_graph;
 pub mod apply_discount_every_n_orders;
 pub mod basic_calculator_2;
+pub mod best_time_to_buy_and_sell_stock_with_cooldown;
 pub mod binary_tree_pruning;
 pub mod binary_tree_zigzag_level_order_traversal;
 pub mod break_a_palindrome;

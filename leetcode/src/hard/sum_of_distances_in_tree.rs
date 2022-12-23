@@ -23,7 +23,7 @@ fn pre_order_dfs(
     prev_node: usize,
     adjacency_list: &Vec<Vec<usize>>,
     res: &mut Vec<i32>,
-    count: &mut Vec<i32>,
+    count: &Vec<i32>,
 ) {
     adjacency_list[node]
         .iter()
@@ -48,7 +48,7 @@ impl Solution {
         let mut count = vec![0; n];
 
         post_order_dfs(0, usize::MAX, &adjacency_list, &mut res, &mut count);
-        pre_order_dfs(0, usize::MAX, &adjacency_list, &mut res, &mut count);
+        pre_order_dfs(0, usize::MAX, &adjacency_list, &mut res, &count);
 
         res
     }
