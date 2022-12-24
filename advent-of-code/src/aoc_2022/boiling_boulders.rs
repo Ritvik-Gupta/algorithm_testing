@@ -13,8 +13,8 @@ const SPACE: usize = 3;
 pub struct Pos3([i32; SPACE]);
 
 impl Pos3 {
-    const MAX: Pos3 = Pos3([i32::MAX; SPACE]);
-    const MIN: Pos3 = Pos3([i32::MIN; SPACE]);
+    const MAX: Self = Self([i32::MAX; SPACE]);
+    const MIN: Self = Self([i32::MIN; SPACE]);
 
     fn parse(input: &str) -> IResult<&str, Self> {
         map(

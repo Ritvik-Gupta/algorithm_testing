@@ -1,15 +1,12 @@
-use std::cmp::Reverse;
-
+use crate::utils::Vector;
 use bit_set::BitSet;
 use keyed_priority_queue::{Entry::*, KeyedPriorityQueue};
 use rayon::prelude::{IndexedParallelIterator, IntoParallelRefIterator, ParallelIterator};
+use std::cmp::Reverse;
 
 pub struct HillClimbingAlgorithm;
 
-#[derive(Default, PartialEq, Eq, Hash, Clone, Copy)]
-struct Location(usize, usize);
-
-impl Location {
+impl Vector<usize> {
     fn area(&self) -> usize {
         self.0 * self.1
     }
@@ -22,12 +19,12 @@ impl Location {
         self.0 * other.1 + self.1
     }
 
-    fn neighbors(&self) -> impl Iterator<Item = Location> {
+    fn neighbors(&self) -> impl Iterator<Item = Vector<usize>> {
         [
-            Location(self.0.wrapping_add(1), self.1),
-            Location(self.0.wrapping_sub(1), self.1),
-            Location(self.0, self.1.wrapping_add(1)),
-            Location(self.0, self.1.wrapping_sub(1)),
+            Vector(self.0.wrapping_add(1), self.1),
+            Vector(self.0.wrapping_sub(1), self.1),
+            Vector(self.0, self.1.wrapping_add(1)),
+            Vector(self.0, self.1.wrapping_sub(1)),
         ]
         .into_iter()
     }
@@ -35,25 +32,25 @@ impl Location {
 
 pub struct WorldMap {
     grid: Vec<Vec<i8>>,
-    start: Location,
-    end: Location,
+    start: Vector<usize>,
+    end: Vector<usize>,
 }
 
 impl WorldMap {
-    fn size(&self) -> Location {
-        Location(self.grid.len(), self.grid[0].len())
+    fn size(&self) -> Vector<usize> {
+        Vector(self.grid.len(), self.grid[0].len())
     }
 
-    fn find_all_grounds<'it>(&'it self) -> impl ParallelIterator<Item = Location> + 'it {
+    fn find_all_grounds<'it>(&'it self) -> impl ParallelIterator<Item = Vector<usize>> + 'it {
         self.grid.par_iter().enumerate().flat_map(|(x, row)| {
             row.par_iter()
                 .enumerate()
                 .filter(|(_, &cell)| cell == 0)
-                .map(move |(y, _)| Location(x, y))
+                .map(move |(y, _)| Vector(x, y))
         })
     }
 
-    fn dijkstras_algo(&self, start: Location) -> usize {
+    fn dijkstras_algo(&self, start: Vector<usize>) -> usize {
         let grid_bounds = self.size();
 
         let mut cell_queue = KeyedPriorityQueue::new();
@@ -86,10 +83,10 @@ impl WorldMap {
     }
 }
 
-impl std::ops::Index<Location> for WorldMap {
+impl std::ops::Index<Vector<usize>> for WorldMap {
     type Output = i8;
 
-    fn index(&self, loc: Location) -> &Self::Output {
+    fn index(&self, loc: Vector<usize>) -> &Self::Output {
         &self.grid[loc.0][loc.1]
     }
 }
@@ -103,7 +100,7 @@ impl crate::AdventDayProblem for HillClimbingAlgorithm {
     }
 
     fn construct_arg(dataset: impl Iterator<Item = String>) -> Self::Arg {
-        let (mut start, mut end) = (Location::default(), Location::default());
+        let (mut start, mut end) = (Vector::default(), Vector::default());
 
         let grid = dataset
             .enumerate()
@@ -112,11 +109,11 @@ impl crate::AdventDayProblem for HillClimbingAlgorithm {
                     .map(|(y, token)| {
                         let token = match token {
                             'S' => {
-                                start = Location(x, y);
+                                start = Vector(x, y);
                                 'a'
                             }
                             'E' => {
-                                end = Location(x, y);
+                                end = Vector(x, y);
                                 'z'
                             }
                             _ => token,

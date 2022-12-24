@@ -1,4 +1,3 @@
-pub mod Unstable_diffusion;
 pub mod beacon_exclusion_zone;
 pub mod boiling_boulders;
 pub mod calorie_counting;
@@ -19,3 +18,4 @@ pub mod rucksack_reorganization;
 pub mod supply_stacks;
 pub mod treetop_tree_house;
 pub mod tuning_trouble;
+pub mod unstable_diffusion;

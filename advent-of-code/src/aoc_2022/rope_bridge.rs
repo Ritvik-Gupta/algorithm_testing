@@ -1,3 +1,4 @@
+use crate::utils::Vector;
 use itertools::Itertools;
 use nom::{
     character::complete::u32,
@@ -17,32 +18,23 @@ pub enum Direction {
     LEFT,
 }
 
-#[derive(PartialEq, Eq, Hash, Clone, Copy)]
-struct Location(i32, i32);
-
-impl std::ops::AddAssign for Location {
+impl std::ops::AddAssign for Vector<i32> {
     fn add_assign(&mut self, other: Self) {
         self.0 += other.0;
         self.1 += other.1;
     }
 }
 
-impl From<(i32, i32)> for Location {
-    fn from(loc: (i32, i32)) -> Self {
-        Self(loc.0, loc.1)
-    }
-}
-
 struct Bodypart {
-    pos: Location,
-    visited: HashSet<Location>,
+    pos: Vector<i32>,
+    visited: HashSet<Vector<i32>>,
 }
 
 impl Bodypart {
     fn new() -> Self {
         Self {
-            pos: Location(0, 0),
-            visited: HashSet::from([Location(0, 0)]),
+            pos: Vector(0, 0),
+            visited: HashSet::from([Vector(0, 0)]),
         }
     }
 }

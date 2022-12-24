@@ -1,27 +1,21 @@
-use derive_more::Add;
+use crate::utils::Vector;
 use std::collections::{hash_map::Entry, HashMap, HashSet};
 
 pub struct UnstableDiffusion;
 
-#[derive(PartialEq, Eq, Hash, Add, Clone, Copy)]
-pub struct Location(i32, i32);
-
-impl Location {
-    const MIN: Self = Self(i32::MIN, i32::MIN);
-    const MAX: Self = Self(i32::MAX, i32::MAX);
-
-    fn radial_neighbor_dirs(&self) -> [Location; 3] {
+impl Vector<i32> {
+    fn radial_neighbor_dirs(&self) -> [Vector<i32>; 3] {
         match self {
-            &Location(x, 0) => [Location(x, -1), Location(x, 0), Location(x, 1)],
-            &Location(0, y) => [Location(-1, y), Location(0, y), Location(1, y)],
-            _ => panic!("Not a Directional HashSettor"),
+            &Vector(x, 0) => [Vector(x, -1), Vector(x, 0), Vector(x, 1)],
+            &Vector(0, y) => [Vector(-1, y), Vector(0, y), Vector(1, y)],
+            _ => panic!("Not a Directional Vector"),
         }
     }
 }
 
 macro_rules! make_dir {
     ($direction_name: tt => ($x: literal, $y: literal)) => {
-        const $direction_name: Location = Location($x, $y);
+        const $direction_name: Vector<i32> = Vector($x, $y);
     };
 }
 
@@ -34,14 +28,14 @@ make_dir!(SOUTH_WEST => ( 1, -1));
 make_dir!(WEST       => ( 0, -1));
 make_dir!(NORTH_WEST => (-1, -1));
 
-static ALL_DIRECTIONS: [Location; 8] = [
+static ALL_DIRECTIONS: [Vector<i32>; 8] = [
     NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST,
 ];
 
-static DIRECTION_ORDER: [Location; 4] = [NORTH, SOUTH, WEST, EAST];
+static DIRECTION_ORDER: [Vector<i32>; 4] = [NORTH, SOUTH, WEST, EAST];
 
 fn simulate_elf_scan_area<const SIMULATION_TIME: usize>(
-    elf_locations: &mut HashSet<Location>,
+    elf_locations: &mut HashSet<Vector<i32>>,
 ) -> usize {
     let mut order_offset = 0;
     let mut proposed_locations = HashMap::new();
@@ -92,19 +86,19 @@ fn simulate_elf_scan_area<const SIMULATION_TIME: usize>(
     SIMULATION_TIME
 }
 
-fn boudning_box_size(locations: &HashSet<Location>) -> usize {
-    let (mut min_loc, mut max_loc) = (Location::MAX, Location::MIN);
+fn boudning_box_size(locations: &HashSet<Vector<i32>>) -> usize {
+    let (mut min_loc, mut max_loc) = (Vector(i32::MAX, i32::MAX), Vector(i32::MIN, i32::MIN));
 
     locations.iter().for_each(|loc| {
-        min_loc = Location(i32::min(min_loc.0, loc.0), i32::min(min_loc.1, loc.1));
-        max_loc = Location(i32::max(max_loc.0, loc.0), i32::max(max_loc.1, loc.1));
+        min_loc = Vector(i32::min(min_loc.0, loc.0), i32::min(min_loc.1, loc.1));
+        max_loc = Vector(i32::max(max_loc.0, loc.0), i32::max(max_loc.1, loc.1));
     });
 
     (max_loc.0 - min_loc.0 + 1) as usize * (max_loc.1 - min_loc.1 + 1) as usize
 }
 
 impl crate::AdventDayProblem for UnstableDiffusion {
-    type Arg = HashSet<Location>;
+    type Arg = HashSet<Vector<i32>>;
     type Ret = usize;
 
     fn get_problem_name() -> &'static str {
@@ -116,7 +110,7 @@ impl crate::AdventDayProblem for UnstableDiffusion {
         dataset.zip(0..).for_each(|(line, i)| {
             line.chars().zip(0..).for_each(|(ch, j)| {
                 if ch == '#' {
-                    elf_locations.insert(Location(i, j));
+                    elf_locations.insert(Vector(i, j));
                 }
             });
         });

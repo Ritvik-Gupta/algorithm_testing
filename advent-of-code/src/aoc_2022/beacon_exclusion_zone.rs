@@ -1,3 +1,4 @@
+use crate::utils::Vector;
 use nom::{
     bytes::complete::tag,
     character::complete::i128 as integer,
@@ -8,10 +9,7 @@ use nom::{
 use rayon::prelude::{IntoParallelIterator, ParallelBridge, ParallelIterator};
 use std::collections::BTreeSet;
 
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
-pub struct Location(i128, i128);
-
-impl std::ops::BitXor for Location {
+impl std::ops::BitXor for Vector<i128> {
     type Output = i128;
 
     fn bitxor(self, other: Self) -> Self::Output {
@@ -20,20 +18,20 @@ impl std::ops::BitXor for Location {
 }
 
 pub struct Sensor {
-    location: Location,
+    location: Vector<i128>,
     reach: i128,
 }
 
-pub type Beacon = Location;
+pub type Beacon = Vector<i128>;
 
-fn parse_location(input: &str) -> IResult<&str, Location> {
+fn parse_location(input: &str) -> IResult<&str, Vector<i128>> {
     map(
         separated_pair(
             preceded(tag("x="), integer),
             tag(", "),
             preceded(tag("y="), integer),
         ),
-        |(x, y)| Location(x, y),
+        |(x, y)| Vector(x, y),
     )(input)
 }
 
@@ -85,12 +83,7 @@ impl crate::AdventDayProblem for BeaconExclusionZone {
     fn part_1((sensors, beacons): Self::Arg) -> Self::Ret {
         let (min_x, max_x) = (
             i128::min(
-                'safe_tag: {
-                    #[cfg(feature = "...")]
-                    break 'safe_tag beacons.first().unwrap().0;
-                    #[cfg(not(feature = "..."))]
-                    break 'safe_tag beacons.range(..).next().unwrap().0;
-                },
+                beacons.first().unwrap().0,
                 sensors
                     .iter()
                     .min_by_key(|sn| sn.location.0)
@@ -98,12 +91,7 @@ impl crate::AdventDayProblem for BeaconExclusionZone {
                     .unwrap(),
             ),
             i128::max(
-                'safe_tag: {
-                    #[cfg(feature = "...")]
-                    break 'safe_tag beacons.last().unwrap().0;
-                    #[cfg(not(feature = "..."))]
-                    break 'safe_tag beacons.range(..).next_back().unwrap().0;
-                },
+                beacons.last().unwrap().0,
                 sensors
                     .iter()
                     .max_by_key(|sn| sn.location.0)
@@ -115,7 +103,7 @@ impl crate::AdventDayProblem for BeaconExclusionZone {
         let y = ZONE_MARKER_VAR;
         (min_x..=max_x)
             .into_par_iter()
-            .map(|x| Location(x, y))
+            .map(|x| Vector(x, y))
             .filter(|loc| {
                 !beacons.contains(&loc)
                     && sensors
@@ -129,7 +117,7 @@ impl crate::AdventDayProblem for BeaconExclusionZone {
         let search_space = ZONE_MARKER_VAR * 2;
 
         let distress_beacon = (0..=search_space)
-            .flat_map(|x| (0..=search_space).map(move |y| Location(x, y)))
+            .flat_map(|x| (0..=search_space).map(move |y| Vector(x, y)))
             .par_bridge()
             .find_any(|loc| {
                 !beacons.contains(loc)

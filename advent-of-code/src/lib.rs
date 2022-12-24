@@ -1,7 +1,6 @@
-#![cfg_attr(feature = "...", feature(map_first_last))]
-
 pub mod aoc_2021;
 pub mod aoc_2022;
+pub mod utils;
 
 use std::{
     error::Error,

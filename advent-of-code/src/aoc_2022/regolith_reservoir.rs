@@ -1,8 +1,4 @@
-use std::{
-    collections::{BTreeMap, BTreeSet},
-    ops::RangeInclusive,
-};
-
+use crate::utils::Vector;
 use itertools::Itertools;
 use nom::{
     bytes::complete::tag,
@@ -11,32 +7,15 @@ use nom::{
     sequence::separated_pair,
     IResult, Parser,
 };
+use std::{
+    collections::{BTreeMap, BTreeSet},
+    ops::RangeInclusive,
+};
 
-#[derive(Clone, Copy)]
-struct Location(i32, i32);
-
-impl From<(i32, i32)> for Location {
-    fn from(loc: (i32, i32)) -> Self {
-        Location(loc.0, loc.1)
-    }
-}
-
-impl<L> std::ops::Add<L> for Location
-where
-    L: Into<Location>,
-{
-    type Output = Self;
-
-    fn add(self, other: L) -> Self::Output {
-        let other = other.into();
-        Location(self.0 + other.0, self.1 + other.1)
-    }
-}
-
-fn parse_rock_path(input: &str) -> IResult<&str, Vec<Location>> {
+fn parse_rock_path(input: &str) -> IResult<&str, Vec<Vector<i32>>> {
     separated_list1(
         tag(" -> "),
-        separated_pair(i32, char(','), i32).map(|(x, y)| Location(x, y)),
+        separated_pair(i32, char(','), i32).map(|(x, y)| Vector(x, y)),
     )(input)
 }
 
@@ -50,7 +29,7 @@ pub struct CaveMap {
 }
 
 impl CaveMap {
-    const SAND_DROP_FROM: Location = Location(500, 0);
+    const SAND_DROP_FROM: Vector<i32> = Vector(500, 0);
 
     fn new() -> Self {
         Self {
@@ -59,7 +38,7 @@ impl CaveMap {
         }
     }
 
-    fn add_obstacle(&mut self, loc: impl Into<Location>) {
+    fn add_obstacle(&mut self, loc: impl Into<Vector<i32>>) {
         let loc = loc.into();
         self.grid
             .entry(loc.0)
@@ -67,7 +46,7 @@ impl CaveMap {
             .insert(loc.1);
     }
 
-    fn has_obstacle(&self, loc: impl Into<Location>) -> bool {
+    fn has_obstacle(&self, loc: impl Into<Vector<i32>>) -> bool {
         let loc = loc.into();
 
         self.grid
@@ -76,7 +55,7 @@ impl CaveMap {
             || self.floor.map_or(false, |floor| floor == loc.1)
     }
 
-    fn obstable_below(&self, loc: impl Into<Location>) -> Option<i32> {
+    fn obstable_below(&self, loc: impl Into<Vector<i32>>) -> Option<i32> {
         let loc = loc.into();
         self.grid
             .get(&loc.0)
@@ -97,16 +76,16 @@ impl CaveMap {
         )
     }
 
-    fn simulate_sand_drop(&self, sand_loc: impl Into<Location>) -> Option<Location> {
+    fn simulate_sand_drop(&self, sand_loc: impl Into<Vector<i32>>) -> Option<Vector<i32>> {
         let mut sand_loc = sand_loc.into();
         loop {
             let Some (obstable_y) = self.obstable_below(sand_loc) else { return None };
             sand_loc.1 = obstable_y - 1;
 
-            if !self.has_obstacle(sand_loc + (-1, 1)) {
-                sand_loc = sand_loc + (-1, 1)
-            } else if !self.has_obstacle(sand_loc + (1, 1)) {
-                sand_loc = sand_loc + (1, 1);
+            if !self.has_obstacle(sand_loc + Vector(-1, 1)) {
+                sand_loc = sand_loc + Vector(-1, 1)
+            } else if !self.has_obstacle(sand_loc + Vector(1, 1)) {
+                sand_loc = sand_loc + Vector(1, 1);
             } else {
                 return Some(sand_loc);
             }
