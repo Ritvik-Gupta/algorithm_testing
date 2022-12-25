@@ -1,0 +1,27 @@
+[package]
+name = "advent-of-code-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+
+[dependencies.advent-of-code]
+path = ".."
+
+# Prevent this from interfering with workspaces
+[workspace]
+members = ["."]
+
+[profile.release]
+debug = 1
+
+[[bin]]
+name = "aoc_2022_full_of_hot_air_fuzz"
+path = "fuzz_targets/aoc_2022_full_of_hot_air_fuzz.rs"
+test = false
+doc = false

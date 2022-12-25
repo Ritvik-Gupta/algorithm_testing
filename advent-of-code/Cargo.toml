@@ -3,12 +3,16 @@ name = "advent-of-code"
 version = "0.1.0"
 edition = "2021"
 
+[[bench]]
+name = "aoc_2022_full_of_hot_air"
+harness = false
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 bit-set = "0.5.3"
 cached = { version = "0.41.0", default-features = false, features = ["proc_macro"] }
-derive_more = { version = "0.99.17", default-features = false, features = ["deref", "deref_mut", "add", "display"] }
+derive_more = { version = "0.99.17" }
 itertools = "0.10.5"
 keyed_priority_queue = "0.4.1"
 nom = "7.1.1"
@@ -16,3 +20,7 @@ once_cell = "1.16.0"
 rayon = "1.6.1"
 structstruck = "0.3.0"
 tqdm = "0.4.2"
+
+[dev-dependencies]
+criterion = "0.4.0"
+rand = "0.8.5"
