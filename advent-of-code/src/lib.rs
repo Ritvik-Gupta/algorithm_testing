@@ -31,7 +31,13 @@ macro_rules! problem_name {
 }
 pub(crate) use problem_name;
 
-pub trait AdventDayProblem {
+pub trait OptimizationFlag {}
+
+pub struct Naive;
+
+impl OptimizationFlag for Naive {}
+
+pub trait AdventDayProblem<OF: OptimizationFlag = Naive> {
     type Arg;
     type Ret: Display;
 
@@ -42,7 +48,8 @@ pub trait AdventDayProblem {
     fn part_2(arg: Self::Arg) -> Self::Ret;
 }
 
-pub fn run_advent_problem<PR: AdventDayProblem>() -> Result<(), Box<dyn Error>> {
+pub fn run_advent_problem<OF: OptimizationFlag, PR: AdventDayProblem<OF>>(
+) -> Result<(), Box<dyn Error>> {
     let file = File::open(&format!(
         "./advent-of-code/files/{}.txt",
         PR::get_problem_name()
