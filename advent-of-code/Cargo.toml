@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 bit-set = "0.5.3"
 cached = { version = "0.41.0", default-features = false, features = ["proc_macro"] }
-derive_more = { version = "0.99.17", default-features = false, features = ["deref", "deref_mut", "add"] }
+derive_more = { version = "0.99.17", default-features = false, features = ["deref", "deref_mut", "add", "display"] }
 itertools = "0.10.5"
 keyed_priority_queue = "0.4.1"
 nom = "7.1.1"
