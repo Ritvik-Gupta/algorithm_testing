@@ -53,6 +53,7 @@ pub mod largest_3_same_digit_number_in_string;
 pub mod largest_perimeter_triangle;
 pub mod leaf_similar_trees;
 pub mod license_key_formatting;
+pub mod longest_subsequence_with_limited_sum;
 pub mod make_array_zero_by_subtracting_equal_amounts;
 pub mod make_the_string_great;
 pub mod matrix_diagonal_sum;
