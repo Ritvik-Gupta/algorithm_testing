@@ -186,6 +186,7 @@ pub mod stock_price_fluctuation;
 pub mod string_compression;
 pub mod subsets;
 pub mod sum_of_even_numbers_after_queries;
+pub mod sum_of_nodes_with_even_valued_grandparent;
 pub mod sum_of_square_numbers;
 pub mod sum_of_subarray_minimums;
 pub mod sum_root_to_leaf_numbers;
