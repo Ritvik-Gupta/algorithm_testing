@@ -76,6 +76,7 @@ pub mod insert_delete_get_random_o1;
 pub mod integer_to_roman;
 pub mod interval_list_intersections;
 pub mod iterator_for_combination;
+pub mod jump_game;
 pub mod jump_game_2;
 pub mod k_closest_points_to_origin;
 pub mod keys_and_rooms;
