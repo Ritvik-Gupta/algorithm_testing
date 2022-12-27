@@ -1,3 +1,4 @@
+pub mod Minimum_Lines_to_represent_a_line_chart;
 pub mod _132_pattern;
 pub mod _3_sum;
 pub mod _3_sum_closest;
