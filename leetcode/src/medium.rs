@@ -1,4 +1,3 @@
-pub mod Minimum_Lines_to_represent_a_line_chart;
 pub mod _132_pattern;
 pub mod _3_sum;
 pub mod _3_sum_closest;
@@ -117,6 +116,7 @@ pub mod minimum_cost_for_tickets;
 pub mod minimum_falling_path_sum;
 pub mod minimum_genetic_mutation;
 pub mod minimum_jumps_to_reach_home;
+pub mod minimum_lines_to_represent_a_line_chart;
 pub mod minimum_moves_to_equal_array_elements_2;
 pub mod minimum_operations_to_reduce_x_to_zero;
 pub mod minimum_time_to_make_rope_colorful;
