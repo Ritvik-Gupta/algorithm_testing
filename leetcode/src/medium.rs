@@ -97,6 +97,7 @@ pub mod longest_univalue_path;
 pub mod map_sum_pairs;
 pub mod max_area_of_island;
 pub mod maximum_area_of_a_piece_of_cake_after_horizontal_and_vertical_cuts;
+pub mod maximum_bags_with_full_capacity_of_rocks;
 pub mod maximum_difference_between_node_and_ancestor;
 pub mod maximum_erasure_value;
 pub mod maximum_length_of_a_concatenated_string_with_unique_characters;
