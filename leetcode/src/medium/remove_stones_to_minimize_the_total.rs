@@ -7,9 +7,17 @@ impl Solution {
         let mut stones_pq = BinaryHeap::with_capacity(piles.len());
         stones_pq.extend(piles);
 
-        for _ in 0..k {
-            let stone_bucket = stones_pq.pop().unwrap();
-            stones_pq.push((stone_bucket + 1) >> 1);
+        let mut i = 0;
+        while i < k {
+            let mut bucket = stones_pq.pop().unwrap();
+            let smaller_bucket = *stones_pq.peek().unwrap_or(&0);
+
+            while bucket >= smaller_bucket && i < k {
+                bucket = (bucket + 1) >> 1;
+                i += 1;
+            }
+
+            stones_pq.push(bucket);
         }
 
         stones_pq.into_iter().sum()
