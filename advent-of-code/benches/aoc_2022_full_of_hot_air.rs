@@ -8,17 +8,15 @@ use rand::Rng;
 pub fn benchmark_aoc_2022_full_of_hot_air(c: &mut Criterion) {
     let mut group = c.benchmark_group("aoc_2022_full_of_hot_air - Profiling Decryption");
 
-    let mut rng = rand::thread_rng();
+    let message = rand::thread_rng().gen::<u32>() as i64;
 
-    group.bench_with_input("Naive Flag", &(rng.gen::<u32>() as i64), |b, &message| {
+    group.bench_with_input("Naive Flag", &message, |b, &message| {
         b.iter(|| i64::from(Snafu::<Naive>::from(message)))
     });
 
-    group.bench_with_input(
-        "Optimized Flag",
-        &(rng.gen::<u32>() as i64),
-        |b, &message| b.iter(|| i64::from(Snafu::<OptimizedDecryption>::from(message))),
-    );
+    group.bench_with_input("Optimized Flag", &message, |b, &message| {
+        b.iter(|| i64::from(Snafu::<OptimizedDecryption>::from(message)))
+    });
 
     group.finish();
 }
