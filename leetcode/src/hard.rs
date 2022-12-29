@@ -28,6 +28,7 @@ pub mod n_queens;
 pub mod n_queens_2;
 pub mod number_of_atoms;
 pub mod number_of_digit_one;
+pub mod parallel_courses_3;
 pub mod parse_lisp_expression;
 pub mod preimage_size_of_factorial_zeroes_function;
 pub mod reaching_points;
