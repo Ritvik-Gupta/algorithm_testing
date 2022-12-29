@@ -176,6 +176,7 @@ pub mod short_encoding_of_words;
 pub mod shortest_path_in_binary_matrix;
 pub mod simplify_path;
 pub mod single_element_in_a_sorted_array;
+pub mod single_threaded_cpu;
 pub mod smallest_string_with_swaps;
 pub mod smallest_value_after_replacing_with_sum_of_prime_factors;
 pub mod snakes_and_ladders;

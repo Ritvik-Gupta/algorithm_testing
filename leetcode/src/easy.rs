@@ -101,6 +101,7 @@ pub mod single_number;
 pub mod smallest_range_1;
 pub mod sorting_the_sentence;
 pub mod sqrt_x;
+pub mod sum_of_digits_in_base_k;
 pub mod sum_of_unique_elements;
 pub mod summary_ranges;
 pub mod symmetric_tree;
