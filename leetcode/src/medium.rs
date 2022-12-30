@@ -4,6 +4,7 @@ pub mod _3_sum_closest;
 pub mod add_one_row_to_tree;
 pub mod airplane_seat_assignment_probability;
 pub mod all_ancestors_of_a_node_in_a_directed_acyclic_graph;
+pub mod all_paths_from_source_to_target;
 pub mod apply_discount_every_n_orders;
 pub mod basic_calculator_2;
 pub mod best_time_to_buy_and_sell_stock_with_cooldown;
