@@ -43,5 +43,6 @@ pub mod sum_of_distances_in_tree;
 pub mod total_appeal_of_a_string;
 pub mod trapping_rain_water;
 pub mod tree_of_coprimes;
+pub mod unique_paths_3;
 pub mod vertical_order_traversal_of_a_binary_tree;
 pub mod wildcard_matching;
