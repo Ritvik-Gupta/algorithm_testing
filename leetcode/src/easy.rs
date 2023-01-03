@@ -25,6 +25,7 @@ pub mod count_special_quadruplets;
 pub mod count_vowel_substrings_of_a_string;
 pub mod decode_the_message;
 pub mod decompress_run_length_encoded_list;
+pub mod delete_columns_to_make_sorted;
 pub mod destination_city;
 pub mod detect_capital;
 pub mod determine_color_of_a_chessboard_square;
