@@ -79,6 +79,7 @@ pub mod number_of_steps_to_reduce_a_number_to_zero;
 pub mod pascals_triangle;
 pub mod pascals_triangle_2;
 pub mod path_sum;
+pub mod percentage_of_letter_in_string;
 pub mod perfect_number;
 pub mod power_of_two;
 pub mod prime_number_of_set_bits_in_binary_representation;
