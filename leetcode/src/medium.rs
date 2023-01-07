@@ -68,6 +68,7 @@ pub mod find_unique_binary_string;
 pub mod finding_pairs_with_a_certain_sum;
 pub mod furthest_building_you_can_reach;
 pub mod game_of_life;
+pub mod gas_station;
 pub mod group_anagrams;
 pub mod house_robber;
 pub mod image_overlap;
