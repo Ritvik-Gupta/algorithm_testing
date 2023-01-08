@@ -1,3 +1,4 @@
+pub mod Longest_word_in_dictionary;
 pub mod _132_pattern;
 pub mod _3_sum;
 pub mod _3_sum_closest;
@@ -73,6 +74,8 @@ pub mod group_anagrams;
 pub mod house_robber;
 pub mod image_overlap;
 pub mod image_smoother;
+pub mod implement_magic_dictionary;
+pub mod implement_trie_prefix_tree;
 pub mod increasing_triplet_subsequence;
 pub mod insert_delete_get_random_o1;
 pub mod integer_to_roman;

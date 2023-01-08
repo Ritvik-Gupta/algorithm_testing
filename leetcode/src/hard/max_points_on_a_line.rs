@@ -60,9 +60,7 @@ impl Solution {
                     .or_insert(1);
                 *points_on_line += 1;
 
-                if *points_on_line > max_points_on_a_line {
-                    max_points_on_a_line = *points_on_line;
-                }
+                max_points_on_a_line = max_points_on_a_line.max(*points_on_line);
             }
         }
         max_points_on_a_line
