@@ -4,6 +4,8 @@ pub mod average_of_levels_in_binary_tree;
 pub mod baseball_game;
 pub mod binary_tree_inorder_traversal;
 pub mod binary_tree_paths;
+pub mod binary_tree_postorder_traversal;
+pub mod binary_tree_preorder_traversal;
 pub mod buddy_strings;
 pub mod cells_in_a_range_on_an_excel_sheet;
 pub mod cells_with_odd_values_in_a_matrix;
