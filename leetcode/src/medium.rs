@@ -138,6 +138,7 @@ pub mod non_decreasing_array;
 pub mod number_of_dice_rolls_with_target_sum;
 pub mod number_of_good_ways_to_split_a_string;
 pub mod number_of_islands;
+pub mod number_of_nodes_in_the_sub_tree_with_the_same_label;
 pub mod number_of_pairs_of_interchangeable_rectangles;
 pub mod number_of_provinces;
 pub mod number_of_sub_arrays_with_odd_sum;
