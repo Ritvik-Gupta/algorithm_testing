@@ -1,9 +1,11 @@
 #!/bin/bash
 
-echo "$1"
+filename=$(pbpaste)
+
+echo "$filename"
 
 generated_name=$(
-    echo "$1" | 
+    echo "$filename" | 
     tr '[:upper:]' '[:lower:]' | 
     tr -d '()' | 
     tr ' -' '_' | 
