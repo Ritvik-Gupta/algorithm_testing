@@ -19,7 +19,7 @@ function clrd {
 }
 
 gum style \
-    --border double \
+    --border thick \
     --margin 1 --padding 1 \
     --border-foreground "$SNAKE_COLOR" \
     "$(clrd sk --bold "⧒ Snake")ization"
@@ -46,10 +46,10 @@ snake_name=$(
 )
 
 camel_name_text=$(
-	gum style --border normal --margin 1 --padding 1 --border-foreground "$CAMEL_COLOR" "$camel_name"
+	gum style --border rounded --margin 1 --padding 1 --border-foreground "$CAMEL_COLOR" "$camel_name"
 )
 snake_name_text=$(
-	gum style --border normal --margin 1 --padding 1 --border-foreground "$SNAKE_COLOR" "$snake_name"
+	gum style --border rounded --margin 1 --padding 1 --border-foreground "$SNAKE_COLOR" "$snake_name"
 )
 
 gum join --horizontal --align center "$camel_name_text" "⭆" "$snake_name_text"
