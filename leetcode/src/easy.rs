@@ -56,6 +56,7 @@ pub mod kth_distinct_string_in_an_array;
 pub mod largest_3_same_digit_number_in_string;
 pub mod largest_perimeter_triangle;
 pub mod leaf_similar_trees;
+pub mod length_of_last_word;
 pub mod license_key_formatting;
 pub mod longest_subsequence_with_limited_sum;
 pub mod longest_uncommon_subsequence_1;

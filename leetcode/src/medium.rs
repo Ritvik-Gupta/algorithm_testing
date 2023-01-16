@@ -78,6 +78,7 @@ pub mod implement_magic_dictionary;
 pub mod implement_trie_prefix_tree;
 pub mod increasing_triplet_subsequence;
 pub mod insert_delete_get_random_o1;
+pub mod insert_interval;
 pub mod integer_to_roman;
 pub mod interval_list_intersections;
 pub mod iterator_for_combination;
