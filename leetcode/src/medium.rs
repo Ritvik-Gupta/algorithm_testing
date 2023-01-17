@@ -67,6 +67,7 @@ pub mod find_the_index_of_the_first_occurrence_in_a_string;
 pub mod find_the_minimum_and_maximum_number_of_nodes_between_critical_points;
 pub mod find_unique_binary_string;
 pub mod finding_pairs_with_a_certain_sum;
+pub mod flip_string_to_monotone_increasing;
 pub mod furthest_building_you_can_reach;
 pub mod game_of_life;
 pub mod gas_station;
