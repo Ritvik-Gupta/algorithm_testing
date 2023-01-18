@@ -116,6 +116,7 @@ pub mod maximum_points_you_can_obtain_from_cards;
 pub mod maximum_product_of_splitted_binary_tree;
 pub mod maximum_product_of_word_lengths;
 pub mod maximum_score_from_performing_multiplication_operations;
+pub mod maximum_sum_circular_subarray;
 pub mod maximum_total_importance_of_roads;
 pub mod maximum_trailing_zeros_in_a_cornered_path;
 pub mod merge_in_between_linked_lists;
