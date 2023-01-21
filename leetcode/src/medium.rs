@@ -184,6 +184,7 @@ pub mod remove_duplicates_from_sorted_array_2;
 pub mod remove_stones_to_minimize_the_total;
 pub mod removing_stars_from_a_string;
 pub mod reordered_power_of_2;
+pub mod restore_ip_addresses;
 pub mod reverse_integer;
 pub mod reverse_words_in_a_string;
 pub mod rle_iterator;
