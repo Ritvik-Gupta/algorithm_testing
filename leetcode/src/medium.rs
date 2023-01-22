@@ -159,6 +159,7 @@ pub mod online_stock_span;
 pub mod open_the_lock;
 pub mod operations_on_tree;
 pub mod pacific_atlantic_water_flow;
+pub mod palindrome_partitioning;
 pub mod palindromic_substrings;
 pub mod partitioning_into_minimum_number_of_deci_binary_numbers;
 pub mod path_in_zigzag_labelled_binary_tree;
