@@ -41,6 +41,7 @@ pub mod find_resultant_array_after_removing_anagrams;
 pub mod find_the_difference;
 pub mod find_the_highest_altitude;
 pub mod find_the_k_beauty_of_a_number;
+pub mod find_the_town_judge;
 pub mod find_words_that_can_be_formed_by_characters;
 pub mod first_unique_character_in_a_string;
 pub mod fizz_buzz;
