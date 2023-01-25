@@ -57,6 +57,7 @@ pub mod evaluate_reverse_polish_notation;
 pub mod factorial_trailing_zeroes;
 pub mod find_all_anagrams_in_a_string;
 pub mod find_and_replace_pattern;
+pub mod find_closest_node_to_given_two_nodes;
 pub mod find_eventual_safe_states;
 pub mod find_k_closest_elements;
 pub mod find_kth_bit_in_nth_binary_string;
