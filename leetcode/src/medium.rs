@@ -11,6 +11,7 @@ pub mod best_time_to_buy_and_sell_stock_with_cooldown;
 pub mod binary_tree_pruning;
 pub mod binary_tree_zigzag_level_order_traversal;
 pub mod break_a_palindrome;
+pub mod cheapest_flights_within_k_stops;
 pub mod check_if_a_string_contains_all_binary_codes_of_size_k;
 pub mod check_if_array_pairs_are_divisible_by_k;
 pub mod cinema_seat_allocation;
