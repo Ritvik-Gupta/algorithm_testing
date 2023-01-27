@@ -3,6 +3,7 @@ pub mod basic_calculator;
 pub mod binary_tree_cameras;
 pub mod binary_tree_maximum_path_sum;
 pub mod check_if_there_is_a_valid_parentheses_string_path;
+pub mod concatenated_words;
 pub mod construct_target_array_with_multiple_sums;
 pub mod count_all_valid_pickup_and_delivery_options;
 pub mod count_vowels_permutation;
