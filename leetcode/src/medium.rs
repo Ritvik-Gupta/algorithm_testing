@@ -233,6 +233,7 @@ pub mod the_time_when_the_network_becomes_idle;
 pub mod time_based_key_value_store;
 pub mod time_needed_to_inform_all_employees;
 pub mod top_k_frequent_words;
+pub mod total_hamming_distance;
 pub mod triangle;
 pub mod two_sum_2_input_array_is_sorted;
 pub mod ugly_number_2;

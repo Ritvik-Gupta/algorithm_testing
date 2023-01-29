@@ -46,6 +46,7 @@ pub mod find_words_that_can_be_formed_by_characters;
 pub mod first_unique_character_in_a_string;
 pub mod fizz_buzz;
 pub mod guess_number_higher_or_lower;
+pub mod hamming_distance;
 pub mod happy_number;
 pub mod implement_queue_using_stacks;
 pub mod implement_stack_using_queues;
