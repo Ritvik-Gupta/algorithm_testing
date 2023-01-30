@@ -1,32 +1,16 @@
 crate::solution!();
 
-use std::collections::BTreeMap;
-
-pub struct Tribonacci {
-    cache: BTreeMap<i32, i32>,
-}
-
-impl Tribonacci {
-    fn new() -> Self {
-        let mut cache = BTreeMap::new();
-        cache.insert(0, 0);
-        cache.insert(1, 1);
-        cache.insert(2, 1);
-        Tribonacci { cache }
-    }
-
-    fn nth(&mut self, n: i32) -> i32 {
-        if let Some(&val) = self.cache.get(&n) {
-            return val;
-        }
-        let sum = self.nth(n - 1) + self.nth(n - 2) + self.nth(n - 3);
-        self.cache.insert(n, sum);
-        sum
-    }
-}
+use std::collections::VecDeque;
 
 impl Solution {
     pub fn tribonacci(n: i32) -> i32 {
-        Tribonacci::new().nth(n)
+        let mut tribs = VecDeque::from([0, 1, 1]);
+
+        for _ in 3..=n {
+            let tn = tribs.iter().sum::<i32>();
+            tribs.pop_front();
+            tribs.push_back(tn);
+        }
+        tribs[usize::min(n as usize, 2)]
     }
 }
