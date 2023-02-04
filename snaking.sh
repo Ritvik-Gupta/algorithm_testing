@@ -22,7 +22,7 @@ gum style \
     --border thick \
     --margin 1 --padding 1 \
     --border-foreground "$SNAKE_COLOR" \
-    "$(clrd sk --bold "⧒ Snake")ization"
+    "$(clrd sk --bold "🐍 Snake")ization"
 
 
 camel_name=""
