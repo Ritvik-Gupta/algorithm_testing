@@ -9,7 +9,7 @@ function clrd {
 
 	if [[ "$palette" == 'sk' ]]; then
 		palette="$SNAKE_COLOR"
-	elif [ "$palette" == 'cm' ]; then
+	elif [[ "$palette" == 'cm' ]]; then
 		palette="$CAMEL_COLOR"
 	else
 		exit 1
