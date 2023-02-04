@@ -7,9 +7,9 @@ function clrd {
 	palette="$1"
 	shift
 
-	if [ "$palette" == 'sk' ]; then
+	if [[ "$palette" == 'sk' ]]; then
 		palette="$SNAKE_COLOR"
-	elif [ "$palette" == 'cm' ]; then
+	elif [[ "$palette" == 'cm' ]]; then
 		palette="$CAMEL_COLOR"
 	else
 		exit 1
@@ -27,7 +27,7 @@ gum style \
 
 camel_name=""
 parameter_text=""
-if [ -n "${1+x}" ]; then
+if [[ -n "${1+x}" ]]; then
     parameter_text=$(clrd cm --bold --italic --underline "command args")
 	camel_name="$1"
 else
