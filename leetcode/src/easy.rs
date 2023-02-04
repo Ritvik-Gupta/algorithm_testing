@@ -15,6 +15,7 @@ pub mod check_if_numbers_are_ascending_in_a_sentence;
 pub mod check_if_one_string_swap_can_make_strings_equal;
 pub mod check_if_the_sentence_is_pangram;
 pub mod check_if_two_string_arrays_are_equivalent;
+pub mod circular_sentence;
 pub mod climbing_stairs;
 pub mod construct_string_from_binary_tree;
 pub mod contains_duplicate;
