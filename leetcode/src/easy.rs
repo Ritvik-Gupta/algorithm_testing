@@ -112,6 +112,7 @@ pub mod same_tree;
 pub mod search_insert_position;
 pub mod self_dividing_numbers;
 pub mod shuffle_string;
+pub mod shuffle_the_array;
 pub mod single_number;
 pub mod smallest_range_1;
 pub mod sorting_the_sentence;
