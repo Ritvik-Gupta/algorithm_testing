@@ -69,6 +69,7 @@ pub mod make_array_zero_by_subtracting_equal_amounts;
 pub mod make_the_string_great;
 pub mod matrix_diagonal_sum;
 pub mod maximum_69_number;
+pub mod maximum_depth_of_binary_tree;
 pub mod maximum_number_of_pairs_in_array;
 pub mod maximum_number_of_words_you_can_type;
 pub mod maximum_subarray;
