@@ -216,6 +216,7 @@ pub mod smallest_number_in_infinite_set;
 pub mod smallest_string_with_swaps;
 pub mod smallest_value_after_replacing_with_sum_of_prime_factors;
 pub mod snakes_and_ladders;
+pub mod snapshot_array;
 pub mod sort_characters_by_frequency;
 pub mod sort_colors;
 pub mod sort_the_jumbled_numbers;
