@@ -94,6 +94,7 @@ pub mod jump_game;
 pub mod jump_game_2;
 pub mod k_closest_points_to_origin;
 pub mod keys_and_rooms;
+pub mod knight_probability_in_chessboard;
 pub mod kth_largest_element_in_an_array;
 pub mod kth_smallest_element_in_a_sorted_matrix;
 pub mod letter_case_permutation;

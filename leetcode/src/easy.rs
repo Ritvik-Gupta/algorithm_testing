@@ -34,6 +34,7 @@ pub mod destination_city;
 pub mod detect_capital;
 pub mod determine_color_of_a_chessboard_square;
 pub mod determine_if_string_halves_are_alike;
+pub mod determine_the_winner_of_a_bowling_game;
 pub mod excel_sheet_column_number;
 pub mod fibonacci_number;
 pub mod find_closest_number_to_zero;
