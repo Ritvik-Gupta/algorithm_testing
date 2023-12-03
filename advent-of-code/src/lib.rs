@@ -1,5 +1,6 @@
 pub mod aoc_2021;
 pub mod aoc_2022;
+pub mod aoc_2023;
 pub mod utils;
 
 use std::{
@@ -50,10 +51,9 @@ pub trait AdventDayProblem<OF: OptimizationFlag = Naive> {
 
 pub fn run_advent_problem<OF: OptimizationFlag, PR: AdventDayProblem<OF>>(
 ) -> Result<(), Box<dyn Error>> {
-    let file = File::open(&format!(
-        "./advent-of-code/files/{}.txt",
-        PR::get_problem_name()
-    ))?;
+    let file_path = format!("./advent-of-code/files/{}.txt", PR::get_problem_name());
+
+    let file = File::open(&file_path).expect(&format!("File path '{}' not present", file_path));
     println!(
         "{}",
         PR::part_1(PR::construct_arg(
@@ -63,10 +63,7 @@ pub fn run_advent_problem<OF: OptimizationFlag, PR: AdventDayProblem<OF>>(
         ))
     );
 
-    let file = File::open(&format!(
-        "./advent-of-code/files/{}.txt",
-        PR::get_problem_name()
-    ))?;
+    let file = File::open(&file_path).expect(&format!("File path '{}' not present", file_path));
     println!(
         "{}",
         PR::part_2(PR::construct_arg(
