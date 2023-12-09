@@ -1,5 +1,4 @@
 use itertools::Itertools;
-use rayon::iter::{IntoParallelRefIterator, ParallelBridge, ParallelIterator};
 use std::collections::HashMap;
 
 structstruck::strike! {
@@ -54,10 +53,7 @@ fn map_almanac_seed_to_location(almanac: &Almanac, seed: u64) -> u64 {
 }
 
 impl Almanac {
-    fn compute_lowest_location_seed(
-        &self,
-        initial_seeds: impl ParallelIterator<Item = u64>,
-    ) -> u64 {
+    fn compute_lowest_location_seed(&self, initial_seeds: impl Iterator<Item = u64>) -> u64 {
         initial_seeds
             .map(|seed| map_almanac_seed_to_location(self, seed))
             .min()
@@ -107,7 +103,7 @@ impl crate::AdventDayProblem for IfYouGiveASeedAFertilizer {
     }
 
     fn part_1(almanac: Self::Arg) -> Self::Ret {
-        almanac.compute_lowest_location_seed(almanac.seeds.par_iter().cloned())
+        almanac.compute_lowest_location_seed(almanac.seeds.iter().cloned())
     }
 
     fn part_2(almanac: Self::Arg) -> Self::Ret {
@@ -116,6 +112,6 @@ impl crate::AdventDayProblem for IfYouGiveASeedAFertilizer {
             let range = almanac.seeds[i + 1];
             seeds_start..seeds_start + range
         });
-        almanac.compute_lowest_location_seed(initial_seeds.par_bridge())
+        almanac.compute_lowest_location_seed(initial_seeds)
     }
 }

@@ -5,3 +5,7 @@ members = [
     "leetcode",
     "advent-of-code",
 ]
+resolver = "1"
+
+[profile.release]
+debug = true
