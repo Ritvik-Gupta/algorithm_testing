@@ -1,9 +1,11 @@
 pub mod camel_cards;
+pub mod cosmic_expansion;
 pub mod cube_conundrum;
 pub mod gear_ratios;
 pub mod haunted_wasteland;
 pub mod if_you_give_a_seed_a_fertilizer;
+pub mod mirage_maintenance;
+pub mod pipe_maze;
 pub mod scratchcards;
 pub mod trebuchet;
 pub mod wait_for_it;
-pub mod mirage_maintenance;
